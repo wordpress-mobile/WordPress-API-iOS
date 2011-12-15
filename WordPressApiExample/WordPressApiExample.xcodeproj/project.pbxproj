@@ -6,26 +6,8 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		E1352597149A90D9000B4FD3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1352596149A90D9000B4FD3 /* UIKit.framework */; };
-		E1352599149A90D9000B4FD3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1352598149A90D9000B4FD3 /* Foundation.framework */; };
-		E135259B149A90D9000B4FD3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E135259A149A90D9000B4FD3 /* CoreGraphics.framework */; };
-		E13525A1149A90D9000B4FD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E135259F149A90D9000B4FD3 /* InfoPlist.strings */; };
-		E13525A3149A90D9000B4FD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E13525A2149A90D9000B4FD3 /* main.m */; };
-		E13525A7149A90D9000B4FD3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E13525A6149A90D9000B4FD3 /* AppDelegate.m */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		E1352592149A90D9000B4FD3 /* WordPressApiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressApiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1352596149A90D9000B4FD3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E1352598149A90D9000B4FD3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E135259A149A90D9000B4FD3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		E135259E149A90D9000B4FD3 /* WordPressApiExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WordPressApiExample-Info.plist"; sourceTree = "<group>"; };
-		E13525A0149A90D9000B4FD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E13525A2149A90D9000B4FD3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E13525A4149A90D9000B4FD3 /* WordPressApiExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WordPressApiExample-Prefix.pch"; sourceTree = "<group>"; };
-		E13525A5149A90D9000B4FD3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E13525A6149A90D9000B4FD3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E1352640149AAE2F000B4FD3 /* WordPressApiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressApiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,9 +15,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1352597149A90D9000B4FD3 /* UIKit.framework in Frameworks */,
-				E1352599149A90D9000B4FD3 /* Foundation.framework in Frameworks */,
-				E135259B149A90D9000B4FD3 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,49 +24,8 @@
 		E1352587149A90D9000B4FD3 = {
 			isa = PBXGroup;
 			children = (
-				E135259C149A90D9000B4FD3 /* WordPressApiExample */,
-				E1352595149A90D9000B4FD3 /* Frameworks */,
-				E1352593149A90D9000B4FD3 /* Products */,
+				E1352640149AAE2F000B4FD3 /* WordPressApiExample.app */,
 			);
-			sourceTree = "<group>";
-		};
-		E1352593149A90D9000B4FD3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E1352592149A90D9000B4FD3 /* WordPressApiExample.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E1352595149A90D9000B4FD3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E1352596149A90D9000B4FD3 /* UIKit.framework */,
-				E1352598149A90D9000B4FD3 /* Foundation.framework */,
-				E135259A149A90D9000B4FD3 /* CoreGraphics.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E135259C149A90D9000B4FD3 /* WordPressApiExample */ = {
-			isa = PBXGroup;
-			children = (
-				E13525A5149A90D9000B4FD3 /* AppDelegate.h */,
-				E13525A6149A90D9000B4FD3 /* AppDelegate.m */,
-				E135259D149A90D9000B4FD3 /* Supporting Files */,
-			);
-			path = WordPressApiExample;
-			sourceTree = "<group>";
-		};
-		E135259D149A90D9000B4FD3 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E135259E149A90D9000B4FD3 /* WordPressApiExample-Info.plist */,
-				E135259F149A90D9000B4FD3 /* InfoPlist.strings */,
-				E13525A2149A90D9000B4FD3 /* main.m */,
-				E13525A4149A90D9000B4FD3 /* WordPressApiExample-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,7 +45,7 @@
 			);
 			name = WordPressApiExample;
 			productName = WordPressApiExample;
-			productReference = E1352592149A90D9000B4FD3 /* WordPressApiExample.app */;
+			productReference = E1352640149AAE2F000B4FD3 /* WordPressApiExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -127,7 +65,7 @@
 				en,
 			);
 			mainGroup = E1352587149A90D9000B4FD3;
-			productRefGroup = E1352593149A90D9000B4FD3 /* Products */;
+			productRefGroup = E1352587149A90D9000B4FD3;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -141,7 +79,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E13525A1149A90D9000B4FD3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,23 +89,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E13525A3149A90D9000B4FD3 /* main.m in Sources */,
-				E13525A7149A90D9000B4FD3 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E135259F149A90D9000B4FD3 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E13525A0149A90D9000B4FD3 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E13525A8149A90D9000B4FD3 /* Debug */ = {

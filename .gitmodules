@@ -1,0 +1,6 @@
+[submodule "xmlrpc"]
+	path = xmlrpc
+	url = git@github.com:koke/xmlrpc.git
+[submodule "AFNetworking"]
+	path = AFNetworking
+	url = git@github.com:koke/AFNetworking.git
