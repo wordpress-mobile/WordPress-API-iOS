@@ -1,0 +1,262 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E1352597149A90D9000B4FD3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1352596149A90D9000B4FD3 /* UIKit.framework */; };
+		E1352599149A90D9000B4FD3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1352598149A90D9000B4FD3 /* Foundation.framework */; };
+		E135259B149A90D9000B4FD3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E135259A149A90D9000B4FD3 /* CoreGraphics.framework */; };
+		E13525A1149A90D9000B4FD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E135259F149A90D9000B4FD3 /* InfoPlist.strings */; };
+		E13525A3149A90D9000B4FD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E13525A2149A90D9000B4FD3 /* main.m */; };
+		E13525A7149A90D9000B4FD3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E13525A6149A90D9000B4FD3 /* AppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E1352592149A90D9000B4FD3 /* WordPressApiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressApiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1352596149A90D9000B4FD3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E1352598149A90D9000B4FD3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E135259A149A90D9000B4FD3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E135259E149A90D9000B4FD3 /* WordPressApiExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WordPressApiExample-Info.plist"; sourceTree = "<group>"; };
+		E13525A0149A90D9000B4FD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E13525A2149A90D9000B4FD3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E13525A4149A90D9000B4FD3 /* WordPressApiExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WordPressApiExample-Prefix.pch"; sourceTree = "<group>"; };
+		E13525A5149A90D9000B4FD3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E13525A6149A90D9000B4FD3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E135258F149A90D9000B4FD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1352597149A90D9000B4FD3 /* UIKit.framework in Frameworks */,
+				E1352599149A90D9000B4FD3 /* Foundation.framework in Frameworks */,
+				E135259B149A90D9000B4FD3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E1352587149A90D9000B4FD3 = {
+			isa = PBXGroup;
+			children = (
+				E135259C149A90D9000B4FD3 /* WordPressApiExample */,
+				E1352595149A90D9000B4FD3 /* Frameworks */,
+				E1352593149A90D9000B4FD3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E1352593149A90D9000B4FD3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1352592149A90D9000B4FD3 /* WordPressApiExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1352595149A90D9000B4FD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1352596149A90D9000B4FD3 /* UIKit.framework */,
+				E1352598149A90D9000B4FD3 /* Foundation.framework */,
+				E135259A149A90D9000B4FD3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E135259C149A90D9000B4FD3 /* WordPressApiExample */ = {
+			isa = PBXGroup;
+			children = (
+				E13525A5149A90D9000B4FD3 /* AppDelegate.h */,
+				E13525A6149A90D9000B4FD3 /* AppDelegate.m */,
+				E135259D149A90D9000B4FD3 /* Supporting Files */,
+			);
+			path = WordPressApiExample;
+			sourceTree = "<group>";
+		};
+		E135259D149A90D9000B4FD3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E135259E149A90D9000B4FD3 /* WordPressApiExample-Info.plist */,
+				E135259F149A90D9000B4FD3 /* InfoPlist.strings */,
+				E13525A2149A90D9000B4FD3 /* main.m */,
+				E13525A4149A90D9000B4FD3 /* WordPressApiExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E1352591149A90D9000B4FD3 /* WordPressApiExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E13525AA149A90D9000B4FD3 /* Build configuration list for PBXNativeTarget "WordPressApiExample" */;
+			buildPhases = (
+				E135258E149A90D9000B4FD3 /* Sources */,
+				E135258F149A90D9000B4FD3 /* Frameworks */,
+				E1352590149A90D9000B4FD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WordPressApiExample;
+			productName = WordPressApiExample;
+			productReference = E1352592149A90D9000B4FD3 /* WordPressApiExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1352589149A90D9000B4FD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Automattic;
+			};
+			buildConfigurationList = E135258C149A90D9000B4FD3 /* Build configuration list for PBXProject "WordPressApiExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E1352587149A90D9000B4FD3;
+			productRefGroup = E1352593149A90D9000B4FD3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1352591149A90D9000B4FD3 /* WordPressApiExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E1352590149A90D9000B4FD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E13525A1149A90D9000B4FD3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E135258E149A90D9000B4FD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E13525A3149A90D9000B4FD3 /* main.m in Sources */,
+				E13525A7149A90D9000B4FD3 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E135259F149A90D9000B4FD3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E13525A0149A90D9000B4FD3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E13525A8149A90D9000B4FD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E13525A9149A90D9000B4FD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E13525AB149A90D9000B4FD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WordPressApiExample/WordPressApiExample-Prefix.pch";
+				INFOPLIST_FILE = "WordPressApiExample/WordPressApiExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E13525AC149A90D9000B4FD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WordPressApiExample/WordPressApiExample-Prefix.pch";
+				INFOPLIST_FILE = "WordPressApiExample/WordPressApiExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E135258C149A90D9000B4FD3 /* Build configuration list for PBXProject "WordPressApiExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E13525A8149A90D9000B4FD3 /* Debug */,
+				E13525A9149A90D9000B4FD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E13525AA149A90D9000B4FD3 /* Build configuration list for PBXNativeTarget "WordPressApiExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E13525AB149A90D9000B4FD3 /* Debug */,
+				E13525AC149A90D9000B4FD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E1352589149A90D9000B4FD3 /* Project object */;
+}
