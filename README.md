@@ -1,4 +1,4 @@
-## A simple Objective-C client to publish post on the WordPress platform.
+## A simple Objective-C client to publish posts on the WordPress platform.
 
 ### WordPress API for iOS is a library for iOS designed to make sharing on your WordPress blog easy.
 
