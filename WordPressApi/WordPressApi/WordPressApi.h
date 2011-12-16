@@ -119,6 +119,14 @@
 /**
  Given a site URL, tries to guess the URL for the XML-RPC endpoint
  
+ When asked for a site URL, sometimes users type the XML-RPC url, or the xmlrpc.php has been moved/renamed. This method would try a few methods to find the proper XML-RPC endpoint:
+ 
+ * Try to load the given URL adding `/xmlrpc.php` at the end. This is the most common use case for proper site URLs
+ * If that fails, try a test XML-RPC request given URL, maybe it was the XML-RPC URL already
+ * If that fails, fetch the given URL and search for an `EditURI` link pointing to the XML-RPC endpoint
+ 
+ For additional URL typo fixing, see [NSURL-Guess](https://github.com/koke/NSURL-Guess)
+ 
  @param siteURL The site's main url, e.g.: http://en.blog.wordpress.com/
  @param success A block object to execute when the method finds a suitable XML-RPC endpoint on the site provided. This block has no return value and takes two arguments: the original site URL, and the found XML-RPC endpoint URL.
  @param failure A block object to execute when the method doesn't find a suitable XML-RPC endpoint on the site. This block has no return value and takes one argument: the original site URL.
