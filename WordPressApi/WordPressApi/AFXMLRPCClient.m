@@ -6,6 +6,7 @@
 //  Copyright (c) 2011 Automattic. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "AFXMLRPCClient.h"
 #import "AFHTTPRequestOperation.h"
 #import "XMLRPCEncoder.h"
@@ -78,8 +79,9 @@ static NSUInteger const kAFXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
 }
 
 - (void)setAuthorizationHeaderWithUsername:(NSString *)username password:(NSString *)password {
-	NSString *basicAuthCredentials = [NSString stringWithFormat:@"%@:%@", username, password];
-    [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Basic %@", AFBase64EncodedStringFromString(basicAuthCredentials)]];
+    // TODO: not implemented yet
+//	NSString *basicAuthCredentials = [NSString stringWithFormat:@"%@:%@", username, password];
+//    [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Basic %@", AFBase64EncodedStringFromString(basicAuthCredentials)]];
 }
 
 - (void)setAuthorizationHeaderWithToken:(NSString *)token {
@@ -100,7 +102,8 @@ static NSUInteger const kAFXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
     
     XMLRPCEncoder *encoder = [[XMLRPCEncoder alloc] init];
     [encoder setMethod:method withParameters:parameters];
-    [request setHTTPBody:[encoder encode]];
+    NSData *content = [[encoder encode] dataUsingEncoding: NSUTF8StringEncoding];
+    [request setHTTPBody:content];
     
     return request;
 }
@@ -111,7 +114,28 @@ static NSUInteger const kAFXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
                                                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     AFHTTPRequestOperation *operation = [[[AFHTTPRequestOperation alloc] initWithRequest:request] autorelease];
-    [operation setCompletionBlockWithSuccess:success failure:failure];
+    
+
+    void (^xmlrpcSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        XMLRPCResponse *response = [[XMLRPCResponse alloc] initWithData:responseObject];
+        NSError *err = nil;
+        
+        if ([response isFault]) {
+            NSDictionary *usrInfo = [NSDictionary dictionaryWithObjectsAndKeys:[response faultString], NSLocalizedDescriptionKey, nil];
+            err = [NSError errorWithDomain:@"XMLRPC" code:[[response faultCode] intValue] userInfo:usrInfo];
+        }
+        
+        if (err) {
+            if (failure) {
+                failure(operation, err);
+            }
+        } else {
+            if (success) {
+                success(operation, [response object]);
+            }
+        }
+    };
+    [operation setCompletionBlockWithSuccess:xmlrpcSuccess failure:failure];
     
     return operation;
 }
