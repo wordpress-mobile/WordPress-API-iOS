@@ -125,6 +125,7 @@
 				E13525D2149A9296000B4FD3 /* AFNetworking */,
 				E1352602149A92C2000B4FD3 /* XMLRPC */,
 				E13525BD149A9100000B4FD3 /* WordPressApi */,
+				E13525BE149A9100000B4FD3 /* Supporting Files */,
 				E13525BA149A9100000B4FD3 /* Frameworks */,
 				E13525B9149A9100000B4FD3 /* Products */,
 			);
@@ -153,7 +154,6 @@
 				E1F753B314A0803D00DB35A3 /* AFXMLRPCClient.m */,
 				E13525C0149A9100000B4FD3 /* WordPressApi.h */,
 				E13525C1149A9100000B4FD3 /* WordPressApi.m */,
-				E13525BE149A9100000B4FD3 /* Supporting Files */,
 			);
 			path = WordPressApi;
 			sourceTree = "<group>";
@@ -164,6 +164,7 @@
 				E13525BF149A9100000B4FD3 /* WordPressApi-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = WordPressApi;
 			sourceTree = "<group>";
 		};
 		E13525D2149A9296000B4FD3 /* AFNetworking */ = {

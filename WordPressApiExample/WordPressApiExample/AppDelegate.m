@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  WordPressApiExample
 //
-//  Created by Jorge Bernal on 12/15/11.
+//  Created by Jorge Bernal on 12/20/11.
 //  Copyright (c) 2011 Automattic. All rights reserved.
 //
 
@@ -20,13 +20,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
     return YES;
 }
-
+							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*

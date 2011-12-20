@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:WordPressApiExample/WordPressApiExample.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:xmlrpc/XMLRPC.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:WordPressApi/WordPressApi.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:WordPressApiExample/WordPressApiExample.xcodeproj">
    </FileRef>
 </Workspace>
