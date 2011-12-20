@@ -28,9 +28,25 @@
 */
 @interface WordPressApi : NSObject
 
+///-----------------------------------------
+/// @name Accessing WordPress API properties
+///-----------------------------------------
+
+@property (readonly, nonatomic, retain) NSURL *xmlrpc;
+
 ///-------------------------------------------------------
 /// @name Creating and Initializing a WordPress API Client
 ///-------------------------------------------------------
+
+/**
+ Creates and initializes a `WordPressAPI` client trying to guess the proper XML-RPC endpoint from the site URL.
+ 
+ @param xmlrpc The XML-RPC endpoint URL, e.g.: https://en.blog.wordpress.com/xmlrpc.php
+ @param username The user name
+ @param password The password
+ */
++ (WordPressApi *)apiWithXMLRPCEndpoint:(NSURL *)xmlrpc username:(NSString *)username password:(NSString *)password;
+
 
 /**
  Initializes a `WordPressAPI` client trying to guess the proper XML-RPC endpoint from the site URL.
@@ -40,6 +56,10 @@
  @param password The password
  */
 - (id)initWithXMLRPCEndpoint:(NSURL *)xmlrpc username:(NSString *)username password:(NSString *)password;
+
+///------------------------
+/// @name Publishing a post
+///------------------------
 
 /**
  Publishes a post asynchronously with text/HTML only
@@ -111,6 +131,21 @@
                        title:(NSString *)title
                      success:(void (^)(NSUInteger postId, NSURL *permalink))success
                      failure:(void (^)(NSError *error))failure;
+
+///---------------------
+/// @name Managing posts
+///---------------------
+
+/**
+ Get a list of the recent posts
+ 
+ @param count Number of recent posts to get
+ @param success A block object to execute when the method successfully publishes the post. This block has no return value and takes one argument: an array with the latest posts.
+ @param failure A block object to execute when the method can't publish the post. This block has no return value and takes one argument: a NSError object with details on the error.
+ */
+- (void)getPosts:(NSUInteger)count
+         success:(void (^)(NSArray *posts))success
+         failure:(void (^)(NSError *error))failure;
 
 ///--------------
 /// @name Helpers
