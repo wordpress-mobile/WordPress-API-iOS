@@ -18,7 +18,7 @@
 	<key>--company-id</key>
 	<string>org.wordpress</string>
 	<key>--keep-undocumented-members</key>
-	<true/>
+	<false/>
 	<key>--keep-intermediate-files</key>
 	<true/>
 </dict>
