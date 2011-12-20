@@ -51,6 +51,8 @@
 		E135262A149A92C2000B4FD3 /* XMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1352611149A92C2000B4FD3 /* XMLRPCRequest.m */; };
 		E135262B149A92C2000B4FD3 /* XMLRPCResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = E1352612149A92C2000B4FD3 /* XMLRPCResponse.h */; };
 		E135262C149A92C2000B4FD3 /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E1352613149A92C2000B4FD3 /* XMLRPCResponse.m */; };
+		E1F753B414A0803D00DB35A3 /* AFXMLRPCClient.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F753B214A0803D00DB35A3 /* AFXMLRPCClient.h */; };
+		E1F753B514A0803D00DB35A3 /* AFXMLRPCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F753B314A0803D00DB35A3 /* AFXMLRPCClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +103,8 @@
 		E1352616149A92C2000B4FD3 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		E1352617149A92C2000B4FD3 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		E1352618149A92C2000B4FD3 /* XMLRPCConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCConnectionDelegate.h; sourceTree = "<group>"; };
+		E1F753B214A0803D00DB35A3 /* AFXMLRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRPCClient.h; sourceTree = "<group>"; };
+		E1F753B314A0803D00DB35A3 /* AFXMLRPCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRPCClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,8 @@
 		E13525BD149A9100000B4FD3 /* WordPressApi */ = {
 			isa = PBXGroup;
 			children = (
+				E1F753B214A0803D00DB35A3 /* AFXMLRPCClient.h */,
+				E1F753B314A0803D00DB35A3 /* AFXMLRPCClient.m */,
 				E13525C0149A9100000B4FD3 /* WordPressApi.h */,
 				E13525C1149A9100000B4FD3 /* WordPressApi.m */,
 				E13525BE149A9100000B4FD3 /* Supporting Files */,
@@ -264,6 +270,7 @@
 				E1352627149A92C2000B4FD3 /* XMLRPCEventBasedParserDelegate.h in Headers */,
 				E1352629149A92C2000B4FD3 /* XMLRPCRequest.h in Headers */,
 				E135262B149A92C2000B4FD3 /* XMLRPCResponse.h in Headers */,
+				E1F753B414A0803D00DB35A3 /* AFXMLRPCClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +345,7 @@
 				E1352628149A92C2000B4FD3 /* XMLRPCEventBasedParserDelegate.m in Sources */,
 				E135262A149A92C2000B4FD3 /* XMLRPCRequest.m in Sources */,
 				E135262C149A92C2000B4FD3 /* XMLRPCResponse.m in Sources */,
+				E1F753B514A0803D00DB35A3 /* AFXMLRPCClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +435,7 @@
 				E13525C7149A9100000B4FD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
