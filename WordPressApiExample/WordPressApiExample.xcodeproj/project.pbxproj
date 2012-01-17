@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E15CEBAF14C59B1400CFDBB7 /* XMLRPCDataCleaner.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEBAE14C59B1400CFDBB7 /* XMLRPCDataCleaner.m */; };
+		E15CEBB114C59B3500CFDBB7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */; };
+		E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */; };
+		E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEC2A14C5E05800CFDBB7 /* ComposeViewController.m */; };
 		E1F753D814A094F400DB35A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753D714A094F400DB35A3 /* UIKit.framework */; };
 		E1F753DA14A094F400DB35A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753D914A094F400DB35A3 /* Foundation.framework */; };
 		E1F753DC14A094F400DB35A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753DB14A094F400DB35A3 /* CoreGraphics.framework */; };
@@ -40,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E15CEBAD14C59B1400CFDBB7 /* XMLRPCDataCleaner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCDataCleaner.h; sourceTree = "<group>"; };
+		E15CEBAE14C59B1400CFDBB7 /* XMLRPCDataCleaner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCDataCleaner.m; sourceTree = "<group>"; };
+		E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		E15CEC1814C5C39000CFDBB7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E15CEC2914C5E05800CFDBB7 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		E15CEC2A14C5E05800CFDBB7 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		E1F753D314A094F400DB35A3 /* WordPressApiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressApiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F753D714A094F400DB35A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1F753D914A094F400DB35A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E15CEBB114C59B3500CFDBB7 /* libiconv.dylib in Frameworks */,
 				E1F753D814A094F400DB35A3 /* UIKit.framework in Frameworks */,
 				E1F753DA14A094F400DB35A3 /* Foundation.framework in Frameworks */,
 				E1F753DC14A094F400DB35A3 /* CoreGraphics.framework in Frameworks */,
@@ -137,6 +149,7 @@
 		E1F753D614A094F400DB35A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */,
 				E1F753D714A094F400DB35A3 /* UIKit.framework */,
 				E1F753D914A094F400DB35A3 /* Foundation.framework */,
 				E1F753DB14A094F400DB35A3 /* CoreGraphics.framework */,
@@ -158,6 +171,10 @@
 				E1F753EF14A094F400DB35A3 /* PostViewController.h */,
 				E1F753F014A094F400DB35A3 /* PostViewController.m */,
 				E1F753DE14A094F400DB35A3 /* Supporting Files */,
+				E15CEC1814C5C39000CFDBB7 /* LoginViewController.h */,
+				E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */,
+				E15CEC2914C5E05800CFDBB7 /* ComposeViewController.h */,
+				E15CEC2A14C5E05800CFDBB7 /* ComposeViewController.m */,
 			);
 			path = WordPressApiExample;
 			sourceTree = "<group>";
@@ -213,6 +230,8 @@
 				E1F7542414A0A99500DB35A3 /* XMLRPCConnection.m */,
 				E1F7542514A0A99500DB35A3 /* XMLRPCConnectionManager.h */,
 				E1F7542614A0A99500DB35A3 /* XMLRPCConnectionManager.m */,
+				E15CEBAD14C59B1400CFDBB7 /* XMLRPCDataCleaner.h */,
+				E15CEBAE14C59B1400CFDBB7 /* XMLRPCDataCleaner.m */,
 				E1F7542714A0A99500DB35A3 /* XMLRPCEncoder.h */,
 				E1F7542814A0A99500DB35A3 /* XMLRPCEncoder.m */,
 				E1F7542914A0A99500DB35A3 /* XMLRPCEventBasedParser.h */,
@@ -347,6 +366,9 @@
 				E1F7543E14A0A99500DB35A3 /* XMLRPCResponse.m in Sources */,
 				E1F7544414A0A9B200DB35A3 /* AFXMLRPCClient.m in Sources */,
 				E1F7544514A0A9B200DB35A3 /* WordPressApi.m in Sources */,
+				E15CEBAF14C59B1400CFDBB7 /* XMLRPCDataCleaner.m in Sources */,
+				E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */,
+				E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +478,7 @@
 				E1F753F614A094F400DB35A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

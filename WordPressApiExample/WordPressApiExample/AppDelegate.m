@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "WordPressApi.h"
 
 @implementation AppDelegate
 
@@ -22,6 +23,22 @@
 {
     // Override point for customization after application launch.
     return YES;
+}
+
+// Pre 4.2 support
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [WordPressApi handleOpenURL:url success:^(NSString *xmlrpc, NSString *token) {
+        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+        [def setObject:token forKey:@"wp_token"];
+        [def setObject:xmlrpc forKey:@"wp_xmlrpc"];
+        [def synchronize];
+    }];
+}
+
+// For 4.2+ support
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [self application:application handleOpenURL:url];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

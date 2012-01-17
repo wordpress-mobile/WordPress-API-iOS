@@ -13,6 +13,7 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#define WPAPI_URL @""
-#define WPAPI_USER @""
-#define WPAPI_PASS @""
+#define OAUTH_CLIENT_ID @""
+#define OAUTH_REDIRECT_URI @""
+#define OAUTH_SECRET @""
+#define OAUTH_CALLBACK @"wpexample"

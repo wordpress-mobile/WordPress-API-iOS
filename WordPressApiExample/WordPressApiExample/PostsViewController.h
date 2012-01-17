@@ -13,4 +13,5 @@
 @property (readonly, nonatomic, retain) WordPressApi *api;
 
 - (IBAction)refreshPosts:(id)sender;
+- (void)publishPostWithTitle:(NSString *)title content:(NSString *)content;
 @end

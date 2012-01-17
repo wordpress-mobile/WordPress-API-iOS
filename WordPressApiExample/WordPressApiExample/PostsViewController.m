@@ -12,6 +12,7 @@
 @interface PostsViewController ()
 @property (readwrite, nonatomic, retain) WordPressApi *api;
 @property (readwrite, nonatomic, retain) NSArray *posts;
+- (void)setupApi;
 @end
 
 @implementation PostsViewController
@@ -20,9 +21,7 @@
 
 - (void)awakeFromNib
 {
-    // TODO: show login view
-    // Meanwhile, change this parameters on the PCH file
-    self.api = [WordPressApi apiWithXMLRPCEndpoint:[NSURL URLWithString:WPAPI_URL] username:WPAPI_USER password:WPAPI_PASS];
+    [self setupApi];
     self.posts = [NSArray array];
     [super awakeFromNib];
 }
@@ -45,8 +44,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.navigationItem.rightBarButtonItems && [self.navigationItem.rightBarButtonItems count] == 1) {
+        UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, logout, nil];
+        [logout release];
+    }
 	// Do any additional setup after loading the view, typically from a nib.
     [self refreshPosts:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"wp_xmlrpc" options:0 context:nil];
 }
 
 - (void)viewDidUnload
@@ -58,6 +63,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"viewWillAppear");
+    [self setupApi];
+    if (self.api == nil) {
+        [self.navigationController performSegueWithIdentifier:@"login" sender:self];
+    }
     [super viewWillAppear:animated];
 }
 
@@ -114,9 +124,11 @@
 #pragma mark - Storyboards
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSDictionary *post = [self.posts objectAtIndex:[self.tableView indexPathForSelectedRow].row];
-    PostViewController *postViewController = (PostViewController *)segue.destinationViewController;
-    postViewController.post = post;
+    if ([segue.identifier isEqualToString:@"showPost"]) {
+        NSDictionary *post = [self.posts objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+        PostViewController *postViewController = (PostViewController *)segue.destinationViewController;
+        postViewController.post = post;
+    }
 }
 
 #pragma mark - Custom methods
@@ -129,6 +141,57 @@
     } failure:^(NSError *error) {
         NSLog(@"Error fetching posts: %@", [error localizedDescription]);
     }];
+}
+
+- (void)publishPostWithTitle:(NSString *)title content:(NSString *)content {
+    [self.api publishPostWithText:content title:title success:^(NSUInteger postId, NSURL *permalink) {
+        [self refreshPosts:self];
+    } failure:^(NSError *error) {
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error posting"
+                                                        message:[error localizedDescription]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil] autorelease];
+        [alert show];
+    }];
+}
+
+#pragma mark - Private
+
+- (void)setupApi {
+    if (self.api == nil) {
+        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+        NSString *xmlrpc = [def objectForKey:@"wp_xmlrpc"];
+        if (xmlrpc) {
+            NSString *token = [def objectForKey:@"wp_token"];
+            if (token) {
+                self.api = [WordPressApi apiWithXMLRPCEndpoint:[NSURL URLWithString:xmlrpc] token:token];
+            } else {
+                NSString *username = [def objectForKey:@"wp_username"];
+                NSString *password = [def objectForKey:@"wp_password"];
+                if (username && password) {
+                    self.api = [WordPressApi apiWithXMLRPCEndpoint:[NSURL URLWithString:xmlrpc] username:username password:password];
+                }
+            }
+        }
+    }
+    if (self.api) {
+        [self refreshPosts:self];
+    }
+}
+
+- (IBAction)logout:(id)sender {
+    self.api = nil;
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    [def removeObjectForKey:@"wp_xmlrpc"];
+    [def synchronize];
+    [self.navigationController performSegueWithIdentifier:@"login" sender:self];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"wp_xmlrpc"]) {
+        [self setupApi];
+    }
 }
 
 @end
