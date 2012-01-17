@@ -153,7 +153,8 @@
  Publishes a post asynchronously with an image
  
  All the parameters are optional, and can be set to `nil`
- 
+
+ @warning **Not implemented yet**. It just calls publishPostWIthText:title:success:failure: ignoring the image
  @param image An image to add to the post. The image will be embedded **before** the content.
  @param content The post content/body. It can be text only or HTML, but be aware that some HTML might be stripped in WordPress. [What's allowed in WordPress.com?](http://en.support.wordpress.com/code/)
  @param title The post title.
@@ -171,6 +172,7 @@
  
  All the parameters are optional, and can be set to `nil`
  
+ @warning **Not implemented yet**. It just calls publishPostWIthText:title:success:failure: ignoring the images
  @param images An array containing images (as UIImage) to add to the post. The gallery will be embedded **before** the content using the [[gallery]](http://en.support.wordpress.com/images/gallery/) shortcode.
  @param content The post content/body. It can be text only or HTML, but be aware that some HTML might be stripped in WordPress. [What's allowed in WordPress.com?](http://en.support.wordpress.com/code/)
  @param title The post title.
@@ -192,6 +194,7 @@
  
  For self hosted blogs, if VideoPress is available it will be used, otherwise the video will be embedded using the HTML5 `<video>` tag.
 
+ @warning **Not implemented yet**. It just calls publishPostWIthText:title:success:failure: ignoring the video
  @param videoPath A string containing the path to the video file to add to the post. The video will be embedded **before** the content.
  @param content The post content/body. It can be text only or HTML, but be aware that some HTML might be stripped in WordPress. [What's allowed in WordPress.com?](http://en.support.wordpress.com/code/)
  @param title The post title.
