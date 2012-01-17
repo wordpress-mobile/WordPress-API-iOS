@@ -32,6 +32,7 @@
 @property (readwrite, nonatomic, retain) AFXMLRPCClient *client;
 
 - (NSArray *)buildParametersWithExtra:(id)extra;
++ (NSMutableDictionary *)queryStringToDictionary:(NSString *)queryString;
 
 @end
 
@@ -96,6 +97,63 @@
     [_token release];
     [_client release];
     [super dealloc];
+}
+
+#pragma mark - Authentication
+
++ (BOOL)ssoAvailable {
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wordpress://"]];
+}
+
++ (void)authenticateWithClientId:(NSString *)clientId redirectUri:(NSString *)redirectUri secret:(NSString *)secret callback:(NSString *)callback {
+    if ([self ssoAvailable]) {
+        NSString *url = [NSString stringWithFormat:@"wordpress://oauth?client_id=%@&redirect_uri=%@&secret=%@&callback=%@",
+                         clientId,
+                         redirectUri,
+                         secret,
+                         callback];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    } else {
+        // FIXME: Add embedded web controller to do OAuth2 login even if the app is not installed
+    }
+}
+
++ (BOOL)handleOpenURL:(NSURL *)url success:(void (^)(NSString *xmlrpc, NSString *token))success {
+    if (url && [[url host] isEqualToString:@"wordpress-sso"]) {
+        NSDictionary *params = [self queryStringToDictionary:[url query]];
+        NSString *blog = [params objectForKey:@"blog"];
+        NSString *token = [params objectForKey:@"token"];
+        if (blog && token) {
+            NSString *xmlrpc = [NSString stringWithFormat:@"http://%@/xmlrpc.php", blog];
+            if (success) {
+                success(xmlrpc, token);
+            }
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)authenticateWithSuccess:(void (^)(BOOL valid))success
+                        failure:(void (^)(NSError *error))failure {
+    NSArray *parameters = [NSArray arrayWithObjects:self.username, self.password, nil];
+    [self.client callMethod:@"wp.getUsersBlogs"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success(YES);
+                        }
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (error.code == 403 && [error.domain isEqualToString:@"XMLRPC"]) {
+                            if (success) {
+                                success(NO);
+                            }
+                        } else {
+                            if (failure) {
+                                failure(error);
+                            }
+                        }
+                    }];
 }
 
 #pragma mark - Publishing a post
@@ -190,6 +248,31 @@
     }
     
     return [NSArray arrayWithArray:result];
+}
+
++ (NSMutableDictionary *)queryStringToDictionary:(NSString *)queryString {
+    if (!queryString)
+        return nil;
+    
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    
+    NSArray *pairs = [queryString componentsSeparatedByString:@"&"];
+    for (NSString *pair in pairs) {
+        NSRange separator = [pair rangeOfString:@"="];
+        NSString *key, *value;
+        if (separator.location != NSNotFound) {
+            key = [pair substringToIndex:separator.location];
+            value = [[pair substringFromIndex:separator.location + 1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        } else {
+            key = pair;
+            value = @"";
+        }
+        
+        key = [key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [result setObject:value forKey:key];
+    }
+    
+    return result;
 }
 
 @end

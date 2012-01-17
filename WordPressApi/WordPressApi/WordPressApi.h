@@ -77,6 +77,58 @@
  */
 - (id)initWithXMLRPCEndpoint:(NSURL *)xmlrpc token:(NSString *)token;
 
+///-------------------
+/// @name Authenticate
+///-------------------
+
+/**
+ Checks if Single Sign-On using the WordPress app is available 
+ */
++ (BOOL)ssoAvailable;
+
+/**
+ Launches the WordPress app to authenticate with WordPress.com
+ 
+ If you don't have the necessary parameters, get them at http://develop.wordpress.com/contact/
+ 
+ @param clientId Your Client ID
+ @param redirectUri The redirect URL, it needs to match the one you provided on registration
+ @param secret Your secret code
+ @param callback A custom URL scheme that your app is registered to handle.
+ @see [Implementing Custom URL Schemes](http://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/AdvancedAppTricks/AdvancedAppTricks.html#//apple_ref/doc/uid/TP40007072-CH7-SW50)
+ */
++ (void)authenticateWithClientId:(NSString *)clientId redirectUri:(NSString *)redirectUri secret:(NSString *)secret callback:(NSString *)callback;
+
+/**
+ Helper function for [UIApplicationDelegate application:handleOpenURL:] to process the authentication callback from the WordPress app
+ 
+ In your application delegate:
+ 
+     // Pre 4.2 support
+     - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+     return [facebook handleOpenURL:url]; 
+     }
+     
+     // For 4.2+ support
+     - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+     sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+     return [facebook handleOpenURL:url]; 
+     }
+ 
+ @param url The url passed to [UIApplicationDelegate application:handleOpenURL:]
+ @param success A block called if the url could be processed. The block has no return value and takes two arguments: the XML-RPC endpoint for the blog and the OAuth token. We highly recommend you store these in a secure place like the keychain.
+ @returns YES if the url passed was a valid callback from authentication and it could be processed. Otherwise it returns NO.
+ */
++ (BOOL)handleOpenURL:(NSURL *)url success:(void (^)(NSString *xmlrpc, NSString *token))success;
+
+/**
+ Performs a XML-RPC test call just to verify that the credentials are correct.
+ 
+ @param success A block object to execute when the credentials are valid. This block has no return value and one argument: if the credentials are valid or not.
+ @param failure A block object to execute when the credentials can't be verified: it doesn't mean the credentials are invalid, just they can't be verified due to some network error. This block has no return value and takes one argument: a NSError object with details on the error.
+ */
+- (void)authenticateWithSuccess:(void (^)(BOOL valid))success
+                        failure:(void (^)(NSError *error))failure;
 
 ///------------------------
 /// @name Publishing a post
