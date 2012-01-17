@@ -10,7 +10,7 @@
 #import "PostsViewController.h"
 
 @implementation ComposeViewController
-@synthesize title, content;
+@synthesize titleField, content;
 
 - (IBAction)cancel:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
@@ -18,7 +18,7 @@
 
 - (IBAction)save:(id)sender {
     PostsViewController *postsVC = (PostsViewController *)[(UINavigationController *)[self presentingViewController] topViewController];
-    [postsVC publishPostWithTitle:title.text content:content.text];
+    [postsVC publishPostWithTitle:titleField.text content:content.text];
     [self dismissModalViewControllerAnimated:YES];
 }
 

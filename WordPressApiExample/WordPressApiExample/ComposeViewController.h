@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ComposeViewController : UIViewController
-@property (nonatomic, retain) IBOutlet UITextField *title;
+@property (nonatomic, retain) IBOutlet UITextField *titleField;
 @property (nonatomic, retain) IBOutlet UITextView *content;
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;

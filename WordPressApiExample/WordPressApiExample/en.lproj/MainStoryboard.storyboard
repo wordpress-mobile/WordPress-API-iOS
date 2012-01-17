@@ -292,7 +292,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="content" destination="Mz9-v0-jfU" id="WBc-NK-7Uf"/>
-                        <outlet property="title" destination="83u-yp-eob" id="tiK-xG-gek"/>
+                        <outlet property="titleField" destination="83u-yp-eob" id="672-iV-FhL"/>
                     </connections>
                 </viewController>
             </objects>
@@ -344,7 +344,7 @@
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="content" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="title" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="LoginViewController" superclassName="UITableViewController">
