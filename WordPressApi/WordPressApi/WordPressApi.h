@@ -39,7 +39,7 @@
 ///-------------------------------------------------------
 
 /**
- Creates and initializes a `WordPressAPI` client trying to guess the proper XML-RPC endpoint from the site URL.
+ Creates and initializes a `WordPressAPI` client using password authentication.
  
  @param xmlrpc The XML-RPC endpoint URL, e.g.: https://en.blog.wordpress.com/xmlrpc.php
  @param username The user name
@@ -47,15 +47,36 @@
  */
 + (WordPressApi *)apiWithXMLRPCEndpoint:(NSURL *)xmlrpc username:(NSString *)username password:(NSString *)password;
 
+/**
+ Creates and initializes a `WordPressAPI` client using password authentication.
+ 
+ Only supported for WordPress.com. See http://develop.wordpress.com/oauth2/
+ 
+ @param xmlrpc The XML-RPC endpoint URL, e.g.: https://en.blog.wordpress.com/xmlrpc.php
+ @param token The OAuth token
+ */
++ (WordPressApi *)apiWithXMLRPCEndpoint:(NSURL *)xmlrpc token:(NSString *)token;
+
 
 /**
- Initializes a `WordPressAPI` client trying to guess the proper XML-RPC endpoint from the site URL.
+ Initializes a `WordPressAPI` client using password authentication.
  
  @param xmlrpc The XML-RPC endpoint URL, e.g.: https://en.blog.wordpress.com/xmlrpc.php
  @param username The user name
  @param password The password
  */
 - (id)initWithXMLRPCEndpoint:(NSURL *)xmlrpc username:(NSString *)username password:(NSString *)password;
+
+/**
+ Initializes a `WordPressAPI` client using OAuth.
+ 
+ Only supported for WordPress.com. See http://develop.wordpress.com/oauth2/
+ 
+ @param xmlrpc The XML-RPC endpoint URL, e.g.: https://en.blog.wordpress.com/xmlrpc.php
+ @param token The OAuth token
+ */
+- (id)initWithXMLRPCEndpoint:(NSURL *)xmlrpc token:(NSString *)token;
+
 
 ///------------------------
 /// @name Publishing a post

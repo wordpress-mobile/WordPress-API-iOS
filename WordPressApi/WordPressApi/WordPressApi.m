@@ -28,6 +28,7 @@
 @property (readwrite, nonatomic, retain) NSURL *xmlrpc;
 @property (readwrite, nonatomic, retain) NSString *username;
 @property (readwrite, nonatomic, retain) NSString *password;
+@property (readwrite, nonatomic, retain) NSString *token;
 @property (readwrite, nonatomic, retain) AFXMLRPCClient *client;
 
 - (NSArray *)buildParametersWithExtra:(id)extra;
@@ -38,17 +39,22 @@
     NSURL *_xmlrpc;
     NSString *_username;
     NSString *_password;
+    NSString *_token;
     AFXMLRPCClient *_client;
 }
 @synthesize xmlrpc = _xmlrpc;
 @synthesize username = _username;
 @synthesize password = _password;
+@synthesize token = _token;
 @synthesize client = _client;
 
 + (WordPressApi *)apiWithXMLRPCEndpoint:(NSURL *)xmlrpc username:(NSString *)username password:(NSString *)password {
     return [[[self alloc] initWithXMLRPCEndpoint:xmlrpc username:username password:password] autorelease];
 }
 
++ (WordPressApi *)apiWithXMLRPCEndpoint:(NSURL *)xmlrpc token:(NSString *)token {
+    return [[[self alloc] initWithXMLRPCEndpoint:xmlrpc token:token] autorelease];
+}
 
 - (id)initWithXMLRPCEndpoint:(NSURL *)xmlrpc username:(NSString *)username password:(NSString *)password
 {
@@ -56,13 +62,30 @@
     if (!self) {
         return nil;
     }
-    
+
     self.xmlrpc = xmlrpc;
     self.username = username;
     self.password = password;
-    
+
     self.client = [AFXMLRPCClient clientWithXMLRPCEndpoint:xmlrpc];
-    
+
+    return self;
+}
+
+- (id)initWithXMLRPCEndpoint:(NSURL *)xmlrpc token:(NSString *)token {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+
+    self.xmlrpc = xmlrpc;
+    self.username = @"";
+    self.password = @"";
+    self.token = token;
+
+    self.client = [AFXMLRPCClient clientWithXMLRPCEndpoint:xmlrpc];
+    [self.client setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", token]];
+
     return self;
 }
 
@@ -70,6 +93,7 @@
     [_xmlrpc release];
     [_username release];
     [_password release];
+    [_token release];
     [_client release];
     [super dealloc];
 }
@@ -157,8 +181,8 @@
 - (NSArray *)buildParametersWithExtra:(id)extra {
     NSMutableArray *result = [NSMutableArray array];
     [result addObject:@"1"];
-    [result addObject:@"q"];
-    [result addObject:@"q"];
+    [result addObject:self.username];
+    [result addObject:self.password];
     if ([extra isKindOfClass:[NSArray class]]) {
         [result addObjectsFromArray:extra];
     } else if ([extra isKindOfClass:[NSDictionary class]]) {
