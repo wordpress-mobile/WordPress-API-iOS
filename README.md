@@ -1,40 +1,28 @@
-## A simple Objective-C client to publish posts on the WordPress platform.
+# WordPress API for iOS
 
-### WordPress API for iOS is a library for iOS designed to make sharing on your WordPress blog easy.
+WordPress API for iOS is a library for iOS designed to make sharing on your WordPress blog easy.
 
 It's not meant to provide access to the full feature set of the WordPress XML-RPC API.
 
-## Installation
+# Disclaimer
 
-You can download the project from FIXME
+**Warning:** This API is a work in progress, and much of the basic functionality is not implemented yet.
 
-### The quick way
+# Installation
 
-* Drag `libWordPressApi.a` and `WordPressApi.h` to your Xcode project. Make sure to check "Copy items into destination group's folder"
-* Add `#import "WordPressApi.h"` to your source file where you plan to use the API
-* You're ready to go
+WordPress API uses [CocoaPods](http://cocoapods.org/) for easy
+dependency management.
 
-### The long way
+Until we are ready for a 1.0 release, you can add this to your Podfile:
 
-There can be a few reasons why you wouldn't want to just link the library and import the source instead, some of them:
+	pod 'WordPressApi', :podspec => 'https://raw.github.com/koke/WordPressApi/master/WordPressApi.podspec'
 
-* You want to modify the code
-* You are already using `AFNetworking` or the `XMLRPC` library. In this case, adding the static library would throw "duplicate symbols" errors on compile
+Another option, if you don't use CocoaPods, is to copy the `WordPressApi`
+folder to your project.
 
-If that's the case, or you just like to have the source available in your project:
+# Example usage
 
-* Download [AFNetworking](https://github.com/AFNetworking/AFNetworking) and add the `AFNetworking` folder to your project
-* Download [XMLRPC](https://github.com/eczarny/xmlrpc) and add it to your project. A way to do that is to create a `XMLRPC` group in your project and add all the .h/.m files in there
-* Add the `WordPressApi` folder to your project (the one that has `WordPressApi.h`)
-* Add `#import "WordPressApi.h"` to your source file where you plan to use the API
-
-## Example project
-
-[TODO] Example project will include examples for posting text, images or video
-
-## Example usage
-
-### Posting a picture
+## Posting a picture
 
 A hypothetical camera app called Cameramattic wants to add an option to share its pictures on WordPress
 
