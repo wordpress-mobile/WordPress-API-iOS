@@ -84,7 +84,14 @@ static NSString *WordPressRestApiRedirectUrl = nil;
         [self publishPostWithText:content title:title success:success failure:failure];
     }
 
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.f);
+    [self publishPostWithGallery:@[image] description:content title:title success:success failure:failure];
+}
+
+- (void)publishPostWithGallery:(NSArray *)images description:(NSString *)content title:(NSString *)title success:(void (^)(NSUInteger postId, NSURL *permalink))success failure:(void (^)(NSError *error))failure {
+    if (![images count]) {
+        [self publishPostWithText:content title:title success:success failure:failure];
+    }
+
     NSDictionary *parameters = @{
                                  @"title": title,
                                  @"content": content
@@ -93,7 +100,10 @@ static NSString *WordPressRestApiRedirectUrl = nil;
                                                                path:[self sitePath:@"posts/new"]
                                                          parameters:parameters
                                           constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                                              [formData appendPartWithFileData:imageData name:@"media[]" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+                                              [images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                                                  NSData *imageData = UIImageJPEGRepresentation(obj, 1.f);
+                                                  [formData appendPartWithFileData:imageData name:@"media[]" fileName:[NSString stringWithFormat:@"image-%d.jpg", idx] mimeType:@"image/jpeg"];
+                                              }];
                                           }];
     AFHTTPRequestOperation *operation = [_client HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSUInteger postId = [[responseObject objectForKey:@"ID"] unsignedIntegerValue];
@@ -105,16 +115,14 @@ static NSString *WordPressRestApiRedirectUrl = nil;
     [_client enqueueHTTPRequestOperation:operation];
 }
 
-- (void)publishPostWithGallery:(NSArray *)images description:(NSString *)content title:(NSString *)title success:(void (^)(NSUInteger postId, NSURL *permalink))success failure:(void (^)(NSError *error))failure {
-
-}
-
-- (void)publishPostWithVideo:(NSString *)videoPath description:(NSString *)content title:(NSString *)title success:(void (^)(NSUInteger postId, NSURL *permalink))success failure:(void (^)(NSError *error))failure {
-
-}
-
 - (void)getPosts:(NSUInteger)count success:(void (^)(NSArray *posts))success failure:(void (^)(NSError *error))failure {
-
+    [_client getPath:[self sitePath:@"posts"]
+          parameters:nil
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 success([responseObject objectForKey:@"posts"]);
+             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 failure(error);
+             }];
 }
 
 #pragma mark - API Helpers
