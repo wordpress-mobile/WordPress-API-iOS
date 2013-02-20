@@ -13,26 +13,18 @@
 
 @synthesize window = _window;
 
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [WordPressApi setWordPressComClient:OAUTH_CLIENT_ID];
+    [WordPressApi setWordPressComSecret:OAUTH_SECRET];
+    [WordPressApi setWordPressComRedirectUrl:OAUTH_REDIRECT_URI];
     return YES;
 }
 
 // Pre 4.2 support
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [WordPressApi handleOpenURL:url success:^(NSString *xmlrpc, NSString *token) {
-        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-        [def setObject:token forKey:@"wp_token"];
-        [def setObject:xmlrpc forKey:@"wp_xmlrpc"];
-        [def synchronize];
-    }];
+    return [WordPressApi handleOpenURL:url];
 }
 
 // For 4.2+ support

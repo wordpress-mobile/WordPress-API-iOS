@@ -31,7 +31,7 @@
 			<string>org.wordpress.wordpress-api-example</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wpexample</string>
+				<string>wordpress-2174</string>
 			</array>
 		</dict>
 	</array>

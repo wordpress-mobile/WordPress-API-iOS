@@ -8,9 +8,10 @@
 
 #import "PostsViewController.h"
 #import "PostViewController.h"
+#import "WordPressApi.h"
 
 @interface PostsViewController ()
-@property (readwrite, nonatomic, retain) WordPressApi *api;
+@property (readwrite, nonatomic, retain) id<WordPressBaseApi> api;
 @property (readwrite, nonatomic, retain) NSArray *posts;
 - (void)setupApi;
 @end
@@ -24,13 +25,6 @@
     [self setupApi];
     self.posts = [NSArray array];
     [super awakeFromNib];
-}
-
-- (void)dealloc
-{
-    [_api release];
-    [_posts release];
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,7 +41,6 @@
     if (self.navigationItem.rightBarButtonItems && [self.navigationItem.rightBarButtonItems count] == 1) {
         UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, logout, nil];
-        [logout release];
     }
 	// Do any additional setup after loading the view, typically from a nib.
     [self refreshPosts:nil];
@@ -143,15 +136,15 @@
     }];
 }
 
-- (void)publishPostWithTitle:(NSString *)title content:(NSString *)content {
-    [self.api publishPostWithText:content title:title success:^(NSUInteger postId, NSURL *permalink) {
+- (void)publishPostWithTitle:(NSString *)title content:(NSString *)content image:(UIImage *)image {
+    [self.api publishPostWithImage:image description:content title:title success:^(NSUInteger postId, NSURL *permalink) {
         [self refreshPosts:self];
     } failure:^(NSError *error) {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error posting"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error posting"
                                                         message:[error localizedDescription]
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil] autorelease];
+                                               otherButtonTitles:nil];
         [alert show];
     }];
 }
@@ -161,16 +154,17 @@
 - (void)setupApi {
     if (self.api == nil) {
         NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-        NSString *xmlrpc = [def objectForKey:@"wp_xmlrpc"];
-        if (xmlrpc) {
-            NSString *token = [def objectForKey:@"wp_token"];
-            if (token) {
-                self.api = [WordPressApi apiWithXMLRPCEndpoint:[NSURL URLWithString:xmlrpc] token:token];
-            } else {
+        NSString *token = [def objectForKey:@"wp_token"];
+        NSString *siteId = [def objectForKey:@"wp_site_id"];
+        if (token && siteId) {
+            self.api = [WordPressApi apiWithOauthToken:token siteId:siteId];
+        } else {
+            NSString *xmlrpc = [def objectForKey:@"wp_xmlrpc"];
+            if (xmlrpc) {
                 NSString *username = [def objectForKey:@"wp_username"];
                 NSString *password = [def objectForKey:@"wp_password"];
                 if (username && password) {
-                    self.api = [WordPressApi apiWithXMLRPCEndpoint:[NSURL URLWithString:xmlrpc] username:username password:password];
+                    self.api = [WordPressApi apiWithXMLRPCURL:[NSURL URLWithString:xmlrpc] username:username password:password];
                 }
             }
         }

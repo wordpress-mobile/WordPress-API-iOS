@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11C74" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3">
     <dependencies>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
         <scene sceneID="11">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
                 <navigationController id="3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4">
                         <autoresizingMask key="autoresizingMask"/>
@@ -17,12 +16,13 @@
                         <segue destination="XeI-Es-IN9" kind="modal" identifier="login" id="ll2-Jz-2iz"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1" y="64"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="wEl-26-do4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5GH-uj-yEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="XeI-Es-IN9" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Xee-zL-1Ey">
                         <autoresizingMask key="autoresizingMask"/>
@@ -31,12 +31,13 @@
                         <segue destination="Np3-67-jU0" kind="relationship" relationship="rootViewController" id="Ar3-4W-kw4"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5GH-uj-yEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1" y="643"/>
         </scene>
+        <!--Login View Controller - Sign in-->
         <scene sceneID="yQQ-9z-p5o">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yq4-cW-rKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Np3-67-jU0" customClass="LoginViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="iEl-Ja-TxQ">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -77,7 +78,7 @@
                                         <rect key="frame" x="0.0" y="91" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="FYF-2m-ieB">
@@ -105,7 +106,7 @@
                                         <rect key="frame" x="0.0" y="135" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="gxP-v0-SwY">
@@ -190,12 +191,13 @@
                         <outlet property="usernameField" destination="FYF-2m-ieB" id="tPA-OY-S2x"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yq4-cW-rKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="455" y="643"/>
         </scene>
+        <!--Posts View Controller - Master-->
         <scene sceneID="18">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="" title="Master" id="12" customClass="PostsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="13">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -251,12 +253,13 @@
                         <segue destination="21" kind="push" identifier="showPost" id="5Nl-Du-mFQ"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="455" y="64"/>
         </scene>
+        <!--Compose View Controller - New Post-->
         <scene sceneID="jf0-eM-WCJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6DO-gw-GsP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wxl-Xl-X7A" customClass="ComposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zRj-L1-HEd">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -275,6 +278,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9jP-Pu-2Dn">
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="ApB-1x-XCj">
+                                        <connections>
+                                            <action selector="addPicture:" destination="wxl-Xl-X7A" id="TEk-Pu-wkk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="U2J-wH-udv">
+                                <rect key="frame" x="215" y="39" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -292,15 +310,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="content" destination="Mz9-v0-jfU" id="WBc-NK-7Uf"/>
+                        <outlet property="imageView" destination="U2J-wH-udv" id="AKg-Lh-bNL"/>
                         <outlet property="titleField" destination="83u-yp-eob" id="672-iV-FhL"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6DO-gw-GsP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="931" y="-576"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="qJi-wf-jfL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xeG-ze-xIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="ePI-nS-doG" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gbm-V1-X4C">
                         <autoresizingMask key="autoresizingMask"/>
@@ -309,12 +329,13 @@
                         <segue destination="wxl-Xl-X7A" kind="relationship" relationship="rootViewController" id="EoU-Ta-zvb"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xeG-ze-xIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="455" y="-576"/>
         </scene>
+        <!--Post View Controller - Detail-->
         <scene sceneID="24">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="" title="Detail" id="21" customClass="PostViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="22">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -333,6 +354,7 @@
                         <outlet property="postContentView" destination="DHi-6V-WSJ" id="714-6k-Mot"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="924" y="64"/>
         </scene>
@@ -341,9 +363,11 @@
         <class className="ComposeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ComposeViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addPicture:"/>
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="content" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
             </relationships>
         </class>
@@ -364,6 +388,7 @@
         <class className="PostsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PostsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="logout:"/>
                 <relationship kind="action" name="refreshPosts:"/>
             </relationships>
         </class>

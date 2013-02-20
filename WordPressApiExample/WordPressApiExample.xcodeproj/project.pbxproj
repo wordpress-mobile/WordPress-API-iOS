@@ -17,6 +17,10 @@
 		E1C49D5916D4E206007C541A /* WPXMLRPCRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D5616D4E206007C541A /* WPXMLRPCRequestOperation.m */; };
 		E1C49D5C16D4E217007C541A /* WPHTTPAuthenticationAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D5B16D4E217007C541A /* WPHTTPAuthenticationAlertView.m */; };
 		E1C49D5E16D4E7E5007C541A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C49D5D16D4E7E5007C541A /* Security.framework */; };
+		E1C49D6216D4F3F6007C541A /* WordPressApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D6116D4F3F6007C541A /* WordPressApi.m */; };
+		E1C49D6516D4F641007C541A /* WordPressRestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D6416D4F641007C541A /* WordPressRestApi.m */; };
+		E1C49D9B16D541EF007C541A /* WPComOAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D9A16D541EF007C541A /* WPComOAuthController.m */; };
+		E1C49D9E16D54DF6007C541A /* WordPressRestApiJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D9D16D54DF6007C541A /* WordPressRestApiJSONRequestOperation.m */; };
 		E1F753D814A094F400DB35A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753D714A094F400DB35A3 /* UIKit.framework */; };
 		E1F753DA14A094F400DB35A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753D914A094F400DB35A3 /* Foundation.framework */; };
 		E1F753DC14A094F400DB35A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753DB14A094F400DB35A3 /* CoreGraphics.framework */; };
@@ -27,7 +31,7 @@
 		E1F753EE14A094F400DB35A3 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F753ED14A094F400DB35A3 /* PostsViewController.m */; };
 		E1F753F114A094F400DB35A3 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F753F014A094F400DB35A3 /* PostViewController.m */; };
 		E1F7544414A0A9B200DB35A3 /* WPXMLRPCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7544114A0A9B200DB35A3 /* WPXMLRPCClient.m */; };
-		E1F7544514A0A9B200DB35A3 /* WordPressApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7544314A0A9B200DB35A3 /* WordPressApi.m */; };
+		E1F7544514A0A9B200DB35A3 /* WordPressXMLRPCApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7544314A0A9B200DB35A3 /* WordPressXMLRPCApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,15 @@
 		E1C49D5A16D4E217007C541A /* WPHTTPAuthenticationAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPHTTPAuthenticationAlertView.h; sourceTree = "<group>"; };
 		E1C49D5B16D4E217007C541A /* WPHTTPAuthenticationAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPHTTPAuthenticationAlertView.m; sourceTree = "<group>"; };
 		E1C49D5D16D4E7E5007C541A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E1C49D5F16D4F3A5007C541A /* WordPressBaseApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordPressBaseApi.h; sourceTree = "<group>"; };
+		E1C49D6016D4F3F6007C541A /* WordPressApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressApi.h; sourceTree = "<group>"; };
+		E1C49D6116D4F3F6007C541A /* WordPressApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressApi.m; sourceTree = "<group>"; };
+		E1C49D6316D4F641007C541A /* WordPressRestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressRestApi.h; sourceTree = "<group>"; };
+		E1C49D6416D4F641007C541A /* WordPressRestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressRestApi.m; sourceTree = "<group>"; };
+		E1C49D9916D541EE007C541A /* WPComOAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPComOAuthController.h; sourceTree = "<group>"; };
+		E1C49D9A16D541EF007C541A /* WPComOAuthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPComOAuthController.m; sourceTree = "<group>"; };
+		E1C49D9C16D54DF5007C541A /* WordPressRestApiJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressRestApiJSONRequestOperation.h; sourceTree = "<group>"; };
+		E1C49D9D16D54DF6007C541A /* WordPressRestApiJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressRestApiJSONRequestOperation.m; sourceTree = "<group>"; };
 		E1F753D314A094F400DB35A3 /* WordPressApiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressApiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F753D714A094F400DB35A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1F753D914A094F400DB35A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,8 +78,8 @@
 		E1F753F014A094F400DB35A3 /* PostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		E1F7544014A0A9B200DB35A3 /* WPXMLRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPXMLRPCClient.h; sourceTree = "<group>"; };
 		E1F7544114A0A9B200DB35A3 /* WPXMLRPCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPXMLRPCClient.m; sourceTree = "<group>"; };
-		E1F7544214A0A9B200DB35A3 /* WordPressApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressApi.h; sourceTree = "<group>"; };
-		E1F7544314A0A9B200DB35A3 /* WordPressApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressApi.m; sourceTree = "<group>"; };
+		E1F7544214A0A9B200DB35A3 /* WordPressXMLRPCApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressXMLRPCApi.h; sourceTree = "<group>"; };
+		E1F7544314A0A9B200DB35A3 /* WordPressXMLRPCApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressXMLRPCApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +165,8 @@
 		E1F7543F14A0A9B200DB35A3 /* WordPressApi */ = {
 			isa = PBXGroup;
 			children = (
+				E1C49D9916D541EE007C541A /* WPComOAuthController.h */,
+				E1C49D9A16D541EF007C541A /* WPComOAuthController.m */,
 				E1C49D5A16D4E217007C541A /* WPHTTPAuthenticationAlertView.h */,
 				E1C49D5B16D4E217007C541A /* WPHTTPAuthenticationAlertView.m */,
 				E1C49D5116D4E205007C541A /* WPRSDParser.h */,
@@ -162,8 +177,15 @@
 				E1C49D5616D4E206007C541A /* WPXMLRPCRequestOperation.m */,
 				E1F7544014A0A9B200DB35A3 /* WPXMLRPCClient.h */,
 				E1F7544114A0A9B200DB35A3 /* WPXMLRPCClient.m */,
-				E1F7544214A0A9B200DB35A3 /* WordPressApi.h */,
-				E1F7544314A0A9B200DB35A3 /* WordPressApi.m */,
+				E1F7544214A0A9B200DB35A3 /* WordPressXMLRPCApi.h */,
+				E1F7544314A0A9B200DB35A3 /* WordPressXMLRPCApi.m */,
+				E1C49D5F16D4F3A5007C541A /* WordPressBaseApi.h */,
+				E1C49D6016D4F3F6007C541A /* WordPressApi.h */,
+				E1C49D6116D4F3F6007C541A /* WordPressApi.m */,
+				E1C49D6316D4F641007C541A /* WordPressRestApi.h */,
+				E1C49D6416D4F641007C541A /* WordPressRestApi.m */,
+				E1C49D9C16D54DF5007C541A /* WordPressRestApiJSONRequestOperation.h */,
+				E1C49D9D16D54DF6007C541A /* WordPressRestApiJSONRequestOperation.m */,
 			);
 			name = WordPressApi;
 			path = ../../WordPressApi;
@@ -256,13 +278,17 @@
 				E1F753EE14A094F400DB35A3 /* PostsViewController.m in Sources */,
 				E1F753F114A094F400DB35A3 /* PostViewController.m in Sources */,
 				E1F7544414A0A9B200DB35A3 /* WPXMLRPCClient.m in Sources */,
-				E1F7544514A0A9B200DB35A3 /* WordPressApi.m in Sources */,
+				E1F7544514A0A9B200DB35A3 /* WordPressXMLRPCApi.m in Sources */,
 				E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */,
 				E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */,
 				E1C49D5716D4E206007C541A /* WPRSDParser.m in Sources */,
 				E1C49D5816D4E206007C541A /* WPXMLRPCRequest.m in Sources */,
 				E1C49D5916D4E206007C541A /* WPXMLRPCRequestOperation.m in Sources */,
 				E1C49D5C16D4E217007C541A /* WPHTTPAuthenticationAlertView.m in Sources */,
+				E1C49D6216D4F3F6007C541A /* WordPressApi.m in Sources */,
+				E1C49D6516D4F641007C541A /* WordPressRestApi.m in Sources */,
+				E1C49D9B16D541EF007C541A /* WPComOAuthController.m in Sources */,
+				E1C49D9E16D54DF6007C541A /* WordPressRestApiJSONRequestOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +371,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 906AFB6868F74568BF80D9AA /* Pods.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WordPressApiExample/WordPressApiExample-Prefix.pch";
 				INFOPLIST_FILE = "WordPressApiExample/WordPressApiExample-Info.plist";
@@ -357,6 +384,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 906AFB6868F74568BF80D9AA /* Pods.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WordPressApiExample/WordPressApiExample-Prefix.pch";
 				INFOPLIST_FILE = "WordPressApiExample/WordPressApiExample-Info.plist";

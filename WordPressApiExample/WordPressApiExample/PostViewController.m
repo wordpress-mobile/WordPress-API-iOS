@@ -17,20 +17,12 @@
 @synthesize post = _post;
 @synthesize postContentView = _postContentView;
 
-- (void)dealloc
-{
-    [_post release];
-    [_postContentView release];
-    [super dealloc];
-}
-
 #pragma mark - Managing the detail item
 
 - (void)setPost:(NSDictionary *)newPost
 {
     if (_post != newPost) {
-        [_post release]; 
-        _post = [newPost retain]; 
+        _post = newPost;
 
         // Update the view.
         [self configureView];

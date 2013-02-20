@@ -14,7 +14,6 @@
 #endif
 
 //#error Please fill in your OAuth details
-#define OAUTH_CLIENT_ID @""
-#define OAUTH_REDIRECT_URI @""
-#define OAUTH_SECRET @""
-#define OAUTH_CALLBACK @"wpexample"
+#define OAUTH_CLIENT_ID @"2174"
+#define OAUTH_REDIRECT_URI @"https://github.com/koke/WordPressApi"
+#define OAUTH_SECRET @"kPS9VGJ1kVmVnRwD5UBNkaSSCQb70zyAV2amIjgMvI6TGj2f7Zl4ch0hvAsVE6nX"
