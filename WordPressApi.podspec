@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.source_files = 'WordPressApi'
   s.requires_arc = true
   s.dependency 'AFNetworking', '>= 1.0'
+  s.dependency 'WPXMLRPC', :podspec => 'https://raw.github.com/wordpress-mobile/wpxmlrpc/master/WPXMLRPC.podspec'
 
   s.platform = :ios, '5.0'
   s.frameworks = 'Foundation', 'UIKit'
