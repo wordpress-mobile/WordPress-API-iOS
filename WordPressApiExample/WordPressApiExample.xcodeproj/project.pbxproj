@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E15CEBAF14C59B1400CFDBB7 /* XMLRPCDataCleaner.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEBAE14C59B1400CFDBB7 /* XMLRPCDataCleaner.m */; };
+		A5157ADD21264416AA7DE4D6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8BE1138AD74E5AA6AE86D9 /* libPods.a */; };
 		E15CEBB114C59B3500CFDBB7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */; };
 		E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */; };
 		E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEC2A14C5E05800CFDBB7 /* ComposeViewController.m */; };
+		E1C49D4A16D475EB007C541A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C49D4916D475EB007C541A /* Default-568h@2x.png */; };
 		E1F753D814A094F400DB35A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753D714A094F400DB35A3 /* UIKit.framework */; };
 		E1F753DA14A094F400DB35A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753D914A094F400DB35A3 /* Foundation.framework */; };
 		E1F753DC14A094F400DB35A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753DB14A094F400DB35A3 /* CoreGraphics.framework */; };
@@ -20,37 +21,19 @@
 		E1F753EB14A094F400DB35A3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1F753E914A094F400DB35A3 /* MainStoryboard.storyboard */; };
 		E1F753EE14A094F400DB35A3 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F753ED14A094F400DB35A3 /* PostsViewController.m */; };
 		E1F753F114A094F400DB35A3 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F753F014A094F400DB35A3 /* PostViewController.m */; };
-		E1F7541514A0A99000DB35A3 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7540014A0A99000DB35A3 /* AFHTTPClient.m */; };
-		E1F7541614A0A99000DB35A3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7540214A0A99000DB35A3 /* AFHTTPRequestOperation.m */; };
-		E1F7541714A0A99000DB35A3 /* AFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7540414A0A99000DB35A3 /* AFImageCache.m */; };
-		E1F7541814A0A99000DB35A3 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7540614A0A99000DB35A3 /* AFImageRequestOperation.m */; };
-		E1F7541914A0A99000DB35A3 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7540814A0A99000DB35A3 /* AFJSONRequestOperation.m */; };
-		E1F7541A14A0A99000DB35A3 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7540B14A0A99000DB35A3 /* AFNetworkActivityIndicatorManager.m */; };
-		E1F7541B14A0A99000DB35A3 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7540E14A0A99000DB35A3 /* AFPropertyListRequestOperation.m */; };
-		E1F7541C14A0A99000DB35A3 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7541014A0A99000DB35A3 /* AFURLConnectionOperation.m */; };
-		E1F7541D14A0A99000DB35A3 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7541214A0A99000DB35A3 /* AFXMLRequestOperation.m */; };
-		E1F7541E14A0A99000DB35A3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7541414A0A99000DB35A3 /* UIImageView+AFNetworking.m */; };
-		E1F7543614A0A99500DB35A3 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7543214A0A99500DB35A3 /* NSDataAdditions.m */; };
-		E1F7543714A0A99500DB35A3 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7543414A0A99500DB35A3 /* NSStringAdditions.m */; };
-		E1F7543814A0A99500DB35A3 /* XMLRPCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7542414A0A99500DB35A3 /* XMLRPCConnection.m */; };
-		E1F7543914A0A99500DB35A3 /* XMLRPCConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7542614A0A99500DB35A3 /* XMLRPCConnectionManager.m */; };
-		E1F7543A14A0A99500DB35A3 /* XMLRPCEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7542814A0A99500DB35A3 /* XMLRPCEncoder.m */; };
-		E1F7543B14A0A99500DB35A3 /* XMLRPCEventBasedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7542A14A0A99500DB35A3 /* XMLRPCEventBasedParser.m */; };
-		E1F7543C14A0A99500DB35A3 /* XMLRPCEventBasedParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7542C14A0A99500DB35A3 /* XMLRPCEventBasedParserDelegate.m */; };
-		E1F7543D14A0A99500DB35A3 /* XMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7542E14A0A99500DB35A3 /* XMLRPCRequest.m */; };
-		E1F7543E14A0A99500DB35A3 /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7543014A0A99500DB35A3 /* XMLRPCResponse.m */; };
 		E1F7544414A0A9B200DB35A3 /* AFXMLRPCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7544114A0A9B200DB35A3 /* AFXMLRPCClient.m */; };
 		E1F7544514A0A9B200DB35A3 /* WordPressApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7544314A0A9B200DB35A3 /* WordPressApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E15CEBAD14C59B1400CFDBB7 /* XMLRPCDataCleaner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCDataCleaner.h; sourceTree = "<group>"; };
-		E15CEBAE14C59B1400CFDBB7 /* XMLRPCDataCleaner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCDataCleaner.m; sourceTree = "<group>"; };
+		2B8BE1138AD74E5AA6AE86D9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		906AFB6868F74568BF80D9AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		E15CEC1814C5C39000CFDBB7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E15CEC2914C5E05800CFDBB7 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		E15CEC2A14C5E05800CFDBB7 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		E1C49D4916D475EB007C541A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E1F753D314A094F400DB35A3 /* WordPressApiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressApiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F753D714A094F400DB35A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1F753D914A094F400DB35A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,48 +49,6 @@
 		E1F753ED14A094F400DB35A3 /* PostsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
 		E1F753EF14A094F400DB35A3 /* PostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		E1F753F014A094F400DB35A3 /* PostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
-		E1F753FF14A0A99000DB35A3 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
-		E1F7540014A0A99000DB35A3 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
-		E1F7540114A0A99000DB35A3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		E1F7540214A0A99000DB35A3 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		E1F7540314A0A99000DB35A3 /* AFImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageCache.h; sourceTree = "<group>"; };
-		E1F7540414A0A99000DB35A3 /* AFImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageCache.m; sourceTree = "<group>"; };
-		E1F7540514A0A99000DB35A3 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
-		E1F7540614A0A99000DB35A3 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
-		E1F7540714A0A99000DB35A3 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
-		E1F7540814A0A99000DB35A3 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
-		E1F7540914A0A99000DB35A3 /* AFJSONUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONUtilities.h; sourceTree = "<group>"; };
-		E1F7540A14A0A99000DB35A3 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
-		E1F7540B14A0A99000DB35A3 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
-		E1F7540C14A0A99000DB35A3 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		E1F7540D14A0A99000DB35A3 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
-		E1F7540E14A0A99000DB35A3 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
-		E1F7540F14A0A99000DB35A3 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
-		E1F7541014A0A99000DB35A3 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
-		E1F7541114A0A99000DB35A3 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
-		E1F7541214A0A99000DB35A3 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
-		E1F7541314A0A99000DB35A3 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
-		E1F7541414A0A99000DB35A3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		E1F7542214A0A99500DB35A3 /* XMLRPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPC.h; sourceTree = "<group>"; };
-		E1F7542314A0A99500DB35A3 /* XMLRPCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCConnection.h; sourceTree = "<group>"; };
-		E1F7542414A0A99500DB35A3 /* XMLRPCConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCConnection.m; sourceTree = "<group>"; };
-		E1F7542514A0A99500DB35A3 /* XMLRPCConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCConnectionManager.h; sourceTree = "<group>"; };
-		E1F7542614A0A99500DB35A3 /* XMLRPCConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCConnectionManager.m; sourceTree = "<group>"; };
-		E1F7542714A0A99500DB35A3 /* XMLRPCEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCEncoder.h; sourceTree = "<group>"; };
-		E1F7542814A0A99500DB35A3 /* XMLRPCEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCEncoder.m; sourceTree = "<group>"; };
-		E1F7542914A0A99500DB35A3 /* XMLRPCEventBasedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCEventBasedParser.h; sourceTree = "<group>"; };
-		E1F7542A14A0A99500DB35A3 /* XMLRPCEventBasedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCEventBasedParser.m; sourceTree = "<group>"; };
-		E1F7542B14A0A99500DB35A3 /* XMLRPCEventBasedParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCEventBasedParserDelegate.h; sourceTree = "<group>"; };
-		E1F7542C14A0A99500DB35A3 /* XMLRPCEventBasedParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCEventBasedParserDelegate.m; sourceTree = "<group>"; };
-		E1F7542D14A0A99500DB35A3 /* XMLRPCRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCRequest.h; sourceTree = "<group>"; };
-		E1F7542E14A0A99500DB35A3 /* XMLRPCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCRequest.m; sourceTree = "<group>"; };
-		E1F7542F14A0A99500DB35A3 /* XMLRPCResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCResponse.h; sourceTree = "<group>"; };
-		E1F7543014A0A99500DB35A3 /* XMLRPCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCResponse.m; sourceTree = "<group>"; };
-		E1F7543114A0A99500DB35A3 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
-		E1F7543214A0A99500DB35A3 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
-		E1F7543314A0A99500DB35A3 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
-		E1F7543414A0A99500DB35A3 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
-		E1F7543514A0A99500DB35A3 /* XMLRPCConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCConnectionDelegate.h; sourceTree = "<group>"; };
 		E1F7544014A0A9B200DB35A3 /* AFXMLRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRPCClient.h; sourceTree = "<group>"; };
 		E1F7544114A0A9B200DB35A3 /* AFXMLRPCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRPCClient.m; sourceTree = "<group>"; };
 		E1F7544214A0A9B200DB35A3 /* WordPressApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressApi.h; sourceTree = "<group>"; };
@@ -123,6 +64,7 @@
 				E1F753D814A094F400DB35A3 /* UIKit.framework in Frameworks */,
 				E1F753DA14A094F400DB35A3 /* Foundation.framework in Frameworks */,
 				E1F753DC14A094F400DB35A3 /* CoreGraphics.framework in Frameworks */,
+				A5157ADD21264416AA7DE4D6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,9 +74,11 @@
 		E1F753C814A094F400DB35A3 = {
 			isa = PBXGroup;
 			children = (
+				E1C49D4916D475EB007C541A /* Default-568h@2x.png */,
 				E1F753DD14A094F400DB35A3 /* WordPressApiExample */,
 				E1F753D614A094F400DB35A3 /* Frameworks */,
 				E1F753D414A094F400DB35A3 /* Products */,
+				906AFB6868F74568BF80D9AA /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +97,7 @@
 				E1F753D714A094F400DB35A3 /* UIKit.framework */,
 				E1F753D914A094F400DB35A3 /* Foundation.framework */,
 				E1F753DB14A094F400DB35A3 /* CoreGraphics.framework */,
+				2B8BE1138AD74E5AA6AE86D9 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -160,8 +105,6 @@
 		E1F753DD14A094F400DB35A3 /* WordPressApiExample */ = {
 			isa = PBXGroup;
 			children = (
-				E1F753FE14A0A99000DB35A3 /* AFNetworking */,
-				E1F7541F14A0A99500DB35A3 /* XMLRPC */,
 				E1F7543F14A0A9B200DB35A3 /* WordPressApi */,
 				E1F753E614A094F400DB35A3 /* AppDelegate.h */,
 				E1F753E714A094F400DB35A3 /* AppDelegate.m */,
@@ -190,82 +133,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E1F753FE14A0A99000DB35A3 /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				E1F753FF14A0A99000DB35A3 /* AFHTTPClient.h */,
-				E1F7540014A0A99000DB35A3 /* AFHTTPClient.m */,
-				E1F7540114A0A99000DB35A3 /* AFHTTPRequestOperation.h */,
-				E1F7540214A0A99000DB35A3 /* AFHTTPRequestOperation.m */,
-				E1F7540314A0A99000DB35A3 /* AFImageCache.h */,
-				E1F7540414A0A99000DB35A3 /* AFImageCache.m */,
-				E1F7540514A0A99000DB35A3 /* AFImageRequestOperation.h */,
-				E1F7540614A0A99000DB35A3 /* AFImageRequestOperation.m */,
-				E1F7540714A0A99000DB35A3 /* AFJSONRequestOperation.h */,
-				E1F7540814A0A99000DB35A3 /* AFJSONRequestOperation.m */,
-				E1F7540914A0A99000DB35A3 /* AFJSONUtilities.h */,
-				E1F7540A14A0A99000DB35A3 /* AFNetworkActivityIndicatorManager.h */,
-				E1F7540B14A0A99000DB35A3 /* AFNetworkActivityIndicatorManager.m */,
-				E1F7540C14A0A99000DB35A3 /* AFNetworking.h */,
-				E1F7540D14A0A99000DB35A3 /* AFPropertyListRequestOperation.h */,
-				E1F7540E14A0A99000DB35A3 /* AFPropertyListRequestOperation.m */,
-				E1F7540F14A0A99000DB35A3 /* AFURLConnectionOperation.h */,
-				E1F7541014A0A99000DB35A3 /* AFURLConnectionOperation.m */,
-				E1F7541114A0A99000DB35A3 /* AFXMLRequestOperation.h */,
-				E1F7541214A0A99000DB35A3 /* AFXMLRequestOperation.m */,
-				E1F7541314A0A99000DB35A3 /* UIImageView+AFNetworking.h */,
-				E1F7541414A0A99000DB35A3 /* UIImageView+AFNetworking.m */,
-			);
-			name = AFNetworking;
-			path = /Users/koke/automattic/WordPressAPI/WordPressApi/../AFNetworking/AFNetworking;
-			sourceTree = "<absolute>";
-		};
-		E1F7541F14A0A99500DB35A3 /* XMLRPC */ = {
-			isa = PBXGroup;
-			children = (
-				E1F7542014A0A99500DB35A3 /* Additions */,
-				E1F7542114A0A99500DB35A3 /* Delegates */,
-				E1F7542214A0A99500DB35A3 /* XMLRPC.h */,
-				E1F7542314A0A99500DB35A3 /* XMLRPCConnection.h */,
-				E1F7542414A0A99500DB35A3 /* XMLRPCConnection.m */,
-				E1F7542514A0A99500DB35A3 /* XMLRPCConnectionManager.h */,
-				E1F7542614A0A99500DB35A3 /* XMLRPCConnectionManager.m */,
-				E15CEBAD14C59B1400CFDBB7 /* XMLRPCDataCleaner.h */,
-				E15CEBAE14C59B1400CFDBB7 /* XMLRPCDataCleaner.m */,
-				E1F7542714A0A99500DB35A3 /* XMLRPCEncoder.h */,
-				E1F7542814A0A99500DB35A3 /* XMLRPCEncoder.m */,
-				E1F7542914A0A99500DB35A3 /* XMLRPCEventBasedParser.h */,
-				E1F7542A14A0A99500DB35A3 /* XMLRPCEventBasedParser.m */,
-				E1F7542B14A0A99500DB35A3 /* XMLRPCEventBasedParserDelegate.h */,
-				E1F7542C14A0A99500DB35A3 /* XMLRPCEventBasedParserDelegate.m */,
-				E1F7542D14A0A99500DB35A3 /* XMLRPCRequest.h */,
-				E1F7542E14A0A99500DB35A3 /* XMLRPCRequest.m */,
-				E1F7542F14A0A99500DB35A3 /* XMLRPCResponse.h */,
-				E1F7543014A0A99500DB35A3 /* XMLRPCResponse.m */,
-			);
-			name = XMLRPC;
-			path = /Users/koke/automattic/WordPressAPI/WordPressApi/../xmlrpc;
-			sourceTree = "<absolute>";
-		};
-		E1F7542014A0A99500DB35A3 /* Additions */ = {
-			isa = PBXGroup;
-			children = (
-				E1F7543114A0A99500DB35A3 /* NSDataAdditions.h */,
-				E1F7543214A0A99500DB35A3 /* NSDataAdditions.m */,
-				E1F7543314A0A99500DB35A3 /* NSStringAdditions.h */,
-				E1F7543414A0A99500DB35A3 /* NSStringAdditions.m */,
-			);
-			name = Additions;
-			sourceTree = "<group>";
-		};
-		E1F7542114A0A99500DB35A3 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				E1F7543514A0A99500DB35A3 /* XMLRPCConnectionDelegate.h */,
-			);
-			name = Delegates;
-			sourceTree = "<group>";
-		};
 		E1F7543F14A0A9B200DB35A3 /* WordPressApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,7 +142,7 @@
 				E1F7544314A0A9B200DB35A3 /* WordPressApi.m */,
 			);
 			name = WordPressApi;
-			path = ../../WordPressApi/WordPressApi;
+			path = ../../WordPressApi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +155,7 @@
 				E1F753CF14A094F400DB35A3 /* Sources */,
 				E1F753D014A094F400DB35A3 /* Frameworks */,
 				E1F753D114A094F400DB35A3 /* Resources */,
+				0C8AE313E9164C7E97A7A299 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -304,7 +172,7 @@
 		E1F753CA14A094F400DB35A3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Automattic;
 			};
 			buildConfigurationList = E1F753CD14A094F400DB35A3 /* Build configuration list for PBXProject "WordPressApiExample" */;
@@ -331,10 +199,28 @@
 			files = (
 				E1F753E214A094F400DB35A3 /* InfoPlist.strings in Resources */,
 				E1F753EB14A094F400DB35A3 /* MainStoryboard.storyboard in Resources */,
+				E1C49D4A16D475EB007C541A /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C8AE313E9164C7E97A7A299 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E1F753CF14A094F400DB35A3 /* Sources */ = {
@@ -345,28 +231,8 @@
 				E1F753E814A094F400DB35A3 /* AppDelegate.m in Sources */,
 				E1F753EE14A094F400DB35A3 /* PostsViewController.m in Sources */,
 				E1F753F114A094F400DB35A3 /* PostViewController.m in Sources */,
-				E1F7541514A0A99000DB35A3 /* AFHTTPClient.m in Sources */,
-				E1F7541614A0A99000DB35A3 /* AFHTTPRequestOperation.m in Sources */,
-				E1F7541714A0A99000DB35A3 /* AFImageCache.m in Sources */,
-				E1F7541814A0A99000DB35A3 /* AFImageRequestOperation.m in Sources */,
-				E1F7541914A0A99000DB35A3 /* AFJSONRequestOperation.m in Sources */,
-				E1F7541A14A0A99000DB35A3 /* AFNetworkActivityIndicatorManager.m in Sources */,
-				E1F7541B14A0A99000DB35A3 /* AFPropertyListRequestOperation.m in Sources */,
-				E1F7541C14A0A99000DB35A3 /* AFURLConnectionOperation.m in Sources */,
-				E1F7541D14A0A99000DB35A3 /* AFXMLRequestOperation.m in Sources */,
-				E1F7541E14A0A99000DB35A3 /* UIImageView+AFNetworking.m in Sources */,
-				E1F7543614A0A99500DB35A3 /* NSDataAdditions.m in Sources */,
-				E1F7543714A0A99500DB35A3 /* NSStringAdditions.m in Sources */,
-				E1F7543814A0A99500DB35A3 /* XMLRPCConnection.m in Sources */,
-				E1F7543914A0A99500DB35A3 /* XMLRPCConnectionManager.m in Sources */,
-				E1F7543A14A0A99500DB35A3 /* XMLRPCEncoder.m in Sources */,
-				E1F7543B14A0A99500DB35A3 /* XMLRPCEventBasedParser.m in Sources */,
-				E1F7543C14A0A99500DB35A3 /* XMLRPCEventBasedParserDelegate.m in Sources */,
-				E1F7543D14A0A99500DB35A3 /* XMLRPCRequest.m in Sources */,
-				E1F7543E14A0A99500DB35A3 /* XMLRPCResponse.m in Sources */,
 				E1F7544414A0A9B200DB35A3 /* AFXMLRPCClient.m in Sources */,
 				E1F7544514A0A9B200DB35A3 /* WordPressApi.m in Sources */,
-				E15CEBAF14C59B1400CFDBB7 /* XMLRPCDataCleaner.m in Sources */,
 				E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */,
 				E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */,
 			);
@@ -399,6 +265,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -412,6 +282,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
@@ -423,12 +294,17 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -439,6 +315,7 @@
 		};
 		E1F753F514A094F400DB35A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 906AFB6868F74568BF80D9AA /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WordPressApiExample/WordPressApiExample-Prefix.pch";
@@ -450,6 +327,7 @@
 		};
 		E1F753F614A094F400DB35A3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 906AFB6868F74568BF80D9AA /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WordPressApiExample/WordPressApiExample-Prefix.pch";

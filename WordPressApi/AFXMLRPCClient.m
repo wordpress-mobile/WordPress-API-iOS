@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFHTTPRequestOperation.h>
+#import <WPXMLRPC/WPXMLRPC.h>
 #import "AFXMLRPCClient.h"
-#import "AFHTTPRequestOperation.h"
-#import "XMLRPCEncoder.h"
-#import "XMLRPCResponse.h"
 
 static NSUInteger const kAFXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
 
@@ -100,10 +99,8 @@ static NSUInteger const kAFXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:self.defaultHeaders];
     
-    XMLRPCEncoder *encoder = [[XMLRPCEncoder alloc] init];
-    [encoder setMethod:method withParameters:parameters];
-    NSData *content = [[encoder encode] dataUsingEncoding: NSUTF8StringEncoding];
-    [request setHTTPBody:content];
+    WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:method andParameters:parameters];
+    [request setHTTPBody:encoder.body];
     
     return request;
 }
@@ -117,7 +114,7 @@ static NSUInteger const kAFXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
     
 
     void (^xmlrpcSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        XMLRPCResponse *response = [[XMLRPCResponse alloc] initWithData:responseObject];
+        WPXMLRPCDecoder *response = [[WPXMLRPCDecoder alloc] initWithData:responseObject];
         NSError *err = nil;
         
         if ([response isFault]) {

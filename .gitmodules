@@ -1,6 +1,0 @@
-[submodule "xmlrpc"]
-	path = xmlrpc
-	url = git@github.com:wordpress-mobile/xmlrpc.git
-[submodule "AFNetworking"]
-	path = AFNetworking
-	url = git@github.com:wordpress-mobile/AFNetworking.git

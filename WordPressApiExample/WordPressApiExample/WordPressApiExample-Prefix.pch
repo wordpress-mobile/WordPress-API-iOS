@@ -13,7 +13,7 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#error Please fill in your OAuth details
+//#error Please fill in your OAuth details
 #define OAUTH_CLIENT_ID @""
 #define OAUTH_REDIRECT_URI @""
 #define OAUTH_SECRET @""
