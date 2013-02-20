@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.dependency 'WPXMLRPC', :podspec => 'https://raw.github.com/wordpress-mobile/wpxmlrpc/master/WPXMLRPC.podspec'
 
   s.platform = :ios, '5.0'
-  s.frameworks = 'Foundation', 'UIKit'
+  s.frameworks = 'Foundation', 'UIKit', 'Security'
 
   s.documentation = {
     :appledoc => [ 'AppledocSettings.plist' ]

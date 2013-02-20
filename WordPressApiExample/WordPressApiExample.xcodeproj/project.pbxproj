@@ -12,6 +12,11 @@
 		E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */; };
 		E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEC2A14C5E05800CFDBB7 /* ComposeViewController.m */; };
 		E1C49D4A16D475EB007C541A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C49D4916D475EB007C541A /* Default-568h@2x.png */; };
+		E1C49D5716D4E206007C541A /* WPRSDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D5216D4E205007C541A /* WPRSDParser.m */; };
+		E1C49D5816D4E206007C541A /* WPXMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D5416D4E205007C541A /* WPXMLRPCRequest.m */; };
+		E1C49D5916D4E206007C541A /* WPXMLRPCRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D5616D4E206007C541A /* WPXMLRPCRequestOperation.m */; };
+		E1C49D5C16D4E217007C541A /* WPHTTPAuthenticationAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C49D5B16D4E217007C541A /* WPHTTPAuthenticationAlertView.m */; };
+		E1C49D5E16D4E7E5007C541A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C49D5D16D4E7E5007C541A /* Security.framework */; };
 		E1F753D814A094F400DB35A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753D714A094F400DB35A3 /* UIKit.framework */; };
 		E1F753DA14A094F400DB35A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753D914A094F400DB35A3 /* Foundation.framework */; };
 		E1F753DC14A094F400DB35A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F753DB14A094F400DB35A3 /* CoreGraphics.framework */; };
@@ -21,7 +26,7 @@
 		E1F753EB14A094F400DB35A3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1F753E914A094F400DB35A3 /* MainStoryboard.storyboard */; };
 		E1F753EE14A094F400DB35A3 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F753ED14A094F400DB35A3 /* PostsViewController.m */; };
 		E1F753F114A094F400DB35A3 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F753F014A094F400DB35A3 /* PostViewController.m */; };
-		E1F7544414A0A9B200DB35A3 /* AFXMLRPCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7544114A0A9B200DB35A3 /* AFXMLRPCClient.m */; };
+		E1F7544414A0A9B200DB35A3 /* WPXMLRPCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7544114A0A9B200DB35A3 /* WPXMLRPCClient.m */; };
 		E1F7544514A0A9B200DB35A3 /* WordPressApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F7544314A0A9B200DB35A3 /* WordPressApi.m */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +39,15 @@
 		E15CEC2914C5E05800CFDBB7 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		E15CEC2A14C5E05800CFDBB7 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		E1C49D4916D475EB007C541A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E1C49D5116D4E205007C541A /* WPRSDParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPRSDParser.h; sourceTree = "<group>"; };
+		E1C49D5216D4E205007C541A /* WPRSDParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPRSDParser.m; sourceTree = "<group>"; };
+		E1C49D5316D4E205007C541A /* WPXMLRPCRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPXMLRPCRequest.h; sourceTree = "<group>"; };
+		E1C49D5416D4E205007C541A /* WPXMLRPCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPXMLRPCRequest.m; sourceTree = "<group>"; };
+		E1C49D5516D4E205007C541A /* WPXMLRPCRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPXMLRPCRequestOperation.h; sourceTree = "<group>"; };
+		E1C49D5616D4E206007C541A /* WPXMLRPCRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPXMLRPCRequestOperation.m; sourceTree = "<group>"; };
+		E1C49D5A16D4E217007C541A /* WPHTTPAuthenticationAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPHTTPAuthenticationAlertView.h; sourceTree = "<group>"; };
+		E1C49D5B16D4E217007C541A /* WPHTTPAuthenticationAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPHTTPAuthenticationAlertView.m; sourceTree = "<group>"; };
+		E1C49D5D16D4E7E5007C541A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E1F753D314A094F400DB35A3 /* WordPressApiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressApiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F753D714A094F400DB35A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1F753D914A094F400DB35A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,8 +63,8 @@
 		E1F753ED14A094F400DB35A3 /* PostsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
 		E1F753EF14A094F400DB35A3 /* PostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		E1F753F014A094F400DB35A3 /* PostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
-		E1F7544014A0A9B200DB35A3 /* AFXMLRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRPCClient.h; sourceTree = "<group>"; };
-		E1F7544114A0A9B200DB35A3 /* AFXMLRPCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRPCClient.m; sourceTree = "<group>"; };
+		E1F7544014A0A9B200DB35A3 /* WPXMLRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPXMLRPCClient.h; sourceTree = "<group>"; };
+		E1F7544114A0A9B200DB35A3 /* WPXMLRPCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPXMLRPCClient.m; sourceTree = "<group>"; };
 		E1F7544214A0A9B200DB35A3 /* WordPressApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressApi.h; sourceTree = "<group>"; };
 		E1F7544314A0A9B200DB35A3 /* WordPressApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C49D5E16D4E7E5007C541A /* Security.framework in Frameworks */,
 				E15CEBB114C59B3500CFDBB7 /* libiconv.dylib in Frameworks */,
 				E1F753D814A094F400DB35A3 /* UIKit.framework in Frameworks */,
 				E1F753DA14A094F400DB35A3 /* Foundation.framework in Frameworks */,
@@ -93,6 +108,7 @@
 		E1F753D614A094F400DB35A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1C49D5D16D4E7E5007C541A /* Security.framework */,
 				E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */,
 				E1F753D714A094F400DB35A3 /* UIKit.framework */,
 				E1F753D914A094F400DB35A3 /* Foundation.framework */,
@@ -136,8 +152,16 @@
 		E1F7543F14A0A9B200DB35A3 /* WordPressApi */ = {
 			isa = PBXGroup;
 			children = (
-				E1F7544014A0A9B200DB35A3 /* AFXMLRPCClient.h */,
-				E1F7544114A0A9B200DB35A3 /* AFXMLRPCClient.m */,
+				E1C49D5A16D4E217007C541A /* WPHTTPAuthenticationAlertView.h */,
+				E1C49D5B16D4E217007C541A /* WPHTTPAuthenticationAlertView.m */,
+				E1C49D5116D4E205007C541A /* WPRSDParser.h */,
+				E1C49D5216D4E205007C541A /* WPRSDParser.m */,
+				E1C49D5316D4E205007C541A /* WPXMLRPCRequest.h */,
+				E1C49D5416D4E205007C541A /* WPXMLRPCRequest.m */,
+				E1C49D5516D4E205007C541A /* WPXMLRPCRequestOperation.h */,
+				E1C49D5616D4E206007C541A /* WPXMLRPCRequestOperation.m */,
+				E1F7544014A0A9B200DB35A3 /* WPXMLRPCClient.h */,
+				E1F7544114A0A9B200DB35A3 /* WPXMLRPCClient.m */,
 				E1F7544214A0A9B200DB35A3 /* WordPressApi.h */,
 				E1F7544314A0A9B200DB35A3 /* WordPressApi.m */,
 			);
@@ -231,10 +255,14 @@
 				E1F753E814A094F400DB35A3 /* AppDelegate.m in Sources */,
 				E1F753EE14A094F400DB35A3 /* PostsViewController.m in Sources */,
 				E1F753F114A094F400DB35A3 /* PostViewController.m in Sources */,
-				E1F7544414A0A9B200DB35A3 /* AFXMLRPCClient.m in Sources */,
+				E1F7544414A0A9B200DB35A3 /* WPXMLRPCClient.m in Sources */,
 				E1F7544514A0A9B200DB35A3 /* WordPressApi.m in Sources */,
 				E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */,
 				E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */,
+				E1C49D5716D4E206007C541A /* WPRSDParser.m in Sources */,
+				E1C49D5816D4E206007C541A /* WPXMLRPCRequest.m in Sources */,
+				E1C49D5916D4E206007C541A /* WPXMLRPCRequestOperation.m in Sources */,
+				E1C49D5C16D4E217007C541A /* WPHTTPAuthenticationAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

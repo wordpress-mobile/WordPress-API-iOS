@@ -238,13 +238,13 @@
  
  For additional URL typo fixing, see [NSURL-Guess](https://github.com/koke/NSURL-Guess)
  
- @param siteURL The site's main url, e.g.: http://en.blog.wordpress.com/
+ @param url what the user entered as the URL, e.g.: myblog.com
  @param success A block object to execute when the method finds a suitable XML-RPC endpoint on the site provided. This block has no return value and takes two arguments: the original site URL, and the found XML-RPC endpoint URL.
- @param failure A block object to execute when the method doesn't find a suitable XML-RPC endpoint on the site. This block has no return value and takes one argument: the original site URL.
+ @param failure A block object to execute when the method doesn't find a suitable XML-RPC endpoint on the site. This block has no return value and takes one argument: a NSError object with details on the error.
  */
-+ (void)guessXMLRPCURLForSite:(NSURL *)siteURL
-                      success:(void (^)(NSURL *siteURL, NSURL *xmlrpcURL))success
-                      failure:(void (^)(NSURL *siteURL))failure;
++ (void)guessXMLRPCURLForSite:(NSString *)url
+                      success:(void (^)(NSURL *xmlrpcURL))success
+                      failure:(void (^)(NSError *error))failure;
 
 
 @end
