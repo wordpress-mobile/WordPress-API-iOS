@@ -5,16 +5,16 @@
 <dict>
 	<key>--input</key>
 	<array>
-		<string>WordPressApi/WordPressApi</string>
+		<string>WordPressApi</string>
 	</array>
 	<key>--index-desc</key>
 	<string>README.md</string>
 	<key>--output</key>
-	<string>Documentation</string>
+	<string>docs</string>
 	<key>--project-name</key>
 	<string>WordPress API for iOS</string>
 	<key>--project-company</key>
-	<string>Automattic</string>
+	<string>WordPress</string>
 	<key>--company-id</key>
 	<string>org.wordpress</string>
 	<key>--keep-undocumented-members</key>
