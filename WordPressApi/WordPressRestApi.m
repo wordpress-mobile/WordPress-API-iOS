@@ -76,15 +76,27 @@ static NSString *WordPressRestApiRedirectUrl = nil;
 #pragma mark - WordPressBaseApi methods
 
 - (void)publishPostWithText:(NSString *)content title:(NSString *)title success:(void (^)(NSUInteger postId, NSURL *permalink))success failure:(void (^)(NSError *error))failure {
-
+    NSDictionary *parameters = @{
+                                 @"title": title,
+                                 @"content": content
+                                 };
+    [_client postPath:[self sitePath:@"posts/new"]
+           parameters:parameters
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  NSUInteger postId = [[responseObject objectForKey:@"ID"] unsignedIntegerValue];
+                  NSURL *permalink = [NSURL URLWithString:[responseObject objectForKey:@"URL"]];
+                  success(postId, permalink);
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  failure(error);
+              }];
 }
 
 - (void)publishPostWithImage:(UIImage *)image description:(NSString *)content title:(NSString *)title success:(void (^)(NSUInteger postId, NSURL *permalink))success failure:(void (^)(NSError *error))failure {
-    if (image == nil) {
+    if (image) {
+        [self publishPostWithGallery:@[image] description:content title:title success:success failure:failure];
+    } else {
         [self publishPostWithText:content title:title success:success failure:failure];
     }
-
-    [self publishPostWithGallery:@[image] description:content title:title success:success failure:failure];
 }
 
 - (void)publishPostWithGallery:(NSArray *)images description:(NSString *)content title:(NSString *)title success:(void (^)(NSUInteger postId, NSURL *permalink))success failure:(void (^)(NSError *error))failure {
