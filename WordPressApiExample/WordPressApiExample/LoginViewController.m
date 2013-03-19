@@ -23,7 +23,7 @@
                            password:passwordField.text
                             success:^(NSURL *xmlrpcURL) {
                                 NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-                                [def setObject:xmlrpcURL forKey:@"wp_xmlrpc"];
+                                [def setObject:[xmlrpcURL absoluteString] forKey:@"wp_xmlrpc"];
                                 [def setObject:usernameField.text forKey:@"wp_username"];
                                 [def setObject:passwordField.text forKey:@"wp_password"];
                                 [def synchronize];
