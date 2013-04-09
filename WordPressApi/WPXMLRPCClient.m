@@ -21,6 +21,7 @@
 #endif
 
 NSString *const WPXMLRPCClientErrorDomain = @"XMLRPC";
+NSUInteger const WPXMLRPCClientBadDataErrorCode = 500; // Bad Request.
 static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
 
 @interface WPXMLRPCClient ()
@@ -138,6 +139,15 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
 
             if ([decoder isFault] || [decoder object] == nil) {
                 err = [decoder error];
+				
+				// In some cases the blog can return junk data and the decoder have nil for an error.
+				// If this is the case we need to create our own error.
+				if(!err){
+					NSString *errDescription = [NSString stringWithFormat:NSLocalizedString(@"Blog returned invalid data (URL: %@)", @""), request.URL.absoluteString];
+					err = [NSError errorWithDomain:WPXMLRPCClientErrorDomain
+											  code:WPXMLRPCClientBadDataErrorCode
+										  userInfo:@{NSLocalizedDescriptionKey: errDescription}];
+				}
             }
 
             if ([decoder object] == nil && extra_debug_on) {

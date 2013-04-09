@@ -12,6 +12,7 @@
 @class WPXMLRPCRequestOperation, WPXMLRPCRequest;
 
 extern NSString *const WPXMLRPCClientErrorDomain;
+extern NSUInteger const WPXMLRPCClientBadDataErrorCode;
 
 /**
  `AFXMLRPCClient` binds together AFNetworking and eczarny's XML-RPC library to interact with XML-RPC based APIs
