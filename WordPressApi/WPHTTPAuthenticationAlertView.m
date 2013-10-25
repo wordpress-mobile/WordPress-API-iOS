@@ -8,6 +8,10 @@
 
 #import "WPHTTPAuthenticationAlertView.h"
 
+@interface WPHTTPAuthenticationAlertView () <UIAlertViewDelegate>
+
+@end
+
 @implementation WPHTTPAuthenticationAlertView {
     NSURLAuthenticationChallenge *_challenge;
     UITextField *usernameField, *passwordField;
@@ -15,12 +19,12 @@
 
 
 - (id)initWithChallenge:(NSURLAuthenticationChallenge *)challenge {
-    self = [self initWithTitle:nil
-                       message:nil
-                      delegate:nil
-             cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button label.")
-             otherButtonTitles:nil];
-    
+    self = [super initWithTitle:nil
+                        message:nil
+                       delegate:nil
+              cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button label.")
+              otherButtonTitles:nil];
+
     if (self) {
         _challenge = challenge;
         self.delegate = self;
