@@ -226,9 +226,9 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
             success(xmlrpcURL);
         }
     } failure:^(NSError *error){
+        [self logError:error];
         if (([error.domain isEqual:NSURLErrorDomain] && error.code == NSURLErrorUserCancelledAuthentication)
             || ([error.domain isEqual:WordPressXMLRPCApiErrorDomain] && error.code == WordPressXMLRPCApiMobilePluginRedirectedError)) {
-            [self logExtraInfo: [error localizedDescription]];
             if (failure) {
                 failure(error);
             }
@@ -245,7 +245,7 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                 success(xmlrpcURL);
             }
         } failure:^(NSError *error){
-            [self logExtraInfo:[error localizedDescription]];
+            [self logError:error];
             // ---------------------------------------------------
             // 3. Fetch the original url and look for the RSD link
             // ---------------------------------------------------
@@ -330,14 +330,14 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                                 [self validateXMLRPCUrl:xmlrpcURL success:^{
                                     if (success) success(xmlrpcURL);
                                 } failure:^(NSError *error){
-                                    [self logExtraInfo: [error localizedDescription]];
+                                    [self logError:error];
                                     if (failure) failure(error);
                                 }];
                             } else {
                                 if (failure) failure(error);
                             }
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            [self logExtraInfo: [error localizedDescription]];
+                            [self logError:error];
                             if (failure) failure(error);
                         }];
                         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -364,7 +364,7 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                         failure(error);
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                [self logExtraInfo:@"Can't fetch the original url: %@", [error localizedDescription]];
+                [self logError:error];
                 if (failure) failure(error);
             }];
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -438,6 +438,10 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
 	va_start(ap, format);
 	NSString *message = [[NSString alloc] initWithFormat:format arguments:ap];
     NSLog(@"[WordPressApi] < %@", message);
+}
+
++ (void)logError:(NSError *)error {
+    [self logExtraInfo:@"Error: %@", error];
 }
 
 @end
