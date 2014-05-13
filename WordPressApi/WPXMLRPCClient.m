@@ -15,6 +15,7 @@
 #import "WPXMLRPCRequest.h"
 #import "WPXMLRPCRequestOperation.h"
 #import "WPHTTPAuthenticationAlertView.h"
+#import "WPHTTPRPCRequestOperation.h"
 
 #ifndef WPFLog
 #define WPFLog(...) NSLog(__VA_ARGS__)
@@ -127,7 +128,7 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
 - (AFHTTPRequestOperation *)HTTPRequestOperationWithRequest:(NSURLRequest *)request
                                                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    WPHTTPRPCRequestOperation *operation = [[WPHTTPRPCRequestOperation alloc] initWithRequest:request];
 
     BOOL extra_debug_on = getenv("WPDebugXMLRPC") ? YES : NO;
 #ifndef DEBUG
