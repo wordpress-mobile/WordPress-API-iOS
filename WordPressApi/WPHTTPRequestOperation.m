@@ -1,17 +1,17 @@
 //
-//  WPHTTPRPCRequestOperation.m
+//  WPHTTPRequestOperation.m
 //  WordPressApiExample
 //
 //  Created by Diego E. Rey Mendez on 5/13/14.
 //  Copyright (c) 2014 Automattic. All rights reserved.
 //
 
-#import "WPHTTPRPCRequestOperation.h"
+#import "WPHTTPRequestOperation.h"
 
 #import <AFNetworking/AFNetworking.h>
 #import "WPHTTPAuthenticationAlertView.h"
 
-@implementation WPHTTPRPCRequestOperation
+@implementation WPHTTPRequestOperation
 
 #pragma mark - NSURLConnectionDelegate
 

@@ -1,5 +1,5 @@
 //
-//  WPHTTPRPCRequestOperation.h
+//  WPHTTPRequestOperation.h
 //  WordPressApiExample
 //
 //  Created by Diego E. Rey Mendez on 5/13/14.
@@ -8,6 +8,6 @@
 
 #import "AFHTTPRequestOperation.h"
 
-@interface WPHTTPRPCRequestOperation : AFHTTPRequestOperation
+@interface WPHTTPRequestOperation : AFHTTPRequestOperation
 
 @end
