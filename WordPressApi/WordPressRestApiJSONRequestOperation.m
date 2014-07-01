@@ -9,6 +9,8 @@
 #import "WordPressRestApiJSONRequestOperation.h"
 #import "WordPressRestApi.h"
 
+#import "WPHTTPAuthenticationAlertView.h"
+
 @implementation WordPressRestApiJSONRequestOperation
 
 +(BOOL)canProcessRequest:(NSURLRequest *)urlRequest {
@@ -21,10 +23,10 @@
 
 - (NSError *)error {
     if (self.response.statusCode >= 400) {
-        NSString *errorMessage = [self.responseJSON objectForKey:@"message"];
+        NSString *errorMessage = [self.responseObject objectForKey:@"message"];
         NSUInteger errorCode = WordPressRestApiErrorJSON;
-        if ([self.responseJSON objectForKey:@"error"] && errorMessage) {
-            NSString *error = [self.responseJSON objectForKey:@"error"];
+        if ([self.responseObject objectForKey:@"error"] && errorMessage) {
+            NSString *error = [self.responseObject objectForKey:@"error"];
             if ([error isEqualToString:@"invalid_token"]) {
                 errorCode = WordPressRestApiErrorInvalidToken;
             } else if ([error isEqualToString:@"authorization_required"]) {

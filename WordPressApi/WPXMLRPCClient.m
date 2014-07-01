@@ -15,6 +15,7 @@
 #import "WPXMLRPCRequest.h"
 #import "WPXMLRPCRequestOperation.h"
 #import "WPHTTPAuthenticationAlertView.h"
+#import "WPHTTPRequestOperation.h"
 
 #ifndef WPFLog
 #define WPFLog(...) NSLog(__VA_ARGS__)
@@ -112,7 +113,7 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
 
     WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:method andParameters:parameters];
     [request setHTTPBodyStream:encoder.bodyStream];
-    [request setValue:[NSString stringWithFormat:@"%d", encoder.contentLength] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)encoder.contentLength] forHTTPHeaderField:@"Content-Length"];
 
     return request;
 }
@@ -127,7 +128,7 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
 - (AFHTTPRequestOperation *)HTTPRequestOperationWithRequest:(NSURLRequest *)request
                                                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    WPHTTPRequestOperation *operation = [[WPHTTPRequestOperation alloc] initWithRequest:request];
 
     BOOL extra_debug_on = getenv("WPDebugXMLRPC") ? YES : NO;
 #ifndef DEBUG
@@ -176,36 +177,6 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
         }
     };
     [operation setCompletionBlockWithSuccess:xmlrpcSuccess failure:xmlrpcFailure];
-    [operation setAuthenticationChallengeBlock:^(NSURLConnection *connection, NSURLAuthenticationChallenge *challenge) {
-        if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-            // Handle invalid certificates
-            SecTrustResultType result;
-            OSStatus certificateStatus = SecTrustEvaluate(challenge.protectionSpace.serverTrust, &result);
-            if (certificateStatus == 0 && result == kSecTrustResultRecoverableTrustFailure) {
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                    WPHTTPAuthenticationAlertView *alert = [[WPHTTPAuthenticationAlertView alloc] initWithChallenge:challenge];
-                    [alert show];
-                });
-            } else {
-                [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-            }
-        } else {
-            NSURLCredential *credential = [[NSURLCredentialStorage sharedCredentialStorage] defaultCredentialForProtectionSpace:[challenge protectionSpace]];
-
-            if ([challenge previousFailureCount] == 0 && credential) {
-                [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                    WPHTTPAuthenticationAlertView *alert = [[WPHTTPAuthenticationAlertView alloc] initWithChallenge:challenge];
-                    [alert show];
-                });
-            }
-        }
-    }];
-    [operation setAuthenticationAgainstProtectionSpaceBlock:^BOOL(NSURLConnection *connection, NSURLProtectionSpace *protectionSpace) {
-        // We can handle any authentication available except Client Certificates
-        return ![protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodClientCertificate];
-    }];
 
     if ( extra_debug_on == YES ) {
         NSString *requestString = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
