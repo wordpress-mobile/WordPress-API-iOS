@@ -107,11 +107,12 @@ extern NSString *const WPXMLRPCClientErrorDomain;
 
  @param method The XML-RPC method for the request.
  @param parameters The XML-RPC parameters to be set as the request body.
-
+ @param filePathForCache The path wehere the streaming request will be cached. This file can only be delete after 
  @return A `NSMutableURLRequest` object
  */
 - (NSMutableURLRequest *)streamingRequestWithMethod:(NSString *)method
-                                         parameters:(NSArray *)parameters;
+                                         parameters:(NSArray *)parameters
+                              usingFilePathForCache:(NSString *)filePath;
 
 /**
  Creates an `AFXMLRPCRequest` object with the specified XML-RPC method and parameters.

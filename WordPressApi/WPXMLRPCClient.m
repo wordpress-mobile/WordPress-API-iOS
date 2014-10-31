@@ -100,20 +100,31 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
     [request setAllHTTPHeaderFields:self.defaultHeaders];
 
     WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:method andParameters:parameters];
-    [request setHTTPBody:encoder.body];
+    [request setHTTPBody:[encoder dataEncodedWithError:nil]];
 
     return request;
 }
 
 - (NSMutableURLRequest *)streamingRequestWithMethod:(NSString *)method
-                                         parameters:(NSArray *)parameters {
+                                         parameters:(NSArray *)parameters
+                              usingFilePathForCache:(NSString *)filePath
+{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:self.xmlrpcEndpoint];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:self.defaultHeaders];
 
     WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:method andParameters:parameters];
-    [request setHTTPBodyStream:encoder.bodyStream];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)encoder.contentLength] forHTTPHeaderField:@"Content-Length"];
+    if (![encoder encodeToFile:filePath error:nil]){
+        return nil;
+    }
+    NSError *error = nil;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
+    
+    unsigned long contentLength = [[attributes objectForKey:NSFileSize] unsignedIntegerValue];
+
+    NSInputStream * inputStream = [NSInputStream inputStreamWithFileAtPath:filePath];
+    [request setHTTPBodyStream:inputStream];
+    [request setValue:[NSString stringWithFormat:@"%lu", contentLength] forHTTPHeaderField:@"Content-Length"];
 
     return request;
 }
