@@ -20,20 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - wpxmlrpc (0.4.3)
+  - wpxmlrpc (0.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.3.1)
-  - wpxmlrpc (from `https://github.com/wordpress-mobile/wpxmlrpc.git`, branch `feature/Fix_11_Streaming_Request`)
-  - wpxmlrpc (~> 0.1)
-
-EXTERNAL SOURCES:
-  wpxmlrpc:
-    :branch: feature/Fix_11_Streaming_Request
-    :git: https://github.com/wordpress-mobile/wpxmlrpc.git
+  - wpxmlrpc (~> 0.5)
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  wpxmlrpc: b676865583a1822b01c54463867c73ac589abb13
+  wpxmlrpc: cf73cf957505e71e90f6f98a25615291ecee411c
 
 COCOAPODS: 0.34.4
