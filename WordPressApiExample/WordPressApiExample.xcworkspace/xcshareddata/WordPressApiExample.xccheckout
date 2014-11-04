@@ -10,29 +10,29 @@
 	<string>WordPressApiExample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>13C3A14B-A5C0-4AC2-BB0D-EA5CB3201A07</key>
+		<key>F113A2DE60CD635FABB7E32238D59EFF17D82DF7</key>
 		<string>ssh://github.com/diegoreymendez/WordPressApi.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>WordPressApiExample/WordPressApiExample.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>13C3A14B-A5C0-4AC2-BB0D-EA5CB3201A07</key>
+		<key>F113A2DE60CD635FABB7E32238D59EFF17D82DF7</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/diegoreymendez/WordPressApi.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>13C3A14B-A5C0-4AC2-BB0D-EA5CB3201A07</string>
+	<string>F113A2DE60CD635FABB7E32238D59EFF17D82DF7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>13C3A14B-A5C0-4AC2-BB0D-EA5CB3201A07</string>
+			<string>F113A2DE60CD635FABB7E32238D59EFF17D82DF7</string>
 			<key>IDESourceControlWCCName</key>
 			<string>WordPressApi</string>
 		</dict>

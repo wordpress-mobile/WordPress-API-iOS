@@ -100,20 +100,36 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
     [request setAllHTTPHeaderFields:self.defaultHeaders];
 
     WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:method andParameters:parameters];
-    [request setHTTPBody:encoder.body];
+    [request setHTTPBody:[encoder dataEncodedWithError:nil]];
 
     return request;
 }
 
 - (NSMutableURLRequest *)streamingRequestWithMethod:(NSString *)method
-                                         parameters:(NSArray *)parameters {
+                                         parameters:(NSArray *)parameters
+                              usingFilePathForCache:(NSString *)filePath
+{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:self.xmlrpcEndpoint];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:self.defaultHeaders];
 
     WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:method andParameters:parameters];
-    [request setHTTPBodyStream:encoder.bodyStream];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)encoder.contentLength] forHTTPHeaderField:@"Content-Length"];
+    NSError *error = nil;
+    if (![encoder encodeToFile:filePath error:&error]){
+        WPFLog(@"Error encoding request to stream: %@",[error localizedDescription]);
+        return nil;
+    }
+    
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
+    if (!attributes){
+        WPFLog(@"Error getting length of the request stream: %@",[error localizedDescription]);
+        return nil;
+    }
+    unsigned long long contentLength = [attributes[NSFileSize] unsignedLongLongValue];
+
+    NSInputStream * inputStream = [NSInputStream inputStreamWithFileAtPath:filePath];
+    [request setHTTPBodyStream:inputStream];
+    [request setValue:[NSString stringWithFormat:@"%llu", contentLength] forHTTPHeaderField:@"Content-Length"];
 
     return request;
 }

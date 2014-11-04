@@ -42,7 +42,7 @@
 		59178B7519226808002E8EB0 /* WPHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPHTTPRequestOperation.m; sourceTree = "<group>"; };
 		595DC5EF191A756000FA0B10 /* WordPressRestApiJSONRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressRestApiJSONRequestOperationManager.h; sourceTree = "<group>"; };
 		595DC5F0191A756000FA0B10 /* WordPressRestApiJSONRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressRestApiJSONRequestOperationManager.m; sourceTree = "<group>"; };
-		906AFB6868F74568BF80D9AA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		65E121B8153E2CDF6918B431 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		E15CEC1814C5C39000CFDBB7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -86,6 +86,7 @@
 		E1F7544114A0A9B200DB35A3 /* WPXMLRPCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPXMLRPCClient.m; sourceTree = "<group>"; };
 		E1F7544214A0A9B200DB35A3 /* WordPressXMLRPCApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressXMLRPCApi.h; sourceTree = "<group>"; };
 		E1F7544314A0A9B200DB35A3 /* WordPressXMLRPCApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressXMLRPCApi.m; sourceTree = "<group>"; };
+		EE74AA8A250C80B7FE7E249C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B1248CF211829BA544E27D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				65E121B8153E2CDF6918B431 /* Pods.debug.xcconfig */,
+				EE74AA8A250C80B7FE7E249C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E1F753C814A094F400DB35A3 = {
 			isa = PBXGroup;
 			children = (
@@ -112,7 +122,7 @@
 				E1F753DD14A094F400DB35A3 /* WordPressApiExample */,
 				E1F753D614A094F400DB35A3 /* Frameworks */,
 				E1F753D414A094F400DB35A3 /* Products */,
-				906AFB6868F74568BF80D9AA /* Pods.xcconfig */,
+				2B1248CF211829BA544E27D5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,7 +284,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -390,7 +400,7 @@
 		};
 		E1F753F514A094F400DB35A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 906AFB6868F74568BF80D9AA /* Pods.xcconfig */;
+			baseConfigurationReference = 65E121B8153E2CDF6918B431 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -403,7 +413,7 @@
 		};
 		E1F753F614A094F400DB35A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 906AFB6868F74568BF80D9AA /* Pods.xcconfig */;
+			baseConfigurationReference = EE74AA8A250C80B7FE7E249C /* Pods.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
