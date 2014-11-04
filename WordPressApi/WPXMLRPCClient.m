@@ -114,17 +114,22 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
     [request setAllHTTPHeaderFields:self.defaultHeaders];
 
     WPXMLRPCEncoder *encoder = [[WPXMLRPCEncoder alloc] initWithMethod:method andParameters:parameters];
-    if (![encoder encodeToFile:filePath error:nil]){
+    NSError *error = nil;
+    if (![encoder encodeToFile:filePath error:&error]){
+        WPFLog(@"Error encoding request to stream: %@",[error localizedDescription]);
         return nil;
     }
-    NSError *error = nil;
-    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
     
-    unsigned long contentLength = [[attributes objectForKey:NSFileSize] unsignedIntegerValue];
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
+    if (!attributes){
+        WPFLog(@"Error getting length of the request stream: %@",[error localizedDescription]);
+        return nil;
+    }
+    unsigned long long contentLength = [attributes[NSFileSize] unsignedLongLongValue];
 
     NSInputStream * inputStream = [NSInputStream inputStreamWithFileAtPath:filePath];
     [request setHTTPBodyStream:inputStream];
-    [request setValue:[NSString stringWithFormat:@"%lu", contentLength] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%llu", contentLength] forHTTPHeaderField:@"Content-Length"];
 
     return request;
 }
