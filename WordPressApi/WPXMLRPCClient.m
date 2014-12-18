@@ -207,6 +207,8 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
                 NSRange methodRange = [[matches objectAtIndex:0] rangeAtIndex:1];
                 if(methodRange.location != NSNotFound)
                     methodName = [requestString substringWithRange:methodRange];
+            } else if ([request HTTPBodyStream] != nil) {
+                methodName = @"streaming request, unknown method";
             }
             WPFLog(@"[XML-RPC] > %@", methodName);
         }
