@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "WordPressApi"
-  s.version      = "0.2.0"
+  s.version      = "0.2.1"
   s.summary      = "A simple Objective-C client to publish posts on the WordPress platform"
   s.homepage     = "https://github.com/wordpress-mobile/WordPressApi"
   s.license      = { :type => 'MIT', :file => 'LICENSE.md' }

@@ -203,10 +203,12 @@ static NSUInteger const WPXMLRPCClientDefaultMaxConcurrentOperationCount = 4;
             NSRegularExpression *method = [NSRegularExpression regularExpressionWithPattern:@"<methodName>(.*)</methodName>" options:NSRegularExpressionCaseInsensitive error:&error];
             NSArray *matches = [method matchesInString:requestString options:0 range:NSMakeRange(0, [requestString length])];
             NSString *methodName = nil;
-            if (matches) {
+            if (matches.count > 0) {
                 NSRange methodRange = [[matches objectAtIndex:0] rangeAtIndex:1];
                 if(methodRange.location != NSNotFound)
                     methodName = [requestString substringWithRange:methodRange];
+            } else if ([request HTTPBodyStream] != nil) {
+                methodName = @"streaming request, unknown method";
             }
             WPFLog(@"[XML-RPC] > %@", methodName);
         }
