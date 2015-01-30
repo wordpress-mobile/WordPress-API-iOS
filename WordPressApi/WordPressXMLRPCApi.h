@@ -41,6 +41,8 @@ typedef NS_ENUM(NSInteger, WordPressXMLRPCApiError) {
 ///-----------------------------------------
 
 @property (readonly, nonatomic, retain) NSURL *xmlrpc;
+@property (readonly, nonatomic, strong) NSOperationQueue *operationQueue;
+
 
 ///-------------------------------------------------------
 /// @name Creating and Initializing a WordPress API Client
