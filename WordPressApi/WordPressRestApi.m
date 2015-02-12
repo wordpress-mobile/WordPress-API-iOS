@@ -14,7 +14,7 @@
 #import "WordPressRestApiJSONRequestOperationManager.h"
 #import "WPComOAuthController.h"
 
-NSString *const WordPressRestApiEndpointURL = @"https://public-api.wordpress.com/rest/v1/";
+NSString *const WordPressRestApiEndpointURL = @"https://public-api.wordpress.com/rest/v1.1/";
 NSString *const WordPressRestApiErrorDomain = @"WordPressRestApiError";
 NSString *const WordPressRestApiErrorCodeKey = @"WordPressRestApiErrorCodeKey";
 
