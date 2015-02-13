@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source_files = 'WordPressApi'
   s.requires_arc = true
   s.dependency 'AFNetworking', '~> 2.5.1'
-  s.dependency 'wpxmlrpc', '~> 0.5'
+  s.dependency 'wpxmlrpc', '~> 0.7'
 
   s.platform = :ios, '6.0'
   s.ios.deployment_target = '6.0'

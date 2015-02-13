@@ -20,14 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - wpxmlrpc (0.5)
+  - wpxmlrpc (0.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.1)
-  - wpxmlrpc (~> 0.5)
+  - wpxmlrpc (~> 0.7)
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  wpxmlrpc: cf73cf957505e71e90f6f98a25615291ecee411c
+  wpxmlrpc: 75ad2e4663c3a65948f5ae0799d948a8445bb0cf
 
 COCOAPODS: 0.35.0
