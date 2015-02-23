@@ -19,8 +19,14 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
 @end
 
 @implementation WPComOAuthController {
-    NSString *_clientId, *_redirectUrl, *_scope, *_blogId, *_secret;
-    NSString *_username, *_password;
+    NSString *_clientId;
+    NSString *_redirectUrl;
+    NSString *_scope;
+    NSString *_blogId;
+    NSString *_secret;
+    NSString *_username;
+    NSString *_password;
+    NSString *_authToken;
     BOOL _isSSO;
     void (^_completionBlock)(NSString *token, NSString *blogId, NSString *blogUrl, NSString *scope, NSError *error);
 }
@@ -61,6 +67,10 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
     _password = password;
 }
 
+- (void)setWordPressComAuthToken:(NSString *)authToken {
+    _authToken = authToken;
+}
+
 - (void)setClient:(NSString *)client {
     _clientId = client;
 }
@@ -74,7 +84,7 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
 }
 
 - (void)setCompletionBlock:(void (^)(NSString *token, NSString *blogId, NSString *blogUrl, NSString *scope, NSError *error))completionBlock {
-    _completionBlock = completionBlock;
+    _completionBlock = [completionBlock copy];
 }
 
 #pragma mark - View lifecycle
@@ -128,6 +138,9 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
         [request setHTTPBody:[request_body dataUsingEncoding:NSUTF8StringEncoding]];
         [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[request_body length]] forHTTPHeaderField:@"Content-Length"];
         [request addValue:@"*/*" forHTTPHeaderField:@"Accept"];
+        if (_authToken) {
+            [request addValue:[NSString stringWithFormat:@"Bearer %@", _authToken] forHTTPHeaderField:@"Authorization"];
+        }
         [request setHTTPMethod:@"POST"];
     }
     [self.webView loadRequest:request];
@@ -278,6 +291,7 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
             WPComOAuthController *ssoController = [[WPComOAuthController alloc] initForSSO];
             [ssoController setWordPressComUsername:_username];
             [ssoController setWordPressComPassword:_password];
+            [ssoController setWordPressComAuthToken:_authToken];
             [ssoController setClient:clientId];
             [ssoController setRedirectUrl:redirectUrl];
             [ssoController present];
