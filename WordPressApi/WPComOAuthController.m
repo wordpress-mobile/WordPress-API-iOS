@@ -74,7 +74,7 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
 }
 
 - (void)setCompletionBlock:(void (^)(NSString *token, NSString *blogId, NSString *blogUrl, NSString *scope, NSError *error))completionBlock {
-    _completionBlock = completionBlock;
+    _completionBlock = [completionBlock copy];
 }
 
 #pragma mark - View lifecycle
