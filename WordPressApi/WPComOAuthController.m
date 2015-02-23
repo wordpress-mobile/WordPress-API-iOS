@@ -26,6 +26,7 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
     NSString *_secret;
     NSString *_username;
     NSString *_password;
+    NSString *_authToken;
     BOOL _isSSO;
     void (^_completionBlock)(NSString *token, NSString *blogId, NSString *blogUrl, NSString *scope, NSError *error);
 }
@@ -64,6 +65,10 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
 
 - (void)setWordPressComPassword:(NSString *)password {
     _password = password;
+}
+
+- (void)setWordPressComAuthToken:(NSString *)authToken {
+    _authToken = authToken;
 }
 
 - (void)setClient:(NSString *)client {
@@ -133,6 +138,9 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
         [request setHTTPBody:[request_body dataUsingEncoding:NSUTF8StringEncoding]];
         [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[request_body length]] forHTTPHeaderField:@"Content-Length"];
         [request addValue:@"*/*" forHTTPHeaderField:@"Accept"];
+        if (_authToken) {
+            [request addValue:[NSString stringWithFormat:@"Bearer %@", _authToken] forHTTPHeaderField:@"Authorization"];
+        }
         [request setHTTPMethod:@"POST"];
     }
     [self.webView loadRequest:request];
@@ -283,6 +291,7 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
             WPComOAuthController *ssoController = [[WPComOAuthController alloc] initForSSO];
             [ssoController setWordPressComUsername:_username];
             [ssoController setWordPressComPassword:_password];
+            [ssoController setWordPressComAuthToken:_authToken];
             [ssoController setClient:clientId];
             [ssoController setRedirectUrl:redirectUrl];
             [ssoController present];
