@@ -19,8 +19,13 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
 @end
 
 @implementation WPComOAuthController {
-    NSString *_clientId, *_redirectUrl, *_scope, *_blogId, *_secret;
-    NSString *_username, *_password;
+    NSString *_clientId;
+    NSString *_redirectUrl;
+    NSString *_scope;
+    NSString *_blogId;
+    NSString *_secret;
+    NSString *_username;
+    NSString *_password;
     BOOL _isSSO;
     void (^_completionBlock)(NSString *token, NSString *blogId, NSString *blogUrl, NSString *scope, NSError *error);
 }
