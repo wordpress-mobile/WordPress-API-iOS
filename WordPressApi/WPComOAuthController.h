@@ -10,7 +10,6 @@ typedef NS_ENUM(NSUInteger, WPComOAuthErrorCode) {
 + (WPComOAuthController *)sharedController;
 
 - (void)setWordPressComUsername:(NSString *)username;
-- (void)setWordPressComPassword:(NSString *)password;
 - (void)setWordPressComAuthToken:(NSString *)authToken;
 
 - (void)setClient:(NSString *)client;
