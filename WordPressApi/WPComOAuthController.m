@@ -63,10 +63,6 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
     _username = username;
 }
 
-- (void)setWordPressComPassword:(NSString *)password {
-    _password = password;
-}
-
 - (void)setWordPressComAuthToken:(NSString *)authToken {
     _authToken = authToken;
 }
@@ -129,11 +125,12 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
     if (userAgent) {
         [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
     }
-    if (_username && _password) {
-        NSString *request_body = [NSString stringWithFormat:@"log=%@&pwd=%@&redirect_to=%@",
-                                  [self stringByUrlEncodingString:_username],
-                                  [self stringByUrlEncodingString:_password],
-                                  [self stringByUrlEncodingString:queryUrl]];
+    if (_username && _authToken) {
+        NSString *requestBody = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@",
+                                 @"log", [self stringByUrlEncodingString:_username],
+                                 @"pwd", [NSString string],
+                                 @"redirect_to", [self stringByUrlEncodingString:queryUrl]];
+        
         [request setURL:[NSURL URLWithString:WPComOAuthLoginUrl]];
         [request setHTTPBody:[request_body dataUsingEncoding:NSUTF8StringEncoding]];
         [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[request_body length]] forHTTPHeaderField:@"Content-Length"];
@@ -290,7 +287,6 @@ NSString *const WPComOAuthErrorDomain = @"WPComOAuthError";
         if (clientId && redirectUrl) {
             WPComOAuthController *ssoController = [[WPComOAuthController alloc] initForSSO];
             [ssoController setWordPressComUsername:_username];
-            [ssoController setWordPressComPassword:_password];
             [ssoController setWordPressComAuthToken:_authToken];
             [ssoController setClient:clientId];
             [ssoController setRedirectUrl:redirectUrl];
