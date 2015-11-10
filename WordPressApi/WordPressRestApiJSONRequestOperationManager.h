@@ -1,4 +1,4 @@
-#import "AFHTTPRequestOperationManager.h"
+#import <AFNetworking/AFHTTPRequestOperationManager.h>
 
 @interface WordPressRestApiJSONRequestOperationManager : AFHTTPRequestOperationManager
 
