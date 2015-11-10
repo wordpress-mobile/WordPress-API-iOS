@@ -1,4 +1,4 @@
-#import "AFHTTPRequestOperation.h"
+#import <AFNetworking/AFHTTPRequestOperation.h>
 
 @interface WPHTTPRequestOperation : AFHTTPRequestOperation
 
