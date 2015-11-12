@@ -10,6 +10,7 @@
 		59178B7619226808002E8EB0 /* WPHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 59178B7519226808002E8EB0 /* WPHTTPRequestOperation.m */; };
 		595DC5F1191A756000FA0B10 /* WordPressRestApiJSONRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 595DC5F0191A756000FA0B10 /* WordPressRestApiJSONRequestOperationManager.m */; };
 		A5157ADD21264416AA7DE4D6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8BE1138AD74E5AA6AE86D9 /* libPods.a */; };
+		E13FCA931BF20E5900578596 /* WPHTTPAuthenticationAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = E13FCA921BF20E5900578596 /* WPHTTPAuthenticationAlertController.m */; };
 		E15CEBB114C59B3500CFDBB7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */; };
 		E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */; };
 		E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E15CEC2A14C5E05800CFDBB7 /* ComposeViewController.m */; };
@@ -43,6 +44,8 @@
 		595DC5EF191A756000FA0B10 /* WordPressRestApiJSONRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPressRestApiJSONRequestOperationManager.h; sourceTree = "<group>"; };
 		595DC5F0191A756000FA0B10 /* WordPressRestApiJSONRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressRestApiJSONRequestOperationManager.m; sourceTree = "<group>"; };
 		65E121B8153E2CDF6918B431 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E13FCA911BF20E5900578596 /* WPHTTPAuthenticationAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPHTTPAuthenticationAlertController.h; sourceTree = "<group>"; };
+		E13FCA921BF20E5900578596 /* WPHTTPAuthenticationAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPHTTPAuthenticationAlertController.m; sourceTree = "<group>"; };
 		E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		E15CEC1814C5C39000CFDBB7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E15CEC1914C5C39000CFDBB7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -206,6 +209,8 @@
 				E1C49D9D16D54DF6007C541A /* WordPressRestApiJSONRequestOperation.m */,
 				595DC5EF191A756000FA0B10 /* WordPressRestApiJSONRequestOperationManager.h */,
 				595DC5F0191A756000FA0B10 /* WordPressRestApiJSONRequestOperationManager.m */,
+				E13FCA911BF20E5900578596 /* WPHTTPAuthenticationAlertController.h */,
+				E13FCA921BF20E5900578596 /* WPHTTPAuthenticationAlertController.m */,
 			);
 			name = WordPressApi;
 			path = ../../WordPressApi;
@@ -311,6 +316,7 @@
 				E1C49D9B16D541EF007C541A /* WPComOAuthController.m in Sources */,
 				59178B7619226808002E8EB0 /* WPHTTPRequestOperation.m in Sources */,
 				E1C49D9E16D54DF6007C541A /* WordPressRestApiJSONRequestOperation.m in Sources */,
+				E13FCA931BF20E5900578596 /* WPHTTPAuthenticationAlertController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
