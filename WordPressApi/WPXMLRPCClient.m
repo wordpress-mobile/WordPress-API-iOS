@@ -14,7 +14,6 @@
 
 #import "WPXMLRPCRequest.h"
 #import "WPXMLRPCRequestOperation.h"
-#import "WPHTTPAuthenticationAlertView.h"
 #import "WPHTTPRequestOperation.h"
 
 #ifndef WPFLog
