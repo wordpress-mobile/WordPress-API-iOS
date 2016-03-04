@@ -1,11 +1,3 @@
-//
-//  WPRSDParser.m
-//  WordPress
-//
-//  Created by Jorge Bernal on 10/18/12.
-//  Copyright (c) 2012 WordPress. All rights reserved.
-//
-
 #import "WPRSDParser.h"
 
 @implementation WPRSDParser {

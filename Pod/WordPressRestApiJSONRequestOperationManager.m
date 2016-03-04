@@ -1,13 +1,4 @@
-//
-//  WordPressRestApiJSONRequestOperationManager.m
-//  WordPressApi
-//
-//  Created by Diego E. Rey Mendez on 5/7/14.
-//  Copyright (c) 2014 Automattic. All rights reserved.
-//
-
 #import "WordPressRestApiJSONRequestOperationManager.h"
-
 #import "WordPressRestApiJSONRequestOperation.h"
 
 @implementation WordPressRestApiJSONRequestOperationManager

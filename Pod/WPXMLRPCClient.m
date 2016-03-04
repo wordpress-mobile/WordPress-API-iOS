@@ -1,11 +1,3 @@
-//
-//  AFXMLRPCClient.m
-//  WordPressApiExample
-//
-//  Created by Jorge Bernal on 12/13/11.
-//  Copyright (c) 2011 Automattic. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import <WPXMLRPC/WPXMLRPC.h>
 #import <AFNetworking/AFNetworking.h>

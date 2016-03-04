@@ -1,13 +1,4 @@
-//
-//  WPComOAuthController.m
-//  WordPress
-//
-//  Created by Jorge Bernal on 1/15/12.
-//  Copyright (c) 2012 WordPress. All rights reserved.
-//
-
 #import <AFNetworking/AFNetworking.h>
-
 #import "WPComOAuthController.h"
 
 NSString *const WPComOAuthBaseUrl = @"https://public-api.wordpress.com/oauth2";

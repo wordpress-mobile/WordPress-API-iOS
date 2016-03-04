@@ -1,11 +1,3 @@
-//
-//  WordPressApi.m
-//  WordPressApiExample
-//
-//  Created by Jorge Bernal on 2/20/13.
-//  Copyright (c) 2013 Automattic. All rights reserved.
-//
-
 #import "WordPressApi.h"
 #import "WordPressXMLRPCApi.h"
 #import "WordPressRestApi.h"
