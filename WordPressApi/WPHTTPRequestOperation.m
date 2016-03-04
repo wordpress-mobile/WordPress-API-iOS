@@ -9,7 +9,7 @@
 #import "WPHTTPRequestOperation.h"
 
 #import <AFNetworking/AFNetworking.h>
-#import "WPHTTPAuthenticationAlertView.h"
+#import "WPHTTPAuthenticationAlertController.h"
 
 @implementation WPHTTPRequestOperation
 
@@ -23,8 +23,7 @@
 		OSStatus certificateStatus = SecTrustEvaluate(challenge.protectionSpace.serverTrust, &result);
 		if (certificateStatus == 0 && result == kSecTrustResultRecoverableTrustFailure) {
 			dispatch_async(dispatch_get_main_queue(), ^(void) {
-				WPHTTPAuthenticationAlertView *alert = [[WPHTTPAuthenticationAlertView alloc] initWithChallenge:challenge];
-				[alert show];
+                [WPHTTPAuthenticationAlertController presentWithChallenge:challenge];
 			});
 		} else {
 			[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
@@ -38,8 +37,7 @@
 			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
 		} else {
 			dispatch_async(dispatch_get_main_queue(), ^(void) {
-				WPHTTPAuthenticationAlertView *alert = [[WPHTTPAuthenticationAlertView alloc] initWithChallenge:challenge];
-				[alert show];
+                [WPHTTPAuthenticationAlertController presentWithChallenge:challenge];
 			});
 		}
 	}

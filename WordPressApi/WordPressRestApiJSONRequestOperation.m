@@ -9,8 +9,6 @@
 #import "WordPressRestApiJSONRequestOperation.h"
 #import "WordPressRestApi.h"
 
-#import "WPHTTPAuthenticationAlertView.h"
-
 @implementation WordPressRestApiJSONRequestOperation
 
 +(BOOL)canProcessRequest:(NSURLRequest *)urlRequest {
