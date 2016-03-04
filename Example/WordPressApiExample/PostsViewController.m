@@ -47,17 +47,16 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"viewWillAppear");
     [self setupApi];
-    if (self.api == nil) {
-        [self.navigationController performSegueWithIdentifier:@"login" sender:self];
-    }
     [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (self.api == nil) {
+        [self.navigationController performSegueWithIdentifier:@"login" sender:self];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
