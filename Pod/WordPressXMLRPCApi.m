@@ -5,25 +5,15 @@
 NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
 
 @interface WordPressXMLRPCApi ()
+
 @property (readwrite, nonatomic, retain) NSURL *xmlrpc;
 @property (readwrite, nonatomic, retain) NSString *username;
 @property (readwrite, nonatomic, retain) NSString *password;
 @property (readwrite, nonatomic, retain) WPXMLRPCClient *client;
 
-- (NSArray *)buildParametersWithExtra:(id)extra;
-
 @end
 
-@implementation WordPressXMLRPCApi {
-    NSURL *_xmlrpc;
-    NSString *_username;
-    NSString *_password;
-    WPXMLRPCClient *_client;
-}
-@synthesize xmlrpc = _xmlrpc;
-@synthesize username = _username;
-@synthesize password = _password;
-@synthesize client = _client;
+@implementation WordPressXMLRPCApi
 
 + (WordPressXMLRPCApi *)apiWithXMLRPCEndpoint:(NSURL *)xmlrpc username:(NSString *)username password:(NSString *)password {
     return [[self alloc] initWithXMLRPCEndpoint:xmlrpc username:username password:password];
