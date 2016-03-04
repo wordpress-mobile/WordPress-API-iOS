@@ -5,7 +5,7 @@ podfile: Example/Podfile
 before_script:
 - cd Example && pod install && cd -
 script:
-- set -o pipefail && xcodebuild build -workspace Example/WordPressApiExample.xcworkspace -scheme WordPressApiExample -sdk iphonesimulator | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace Example/WordPressApiExample.xcworkspace -scheme WordPressApiExample -sdk iphonesimulator | xcpretty -c
 
 
 
