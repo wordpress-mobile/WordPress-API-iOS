@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     if (self.navigationItem.rightBarButtonItems && [self.navigationItem.rightBarButtonItems count] == 1) {
-        UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
+        UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.navigationItem.rightBarButtonItem, logout, nil];
     }
 	// Do any additional setup after loading the view, typically from a nib.
