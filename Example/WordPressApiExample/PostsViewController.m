@@ -3,14 +3,13 @@
 #import "WordPressApi.h"
 
 @interface PostsViewController ()
+
 @property (readwrite, nonatomic, retain) id<WordPressBaseApi> api;
 @property (readwrite, nonatomic, retain) NSArray *posts;
-- (void)setupApi;
+
 @end
 
 @implementation PostsViewController
-@synthesize api = _api;
-@synthesize posts = _posts;
 
 - (void)awakeFromNib
 {

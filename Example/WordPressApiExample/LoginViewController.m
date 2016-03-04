@@ -2,7 +2,6 @@
 #import "WordPressApi.h"
 
 @implementation LoginViewController
-@synthesize urlField, usernameField, passwordField;
 
 #pragma mark - Table view delegate
 
@@ -10,14 +9,14 @@
 {
     if (indexPath.section == 1) {
         // Sign in
-        [WordPressApi signInWithURL:urlField.text
-                           username:usernameField.text
-                           password:passwordField.text
+        [WordPressApi signInWithURL:self.urlField.text
+                           username:self.usernameField.text
+                           password:self.passwordField.text
                             success:^(NSURL *xmlrpcURL) {
                                 NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
                                 [def setObject:[xmlrpcURL absoluteString] forKey:@"wp_xmlrpc"];
-                                [def setObject:usernameField.text forKey:@"wp_username"];
-                                [def setObject:passwordField.text forKey:@"wp_password"];
+                                [def setObject:self.usernameField.text forKey:@"wp_username"];
+                                [def setObject:self.passwordField.text forKey:@"wp_password"];
                                 [def synchronize];
                                 [self dismissViewControllerAnimated:YES completion:nil];
                             } failure:^(NSError *error) {

@@ -1,13 +1,12 @@
 #import "PostViewController.h"
 
 @interface PostViewController ()
+
 - (void)configureView;
+
 @end
 
 @implementation PostViewController
-
-@synthesize post = _post;
-@synthesize postContentView = _postContentView;
 
 #pragma mark - Managing the detail item
 
