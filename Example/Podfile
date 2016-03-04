@@ -5,3 +5,7 @@ target 'WordPressApiExample', :exclusive => true do
  pod "WordPressApi", :path => "../"
 end
 
+target 'Tests', :exclusive => true do
+ pod "WordPressApi", :path => "../"
+end
+
