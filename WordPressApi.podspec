@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE.md' }
   s.author       = "WordPress"
   s.source       = { :git => "https://github.com/wordpress-mobile/WordPressApi.git", :tag => s.version.to_s }
-  s.source_files = 'WordPressApi'
+  s.source_files = 'Pod'
   s.requires_arc = true
   s.dependency 'AFNetworking', '~> 2.6.0'
   s.dependency 'wpxmlrpc', '~> 0.7'
