@@ -59,7 +59,7 @@
     }];
 
     [controller addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = NSLocalizedString(@"Passowrd", @"Login dialog password placeholder");
+        textField.placeholder = NSLocalizedString(@"Password", @"Login dialog password placeholder");
         textField.secureTextEntry = YES;
     }];
 
