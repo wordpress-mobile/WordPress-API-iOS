@@ -13,7 +13,12 @@
     } else {
         controller = [self controllerForUserAuthenticationChallenge:challenge];
     }
-    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:controller animated:YES completion:nil];
+    UIViewController *presentingController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    if (presentingController.presentedViewController) {
+        presentingController = presentingController.presentedViewController;
+    }
+
+    [presentingController presentViewController:controller animated:YES completion:nil];
 }
 
 + (UIAlertController *)controllerForServerTrustChallenge:(NSURLAuthenticationChallenge *)challenge {
