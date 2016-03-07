@@ -25,6 +25,9 @@
 		FFA0659D1C89D73300923B29 /* WordPressXMLRPCApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA0659C1C89D73300923B29 /* WordPressXMLRPCApiTests.m */; };
 		FFA065A61C89EEC300923B29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFA065A51C89EEC300923B29 /* Images.xcassets */; };
 		FFA065A91C89EF9E00923B29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA065A71C89EF9E00923B29 /* LaunchScreen.storyboard */; };
+		FFA065AE1C8D880300923B29 /* WordPressApi.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FFA065AB1C8D880300923B29 /* WordPressApi.podspec */; };
+		FFA065AF1C8D880300923B29 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FFA065AC1C8D880300923B29 /* README.md */; };
+		FFA065B01C8D880300923B29 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = FFA065AD1C8D880300923B29 /* LICENSE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,9 @@
 		FFA0659E1C89D73300923B29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFA065A51C89EEC300923B29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FFA065A81C89EF9E00923B29 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FFA065AB1C8D880300923B29 /* WordPressApi.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = WordPressApi.podspec; path = ../WordPressApi.podspec; sourceTree = "<group>"; };
+		FFA065AC1C8D880300923B29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		FFA065AD1C8D880300923B29 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 		E1F753C814A094F400DB35A3 = {
 			isa = PBXGroup;
 			children = (
+				FFA065AA1C8D87ED00923B29 /* Podspec Metadata */,
 				E1F753DD14A094F400DB35A3 /* WordPressApiExample */,
 				FFA0659B1C89D73300923B29 /* Tests */,
 				E1F753D614A094F400DB35A3 /* Frameworks */,
@@ -181,6 +188,16 @@
 				FFA0659E1C89D73300923B29 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		FFA065AA1C8D87ED00923B29 /* Podspec Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				FFA065AB1C8D880300923B29 /* WordPressApi.podspec */,
+				FFA065AC1C8D880300923B29 /* README.md */,
+				FFA065AD1C8D880300923B29 /* LICENSE.md */,
+			);
+			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFA065AE1C8D880300923B29 /* WordPressApi.podspec in Resources */,
 				E1F753E214A094F400DB35A3 /* InfoPlist.strings in Resources */,
 				FFA065A91C89EF9E00923B29 /* LaunchScreen.storyboard in Resources */,
 				FFA065A61C89EEC300923B29 /* Images.xcassets in Resources */,
@@ -380,6 +398,8 @@
 				E1F753E414A094F400DB35A3 /* main.m in Sources */,
 				E1F753E814A094F400DB35A3 /* AppDelegate.m in Sources */,
 				E1F753EE14A094F400DB35A3 /* PostsViewController.m in Sources */,
+				FFA065AF1C8D880300923B29 /* README.md in Sources */,
+				FFA065B01C8D880300923B29 /* LICENSE.md in Sources */,
 				E1F753F114A094F400DB35A3 /* PostViewController.m in Sources */,
 				E15CEC1B14C5C39000CFDBB7 /* LoginViewController.m in Sources */,
 				E15CEC2B14C5E05900CFDBB7 /* ComposeViewController.m in Sources */,
