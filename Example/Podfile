@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+
+target 'WordPressApiExample', :exclusive => true do
+ pod "WordPressApi", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+ pod "WordPressApi", :path => "../"
+end
+
