@@ -166,8 +166,10 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
     // ------------------------------------------------
     // 0. Is an empty url? Sorry, no psychic powers yet
     // ------------------------------------------------
-    if (url == nil || [url isEqualToString:@""]) {
-        NSError *error = [NSError errorWithDomain:@"org.wordpress.api" code:0 userInfo:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Empty URL", @"") forKey:NSLocalizedDescriptionKey]];
+    if (url == nil || [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0) {
+        NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
+                                             code:WordPressXMLRPCApiEmptyURL
+                                         userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Empty URL", @"")}];
         [self logExtraInfo: [error localizedDescription] ];
         return failure ? failure(error) : nil;
     }
@@ -192,7 +194,9 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
     if (xmlrpcURL == nil) {
         // Not a valid URL. Could be a bad protocol (htpp://), syntax error (http//), ...
         // See https://github.com/koke/NSURL-Guess for extra help cleaning user typed URLs
-        NSError *error = [NSError errorWithDomain:@"org.wordpress.api" code:1 userInfo:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Invalid URL", @"") forKey:NSLocalizedDescriptionKey]];
+        NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
+                                             code:WordPressXMLRPCApiInvalidyURL
+                                         userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid URL", @"")}];
         [self logExtraInfo: [error localizedDescription]];
         return failure ? failure(error) : nil;
     }

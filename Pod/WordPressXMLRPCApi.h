@@ -5,6 +5,8 @@
 extern NSString *const WordPressXMLRPCApiErrorDomain;
 
 typedef NS_ENUM(NSInteger, WordPressXMLRPCApiError) {
+    WordPressXMLRPCApiEmptyURL, // The URL provided was nil, empty or just whitespaces
+    WordPressXMLRPCApiInvalidyURL, // The URL provided was an invalid URL
     WordPressXMLRPCApiNotWordPressError, // That's a XML-RPC endpoint but doesn't look like WordPress
     WordPressXMLRPCApiMobilePluginRedirectedError, // There's some "mobile" plugin redirecting everything to their site
 };
