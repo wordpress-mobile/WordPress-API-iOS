@@ -20,21 +20,36 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - OHHTTPStubs (4.7.1):
+    - OHHTTPStubs/Default (= 4.7.1)
+  - OHHTTPStubs/Core (4.7.1)
+  - OHHTTPStubs/Default (4.7.1):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (4.7.1):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (4.7.1):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (4.7.1)
   - WordPressApi (0.3.6):
     - AFNetworking (~> 2.6.0)
     - wpxmlrpc (~> 0.7)
   - wpxmlrpc (0.8.1)
 
 DEPENDENCIES:
+  - OHHTTPStubs (= 4.7.1)
   - WordPressApi (from `../`)
 
 EXTERNAL SOURCES:
   WordPressApi:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  WordPressApi: 9b9d89a8de6444fa0ff430898b45047abb83685b
+  OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
+  WordPressApi: 78e75bd45467f8bb0f7dad41cd7c3b0a1a9d3d4c
   wpxmlrpc: bd391dab54e9bdceb5d1de23d161ecf1ba80f0e0
 
 COCOAPODS: 0.39.0

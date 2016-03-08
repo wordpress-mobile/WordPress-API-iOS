@@ -6,6 +6,7 @@ target 'WordPressApiExample', :exclusive => true do
 end
 
 target 'Tests', :exclusive => true do
+ pod 'OHHTTPStubs', '4.7.1'
  pod "WordPressApi", :path => "../"
 end
 
