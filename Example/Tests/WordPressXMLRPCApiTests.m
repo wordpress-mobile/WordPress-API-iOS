@@ -73,7 +73,7 @@
     }
 }
 
-- (void)testGuessXMLRPCURLForSiteForCorrectSchemes {
+- (void)testGuessXMLRPCURLForSiteForInvalidSchemes {
     __block NSError *errorToCheck = nil;
     NSArray *incorrectSchemes = @[
                                @"hppt://mywordpresssite.com/test",
@@ -91,6 +91,18 @@
         XCTAssertTrue(errorToCheck.domain == WordPressXMLRPCApiErrorDomain, @"Expected to get an WordPressXMLRPCApiErrorDomain error");
         XCTAssertTrue(errorToCheck.code == WordPressXMLRPCApiInvalidScheme, @"Expected to get an WordPressXMLRPCApiInvalidScheme error");
     }
+}
+
+- (void)testGuessXMLRPCURLForSiteForCorrectSchemes {
+
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.host isEqualToString:@"mywordpresssite.com"];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSURL *mockDataURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"system_list_methods" withExtension:@"xml"];
+        NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
+        return [[OHHTTPStubsResponse responseWithData:mockData statusCode:200 headers:nil]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
+    }];
 
     NSArray *validSchemes = @[
                                   @"http://mywordpresssite.com",
@@ -99,8 +111,10 @@
                                   ];
     for (NSString *validScheme in validSchemes) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Call should be successful"];
-        [WordPressXMLRPCApi guessXMLRPCURLForSite:incorrectScheme success:^(NSURL *xmlrpcURL) {
+        [WordPressXMLRPCApi guessXMLRPCURLForSite:validScheme success:^(NSURL *xmlrpcURL) {
             [expectation fulfill];
+            XCTAssertTrue([xmlrpcURL.host isEqualToString:@"mywordpresssite.com"], @"Check if we are getting the corrent site in the answer");
+            XCTAssertTrue([xmlrpcURL.path isEqualToString:@"/xmlrpc.php"], @"Check if we are getting the corrent path in the answer");
         } failure:^(NSError *error) {
             XCTFail(@"Call to valid site should not enter failure block.");
         }];
