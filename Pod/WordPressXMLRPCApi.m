@@ -175,16 +175,30 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
     }
 
     // ------------------------------------------------------------------------
+    // 0. Let's scheme if a scheme is provided and it's HTTP or HTTPS
+    // ------------------------------------------------------------------------
+    NSURL *baseURL = [NSURL URLWithString:url];
+    NSString *scheme = [baseURL.scheme lowercaseString];
+    if (!scheme) {
+        url = [NSString stringWithFormat:@"http://%@", url];
+    } else {
+        if ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"]) {
+            url = [baseURL absoluteString];
+        } else {
+            NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
+                                                 code:WordPressXMLRPCApiInvalidScheme
+                                             userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Invalid URL scheme inserted, only HTTP and HTTPS are supported.", @"Message to explay to the user he should only use HTTP or HTTPS for is self-hosted WordPress sites")}];
+            [self logExtraInfo: [error localizedDescription] ];
+            if (failure) {
+                failure(error);
+            }
+            return;
+        }
+    }
+    // ------------------------------------------------------------------------
     // 1. Assume the given url is the home page and XML-RPC sits at /xmlrpc.php
     // ------------------------------------------------------------------------
     [self logExtraInfo: @"1. Assume the given url is the home page and XML-RPC sits at /xmlrpc.php" ];
-    NSURL *baseURL = [NSURL URLWithString:url];
-    if (!baseURL.scheme) {
-        url = [NSString stringWithFormat:@"http://%@", url];
-    } else {
-        url = [baseURL absoluteString];
-    }
-
     if ([url hasSuffix:@"xmlrpc.php"])
         xmlrpc = url;
     else
