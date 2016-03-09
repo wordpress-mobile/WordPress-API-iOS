@@ -105,9 +105,9 @@
     }];
 
     NSArray *validSchemes = @[
-                                  @"http://mywordpresssite.com",
-                                  @"https://mywordpresssite.com",
-                                  @"mywordpresssite.com",
+                                  @"http://mywordpresssite.com/xmlrpc.php",
+                                  @"https://mywordpresssite.com/xmlrpc.php",
+                                  @"mywordpresssite.com/xmlrpc.php",
                                   ];
     for (NSString *validScheme in validSchemes) {
         XCTestExpectation *expectation = [self expectationWithDescription:@"Call should be successful"];
@@ -115,6 +115,39 @@
             [expectation fulfill];
             XCTAssertTrue([xmlrpcURL.host isEqualToString:@"mywordpresssite.com"], @"Check if we are getting the corrent site in the answer");
             XCTAssertTrue([xmlrpcURL.path isEqualToString:@"/xmlrpc.php"], @"Check if we are getting the corrent path in the answer");
+        } failure:^(NSError *error) {
+            XCTFail(@"Call to valid site should not enter failure block.");
+        }];
+        [self waitForExpectationsWithTimeout:2 handler:nil];
+    }
+
+}
+
+- (void)testGuessXMLRPCURLForSiteForAdditionOfXMLRPC {
+
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.host isEqualToString:@"mywordpresssite.com"];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSURL *mockDataURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"system_list_methods" withExtension:@"xml"];
+        NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
+        return [[OHHTTPStubsResponse responseWithData:mockData statusCode:200 headers:nil]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
+    }];
+
+    NSArray *validSchemes = @[
+                              @"http://mywordpresssite.com",
+                              @"https://mywordpresssite.com",
+                              @"mywordpresssite.com",
+                              @"mywordpresssite.com/blog1",
+                              @"mywordpresssite.com/xmlrpc.php",
+                              @"mywordpresssite.com/xmlrpc.php?"
+                              ];
+    for (NSString *validScheme in validSchemes) {
+        XCTestExpectation *expectation = [self expectationWithDescription:@"Call should be successful"];
+        [WordPressXMLRPCApi guessXMLRPCURLForSite:validScheme success:^(NSURL *xmlrpcURL) {
+            [expectation fulfill];
+            XCTAssertTrue([xmlrpcURL.host isEqualToString:@"mywordpresssite.com"], @"Check if we are getting the corrent site in the answer");
+            XCTAssertTrue([[xmlrpcURL lastPathComponent] isEqualToString:@"xmlrpc.php"], @"Check if we are getting the corrent path in the answer");
         } failure:^(NSError *error) {
             XCTFail(@"Call to valid site should not enter failure block.");
         }];
