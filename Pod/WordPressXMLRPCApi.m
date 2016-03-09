@@ -195,7 +195,7 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
         // Not a valid URL. Could be a bad protocol (htpp://), syntax error (http//), ...
         // See https://github.com/koke/NSURL-Guess for extra help cleaning user typed URLs
         NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
-                                             code:WordPressXMLRPCApiInvalidyURL
+                                             code:WordPressXMLRPCApiInvalidURL
                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid URL", @"")}];
         [self logExtraInfo: [error localizedDescription]];
         return failure ? failure(error) : nil;
