@@ -73,6 +73,42 @@
     }
 }
 
+- (void)testGuessXMLRPCURLForSiteForCorrectSchemes {
+    __block NSError *errorToCheck = nil;
+    NSArray *incorrectSchemes = @[
+                               @"hppt://mywordpresssite.com/test",
+                               @"ftp://mywordpresssite.com/test",
+                               @"git://mywordpresssite.com/test"
+                               ];
+    for (NSString *incorrectScheme in incorrectSchemes) {
+        XCTestExpectation *expectation = [self expectationWithDescription:@"Call should fail with error when invoking with urls with incorrect schemes"];
+        [WordPressXMLRPCApi guessXMLRPCURLForSite:incorrectScheme success:^(NSURL *xmlrpcURL) {
+        } failure:^(NSError *error) {
+            [expectation fulfill];
+            errorToCheck = error;
+        }];
+        [self waitForExpectationsWithTimeout:2 handler:nil];
+        XCTAssertTrue(errorToCheck.domain == WordPressXMLRPCApiErrorDomain, @"Expected to get an WordPressXMLRPCApiErrorDomain error");
+        XCTAssertTrue(errorToCheck.code == WordPressXMLRPCApiInvalidScheme, @"Expected to get an WordPressXMLRPCApiInvalidScheme error");
+    }
+
+    NSArray *validSchemes = @[
+                                  @"http://mywordpresssite.com",
+                                  @"https://mywordpresssite.com",
+                                  @"mywordpresssite.com",
+                                  ];
+    for (NSString *validScheme in validSchemes) {
+        XCTestExpectation *expectation = [self expectationWithDescription:@"Call should be successful"];
+        [WordPressXMLRPCApi guessXMLRPCURLForSite:incorrectScheme success:^(NSURL *xmlrpcURL) {
+            [expectation fulfill];
+        } failure:^(NSError *error) {
+            XCTFail(@"Call to valid site should not enter failure block.");
+        }];
+        [self waitForExpectationsWithTimeout:2 handler:nil];
+    }
+
+}
+
 - (void)testServerSide404Response
 {
     __block NSError *errorToCheck = nil;
