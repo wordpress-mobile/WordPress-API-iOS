@@ -20,18 +20,26 @@
     [OHHTTPStubs removeAllStubs];
 }
 
-- (void)testGuessXMLRPCURLForSite {
+- (void)testGuessXMLRPCURLForSiteForEmptyURLs {
     __block NSError *errorToCheck = nil;
-    XCTestExpectation *expectationEmpty = [self expectationWithDescription:@"Call should fail with error when invoking with empty string"];
-    [WordPressXMLRPCApi guessXMLRPCURLForSite:@"" success:^(NSURL *xmlrpcURL) {
-    } failure:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
-        [expectationEmpty fulfill];
-        errorToCheck = error;
-    }];
-    [self waitForExpectationsWithTimeout:2 handler:nil];
-    XCTAssertTrue(errorToCheck.domain == WordPressXMLRPCApiErrorDomain, @"Expected to get an WordPressXMLRPCApiErrorDomain error");
-    XCTAssertTrue(errorToCheck.code == WordPressXMLRPCApiEmptyURL, @"Expected to get an WordPressXMLRPCApiEmptyURL error");
+    NSArray *emptyURLs = @[
+                               @"",
+                               @"   ",
+                               @"\t   ",
+                               ];
+    for (NSString *emptyURL in emptyURLs) {
+        XCTestExpectation *expectationEmpty = [self expectationWithDescription:@"Call should fail with error when invoking with empty string"];
+        [WordPressXMLRPCApi guessXMLRPCURLForSite:emptyURL success:^(NSURL *xmlrpcURL) {
+        } failure:^(NSError *error) {
+            NSLog(@"%@", [error localizedDescription]);
+            [expectationEmpty fulfill];
+            errorToCheck = error;
+        }];
+        [self waitForExpectationsWithTimeout:2 handler:nil];
+        XCTAssertTrue(errorToCheck.domain == WordPressXMLRPCApiErrorDomain, @"Expected to get an WordPressXMLRPCApiErrorDomain error");
+        XCTAssertTrue(errorToCheck.code == WordPressXMLRPCApiEmptyURL, @"Expected to get an WordPressXMLRPCApiEmptyURL error");
+    }
+
 
     XCTestExpectation *expectationNil = [self expectationWithDescription:@"Call should fail with error when invoking with nil string"];
     [WordPressXMLRPCApi guessXMLRPCURLForSite:nil success:^(NSURL *xmlrpcURL) {
@@ -43,20 +51,9 @@
     [self waitForExpectationsWithTimeout:2 handler:nil];
     XCTAssertTrue(errorToCheck.domain == WordPressXMLRPCApiErrorDomain, @"Expected to get an WordPressXMLRPCApiErrorDomain error");
     XCTAssertTrue(errorToCheck.code == WordPressXMLRPCApiEmptyURL, @"Expected to get an WordPressXMLRPCApiEmptyURL error");
-
-    XCTestExpectation *expectationJustSpaces = [self expectationWithDescription:@"Call should fail with error when invoking with empty string"];
-    [WordPressXMLRPCApi guessXMLRPCURLForSite:@"   " success:^(NSURL *xmlrpcURL) {
-    } failure:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
-        [expectationJustSpaces fulfill];
-        errorToCheck = error;
-    }];
-    [self waitForExpectationsWithTimeout:2 handler:nil];
-    XCTAssertTrue(errorToCheck.domain == WordPressXMLRPCApiErrorDomain, @"Expected to get an WordPressXMLRPCApiErrorDomain error");
-    XCTAssertTrue(errorToCheck.code == WordPressXMLRPCApiEmptyURL, @"Expected to get an WordPressXMLRPCApiEmptyURL error");
 }
 
-- (void)testGuessXMLRPCURLForSiteForMalformedURLS {
+- (void)testGuessXMLRPCURLForSiteForMalformedURLs {
     __block NSError *errorToCheck = nil;
     NSArray *malformedURLs = @[
                                @"mywordpresssite.com\test",
