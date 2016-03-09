@@ -175,45 +175,49 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
     }
 
     // ------------------------------------------------------------------------
-    // 0. Let's scheme if a scheme is provided and it's HTTP or HTTPS
+    // Check if it's a valid URL
+    // Not a valid URL. Could be a bad protocol (htpp://), syntax error (http//), ...
+    // See https://github.com/koke/NSURL-Guess for extra help cleaning user typed URLs
     // ------------------------------------------------------------------------
     NSURL *baseURL = [NSURL URLWithString:url];
-    NSString *scheme = [baseURL.scheme lowercaseString];
-    if (!scheme) {
-        url = [NSString stringWithFormat:@"http://%@", url];
-    } else {
-        if ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"]) {
-            url = [baseURL absoluteString];
-        } else {
-            NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
-                                                 code:WordPressXMLRPCApiInvalidScheme
-                                             userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Invalid URL scheme inserted, only HTTP and HTTPS are supported.", @"Message to explay to the user he should only use HTTP or HTTPS for is self-hosted WordPress sites")}];
-            [self logExtraInfo: [error localizedDescription] ];
-            if (failure) {
-                failure(error);
-            }
-            return;
-        }
-    }
-    // ------------------------------------------------------------------------
-    // 1. Assume the given url is the home page and XML-RPC sits at /xmlrpc.php
-    // ------------------------------------------------------------------------
-    [self logExtraInfo: @"1. Assume the given url is the home page and XML-RPC sits at /xmlrpc.php" ];
-    if ([url hasSuffix:@"xmlrpc.php"])
-        xmlrpc = url;
-    else
-        xmlrpc = [NSString stringWithFormat:@"%@/xmlrpc.php", url];
-
-    xmlrpcURL = [NSURL URLWithString:xmlrpc];
-    if (xmlrpcURL == nil) {
-        // Not a valid URL. Could be a bad protocol (htpp://), syntax error (http//), ...
-        // See https://github.com/koke/NSURL-Guess for extra help cleaning user typed URLs
+    if (baseURL == nil) {
         NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
                                              code:WordPressXMLRPCApiInvalidURL
                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid URL", @"")}];
         [self logExtraInfo: [error localizedDescription]];
         return failure ? failure(error) : nil;
     }
+    // ------------------------------------------------------------------------
+    // Let's see if a scheme is provided and it's HTTP or HTTPS
+    // ------------------------------------------------------------------------
+    NSString *scheme = [baseURL.scheme lowercaseString];
+    if (!scheme) {
+        url = [NSString stringWithFormat:@"http://%@", url];
+        scheme = @"http";
+    }
+    if (!([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"])) {
+        NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
+                                             code:WordPressXMLRPCApiInvalidScheme
+                                         userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Invalid URL scheme inserted, only HTTP and HTTPS are supported.", @"Message to explay to the user he should only use HTTP or HTTPS for is self-hosted WordPress sites")}];
+        [self logExtraInfo: [error localizedDescription] ];
+        if (failure) {
+            failure(error);
+        }
+        return;
+    }
+
+    // ------------------------------------------------------------------------
+    // 1. Assume the given url is the home page and XML-RPC sits at /xmlrpc.php
+    // ------------------------------------------------------------------------
+    [self logExtraInfo: @"1. Assume the given url is the home page and XML-RPC sits at /xmlrpc.php" ];
+    if ([[baseURL lastPathComponent] isEqualToString:@"xmlrpc.php"]) {
+        xmlrpc = url;
+    } else {
+        xmlrpc = [NSString stringWithFormat:@"%@/xmlrpc.php", url];
+    }
+
+    xmlrpcURL = [NSURL URLWithString:xmlrpc];
+
     [self logExtraInfo: @"Trying the following URL: %@", xmlrpcURL ];
     [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
         if (success) {
