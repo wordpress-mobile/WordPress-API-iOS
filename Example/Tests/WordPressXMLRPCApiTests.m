@@ -54,7 +54,26 @@
     [self waitForExpectationsWithTimeout:2 handler:nil];
     XCTAssertTrue(errorToCheck.domain == WordPressXMLRPCApiErrorDomain, @"Expected to get an WordPressXMLRPCApiErrorDomain error");
     XCTAssertTrue(errorToCheck.code == WordPressXMLRPCApiEmptyURL, @"Expected to get an WordPressXMLRPCApiEmptyURL error");
+}
 
+- (void)testGuessXMLRPCURLForSiteForMalformedURLS {
+    __block NSError *errorToCheck = nil;
+    NSArray *malformedURLs = @[
+                               @"mywordpresssite.com\test",
+                               @"mywordpres ssite.com/test",
+                               @"http:\\mywordpresssite.com/test"
+                               ];
+    for (NSString *malformedURL in malformedURLs) {
+        XCTestExpectation *expectationMalFormedURL = [self expectationWithDescription:@"Call should fail with error when invoking with malformed urls"];
+        [WordPressXMLRPCApi guessXMLRPCURLForSite:malformedURL success:^(NSURL *xmlrpcURL) {
+        } failure:^(NSError *error) {
+            [expectationMalFormedURL fulfill];
+            errorToCheck = error;
+        }];
+        [self waitForExpectationsWithTimeout:2 handler:nil];
+        XCTAssertTrue(errorToCheck.domain == WordPressXMLRPCApiErrorDomain, @"Expected to get an WordPressXMLRPCApiErrorDomain error");
+        XCTAssertTrue(errorToCheck.code == WordPressXMLRPCApiInvalidURL, @"Expected to get an WordPressXMLRPCApiInvalidURL error");
+    }
 }
 
 - (void)testServerSide404Response
