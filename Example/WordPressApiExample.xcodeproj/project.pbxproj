@@ -28,6 +28,7 @@
 		FFA065AE1C8D880300923B29 /* WordPressApi.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FFA065AB1C8D880300923B29 /* WordPressApi.podspec */; };
 		FFA065AF1C8D880300923B29 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FFA065AC1C8D880300923B29 /* README.md */; };
 		FFA065B01C8D880300923B29 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = FFA065AD1C8D880300923B29 /* LICENSE.md */; };
+		FFA065B21C90529600923B29 /* system_list_methods.xml in Resources */ = {isa = PBXBuildFile; fileRef = FFA065B11C90529600923B29 /* system_list_methods.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		FFA065AB1C8D880300923B29 /* WordPressApi.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = WordPressApi.podspec; path = ../WordPressApi.podspec; sourceTree = "<group>"; };
 		FFA065AC1C8D880300923B29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FFA065AD1C8D880300923B29 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
+		FFA065B11C90529600923B29 /* system_list_methods.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = system_list_methods.xml; path = MockData/system_list_methods.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			children = (
 				FFA0659C1C89D73300923B29 /* WordPressXMLRPCApiTests.m */,
 				FFA0659E1C89D73300923B29 /* Info.plist */,
+				FFA065B11C90529600923B29 /* system_list_methods.xml */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFA065B21C90529600923B29 /* system_list_methods.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
