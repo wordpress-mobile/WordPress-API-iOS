@@ -4,7 +4,7 @@
         <engineLink>https://wordpress.org/</engineLink>
         <homePageLink>https://iostest.wpsandbox.me</homePageLink>
         <apis>
-            <api name="WordPress" blogID="1" preferred="true" apiLink="http://mywordpresssite.comxmlrpc.php" />
+            <api name="WordPress" blogID="1" preferred="true" apiLink="http://mywordpresssite.com/xmlrpc.php" />
             <api name="Movable Type" blogID="1" preferred="false" apiLink="http://mywordpresssite.com/xmlrpc.php" />
             <api name="MetaWeblog" blogID="1" preferred="false" apiLink="http://mywordpresssite.com/xmlrpc.php" />
             <api name="Blogger" blogID="1" preferred="false" apiLink="http://mywordpresssite.com/xmlrpc.php" />
