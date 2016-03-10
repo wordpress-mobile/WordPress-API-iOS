@@ -157,6 +157,37 @@
 
 }
 
+- (void)testGuessXMLRPCURLForSiteForFallbackToOriginalURL {
+    NSString *originalURL = @"http://mywordpresssite.com/rpc";
+    NSString *appendedURL = [originalURL stringByAppendingString:@"/xmlrpc.php"];
+
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.absoluteString isEqualToString:originalURL];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSURL *mockDataURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"system_list_methods" withExtension:@"xml"];
+        NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
+        return [[OHHTTPStubsResponse responseWithData:mockData statusCode:200 headers:nil]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
+    }];
+
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [[request.URL absoluteString] isEqualToString:appendedURL];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        return [[OHHTTPStubsResponse responseWithData:[NSData data] statusCode:403 headers:nil]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
+    }];
+
+
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Call should be successful"];
+    [WordPressXMLRPCApi guessXMLRPCURLForSite:originalURL success:^(NSURL *xmlrpcURL) {
+        [expectation fulfill];
+        XCTAssertTrue([xmlrpcURL.absoluteString isEqualToString:originalURL], @"Resolved url doens't match original url: %@", originalURL);
+    } failure:^(NSError *error) {
+        XCTFail(@"Call to valid site should not enter failure block.");
+    }];
+    [self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void)testServerSide404Response
 {
     __block NSError *errorToCheck = nil;
