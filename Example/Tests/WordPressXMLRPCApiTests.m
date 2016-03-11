@@ -296,6 +296,40 @@
     [self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void)testGuessXMLRPCURLForSiteForSucessfulRedirects {
+    NSString *originalURL = @"http://mywordpresssite.com/xmlrpc.php";
+    NSString *redirectedURL = @"https://mywordpresssite.com/xmlrpc.php";
+
+    // Fail first request with 301
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [[request.URL absoluteString] isEqualToString:originalURL];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSURL *mockDataURL = [bundle URLForResource:@"redirect" withExtension:@"html"];
+        NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
+        return [[OHHTTPStubsResponse responseWithData:mockData statusCode:301 headers:@{@"Location": redirectedURL}]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
+    }];
+
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.absoluteString isEqualToString:redirectedURL];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSURL *mockDataURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"system_list_methods" withExtension:@"xml"];
+        NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
+        return [[OHHTTPStubsResponse responseWithData:mockData statusCode:200 headers:nil]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
+    }];
+
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Call should be successful"];
+    [WordPressXMLRPCApi guessXMLRPCURLForSite:originalURL success:^(NSURL *xmlrpcURL) {
+        [expectation fulfill];
+        XCTAssertTrue([xmlrpcURL.absoluteString isEqualToString:redirectedURL], @"Resolved url doens't match original url: %@", redirectedURL);
+    } failure:^(NSError *error) {
+        XCTFail(@"Call to valid site should not enter failure block.");
+    }];
+    [self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void)testServerSide404Response
 {
     __block NSError *errorToCheck = nil;
