@@ -276,57 +276,58 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                         rsdURL = [responseString substringWithRange:rsdURLRange];
                 }
 
-                if (rsdURL != nil) {
-                    void (^parseBlock)(void) = ^() {
-                        [self logExtraInfo:@"5. Parse the RSD document at the following URL: %@", rsdURL];
-                        // -------------------------
-                        // 5. Parse the RSD document
-                        // -------------------------
-                        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:rsdURL]];
-                        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-                        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            NSError *error;
-                            WPRSDParser *parser = [[WPRSDParser alloc] initWithXmlString:operation.responseString];
-                            NSString *parsedEndpoint = [parser parsedEndpointWithError:&error];
-                            if (parsedEndpoint) {
-                                xmlrpc = parsedEndpoint;
-                                xmlrpcURL = [NSURL URLWithString:xmlrpc];
-                                [self logExtraInfo:@"Bingo! We found the WordPress XML-RPC element: %@", xmlrpcURL];
-                                [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
-                                    if (success) success(validatedXmlrpcURL);
-                                } failure:^(NSError *error){
-                                    [self logError:error];
-                                    if (failure) failure(error);
-                                }];
-                            } else {
-                                if (failure) failure(error);
-                            }
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            [self logError:error];
-                            if (failure) failure(error);
-                        }];
-                        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-                        [queue addOperation:operation];
-                    };
-                    // ----------------------------------------------------------------------------
-                    // 4. Try removing "?rsd" from the url, it should point to the XML-RPC endpoint
-                    // ----------------------------------------------------------------------------
-                    xmlrpc = [rsdURL stringByReplacingOccurrencesOfString:@"?rsd" withString:@""];
-                    if (![xmlrpc isEqualToString:rsdURL]) {
-                        xmlrpcURL = [NSURL URLWithString:xmlrpc];
-                        [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
-                            if (success) {
-                                success(validatedXmlrpcURL);
-                            }
-                        } failure:^(NSError *error){
-                            parseBlock();
-                        }];
-                    } else {
-                        parseBlock();
-                    }
-                } else {
-                    if (failure)
+                if (rsdURL == nil) {
+                    if (failure) {
                         failure(error);
+                    }
+                    return;
+                }
+                void (^parseBlock)(void) = ^() {
+                    [self logExtraInfo:@"5. Parse the RSD document at the following URL: %@", rsdURL];
+                    // -------------------------
+                    // 5. Parse the RSD document
+                    // -------------------------
+                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:rsdURL]];
+                    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+                    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        NSError *error;
+                        WPRSDParser *parser = [[WPRSDParser alloc] initWithXmlString:operation.responseString];
+                        NSString *parsedEndpoint = [parser parsedEndpointWithError:&error];
+                        if (parsedEndpoint) {
+                            xmlrpc = parsedEndpoint;
+                            xmlrpcURL = [NSURL URLWithString:xmlrpc];
+                            [self logExtraInfo:@"Bingo! We found the WordPress XML-RPC element: %@", xmlrpcURL];
+                            [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
+                                if (success) success(validatedXmlrpcURL);
+                            } failure:^(NSError *error){
+                                [self logError:error];
+                                if (failure) failure(error);
+                            }];
+                        } else {
+                            if (failure) failure(error);
+                        }
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        [self logError:error];
+                        if (failure) failure(error);
+                    }];
+                    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+                    [queue addOperation:operation];
+                };
+                // ----------------------------------------------------------------------------
+                // 4. Try removing "?rsd" from the url, it should point to the XML-RPC endpoint
+                // ----------------------------------------------------------------------------
+                xmlrpc = [rsdURL stringByReplacingOccurrencesOfString:@"?rsd" withString:@""];
+                if (![xmlrpc isEqualToString:rsdURL]) {
+                    xmlrpcURL = [NSURL URLWithString:xmlrpc];
+                    [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
+                        if (success) {
+                            success(validatedXmlrpcURL);
+                        }
+                    } failure:^(NSError *error){
+                        parseBlock();
+                    }];
+                } else {
+                    parseBlock();
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 [self logError:error];
@@ -338,6 +339,10 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
     }];}
 
 #pragma mark - Private Methods
+
+- (void)findRSDLink {
+
+}
 
 - (NSArray *)buildParametersWithExtra:(id)extra {
     NSMutableArray *result = [NSMutableArray array];
