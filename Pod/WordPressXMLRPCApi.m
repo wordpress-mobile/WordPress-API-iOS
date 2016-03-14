@@ -157,21 +157,17 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
 
 #pragma mark - Helpers
 
-+ (void)guessXMLRPCURLForSite:(NSString *)url
-                      success:(void (^)(NSURL *xmlrpcURL))success
-                      failure:(void (^)(NSError *error))failure {
-    __block NSURL *xmlrpcURL;
-    __block NSString *xmlrpc;
-
++ (NSURL *)urlForXMLRPCFromUrl:(NSString *)url addXMLRPC:(BOOL) addXMLRPC error:(NSError **)error
+{
+    NSString *xmlrpc;
     // ------------------------------------------------
-    // 0. Is an empty url? Sorry, no psychic powers yet
+    // Is an empty url? Sorry, no psychic powers yet
     // ------------------------------------------------
     if (url == nil || [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0) {
-        NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
-                                             code:WordPressXMLRPCApiEmptyURL
-                                         userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Empty URL", @"")}];
-        [self logExtraInfo: [error localizedDescription] ];
-        return failure ? failure(error) : nil;
+        *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
+                                     code:WordPressXMLRPCApiEmptyURL
+                                 userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Empty URL", @"")}];
+        return nil;
     }
 
     // ------------------------------------------------------------------------
@@ -181,11 +177,10 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
     // ------------------------------------------------------------------------
     NSURL *baseURL = [NSURL URLWithString:url];
     if (baseURL == nil) {
-        NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
-                                             code:WordPressXMLRPCApiInvalidURL
-                                         userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid URL", @"")}];
-        [self logExtraInfo: [error localizedDescription]];
-        return failure ? failure(error) : nil;
+        *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
+                                     code:WordPressXMLRPCApiInvalidURL
+                                 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid URL", @"")}];
+        return nil;
     }
     // ------------------------------------------------------------------------
     // Let's see if a scheme is provided and it's HTTP or HTTPS
@@ -196,28 +191,40 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
         scheme = @"http";
     }
     if (!([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"])) {
-        NSError *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
+        *error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
                                              code:WordPressXMLRPCApiInvalidScheme
                                          userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Invalid URL scheme inserted, only HTTP and HTTPS are supported.", @"Message to explay to the user he should only use HTTP or HTTPS for is self-hosted WordPress sites")}];
-        [self logExtraInfo: [error localizedDescription] ];
+        return nil;
+    }
+
+    // ------------------------------------------------------------------------
+    // Assume the given url is the home page and XML-RPC sits at /xmlrpc.php
+    // ------------------------------------------------------------------------
+    [self logExtraInfo: @"Assume the given url is the home page and XML-RPC sits at /xmlrpc.php" ];
+    if ([[baseURL lastPathComponent] isEqualToString:@"xmlrpc.php"] || !addXMLRPC) {
+        xmlrpc = url;
+    } else {
+        xmlrpc = [NSString stringWithFormat:@"%@/xmlrpc.php", url];
+    }
+    return [NSURL URLWithString:xmlrpc];;
+}
+
++ (void)guessXMLRPCURLForSite:(NSString *)url
+                      success:(void (^)(NSURL *xmlrpcURL))success
+                      failure:(void (^)(NSError *error))failure {
+    __block NSURL *xmlrpcURL;
+    __block NSString *xmlrpc;
+
+    NSError *error = nil;
+    xmlrpcURL = [self urlForXMLRPCFromUrl:url addXMLRPC:YES error:&error];
+    if (xmlrpcURL == nil) {
+        [self logExtraInfo: [error localizedDescription]];
         if (failure) {
             failure(error);
         }
         return;
     }
-
-    // ------------------------------------------------------------------------
-    // 1. Assume the given url is the home page and XML-RPC sits at /xmlrpc.php
-    // ------------------------------------------------------------------------
-    [self logExtraInfo: @"1. Assume the given url is the home page and XML-RPC sits at /xmlrpc.php" ];
-    if ([[baseURL lastPathComponent] isEqualToString:@"xmlrpc.php"]) {
-        xmlrpc = url;
-    } else {
-        xmlrpc = [NSString stringWithFormat:@"%@/xmlrpc.php", url];
-    }
-
-    xmlrpcURL = [NSURL URLWithString:xmlrpc];
-
+    xmlrpc = [xmlrpcURL absoluteString];
     [self logExtraInfo: @"Trying the following URL: %@", xmlrpcURL ];
     [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
         if (success) {
@@ -236,7 +243,7 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
         // 2. Try the given url as an XML-RPC endpoint
         // -------------------------------------------
         [self logExtraInfo:@"2. Try the given url as an XML-RPC endpoint"];
-        xmlrpcURL = [NSURL URLWithString:url];
+        xmlrpcURL = [self urlForXMLRPCFromUrl:url addXMLRPC:NO error:nil];
         [self logExtraInfo: @"Trying the following URL: %@", url];
         [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
             if (success) {
@@ -258,7 +265,7 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
             AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
             [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSError *error = NULL;
-                NSString *responseString = operation.responseString;                
+                NSString *responseString = operation.responseString;
                 NSArray *matches = nil;
                 if (responseString) {
                     NSRegularExpression *rsdURLRegExp = [NSRegularExpression regularExpressionWithPattern:@"<link\\s+rel=\"EditURI\"\\s+type=\"application/rsd\\+xml\"\\s+title=\"RSD\"\\s+href=\"([^\"]*)\"[^/]*/>" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -293,7 +300,9 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                             xmlrpcURL = [NSURL URLWithString:xmlrpc];
                             [self logExtraInfo:@"Bingo! We found the WordPress XML-RPC element: %@", xmlrpcURL];
                             [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
-                                if (success) success(validatedXmlrpcURL);
+                                if (success) {
+                                    success(validatedXmlrpcURL);
+                                }
                             } failure:^(NSError *error){
                                 [self logError:error];
                                 if (failure) failure(error);
@@ -334,10 +343,6 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
     }];}
 
 #pragma mark - Private Methods
-
-- (void)findRSDLink {
-
-}
 
 - (NSArray *)buildParametersWithExtra:(id)extra {
     NSMutableArray *result = [NSMutableArray array];
