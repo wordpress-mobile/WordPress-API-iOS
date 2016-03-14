@@ -212,8 +212,8 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
 + (void)guessXMLRPCURLForSite:(NSString *)url
                       success:(void (^)(NSURL *xmlrpcURL))success
                       failure:(void (^)(NSError *error))failure {
-    __block NSURL *xmlrpcURL;
-    __block NSString *xmlrpc;
+    NSURL *xmlrpcURL;
+    NSString *xmlrpc;
 
     NSError *error = nil;
     xmlrpcURL = [self urlForXMLRPCFromUrl:url addXMLRPC:YES error:&error];
@@ -242,9 +242,9 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
         // -------------------------------------------
         // Try the original given url as an XML-RPC endpoint
         // -------------------------------------------
-        xmlrpcURL = [self urlForXMLRPCFromUrl:url addXMLRPC:NO error:nil];
+        NSURL *originalXmlrpcURL = [self urlForXMLRPCFromUrl:url addXMLRPC:NO error:nil];
         [self logExtraInfo: @"Try the given url as an XML-RPC endpoint: %@", xmlrpcURL];
-        [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
+        [self validateXMLRPCUrl:originalXmlrpcURL success:^(NSURL *validatedXmlrpcURL){
             if (success) {
                 success(validatedXmlrpcURL);
             }
@@ -256,57 +256,59 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                 }
                 return;
             }
-            // ---------------------------------------------------
-            // 3. Fetch the original url and look for the RSD link
-            // ---------------------------------------------------
-            [self logExtraInfo:@"3. Fetch the original url and look for the RSD link by using RegExp"];
-            NSURLRequest *request = [NSURLRequest requestWithURL:xmlrpcURL];
-            AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-            [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSError *error = NULL;
-                NSString *responseString = operation.responseString;
-                NSArray *matches = nil;
-                if (responseString) {
-                    NSRegularExpression *rsdURLRegExp = [NSRegularExpression regularExpressionWithPattern:@"<link\\s+rel=\"EditURI\"\\s+type=\"application/rsd\\+xml\"\\s+title=\"RSD\"\\s+href=\"([^\"]*)\"[^/]*/>" options:NSRegularExpressionCaseInsensitive error:&error];
-                    matches = [rsdURLRegExp matchesInString:responseString options:0 range:NSMakeRange(0, [responseString length])];
-                }
-                NSString *rsdURL = nil;
-                if ([matches count]) {
-                    NSRange rsdURLRange = [[matches objectAtIndex:0] rangeAtIndex:1];
-                    if(rsdURLRange.location != NSNotFound)
-                        rsdURL = [responseString substringWithRange:rsdURLRange];
-                }
-
-                if (rsdURL == nil) {
-                    if (failure) {
-                        failure(error);
-                    }
-                    return;
-                }
-                // ----------------------------------------------------------------------------
-                // 4. Try removing "?rsd" from the url, it should point to the XML-RPC endpoint
-                // ----------------------------------------------------------------------------
-                xmlrpc = [rsdURL stringByReplacingOccurrencesOfString:@"?rsd" withString:@""];
-                if (![xmlrpc isEqualToString:rsdURL]) {
-                    xmlrpcURL = [NSURL URLWithString:xmlrpc];
-                    [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
-                        if (success) {
-                            success(validatedXmlrpcURL);
-                        }
-                    } failure:^(NSError *error){
-                        [self guessXMLRPCURLFromRSD:rsdURL success:success failure:failure];
-                    }];
-                } else {
-                    [self guessXMLRPCURLFromRSD:rsdURL success:success failure:failure];
-                }
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                [self logError:error];
-                if (failure) failure(error);
-            }];
-            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-            [queue addOperation:operation];
+            // Fetch the original url and look for the RSD link
+            [self guessXMLRPCURLFromHTMLURL:originalXmlrpcURL success:success failure:failure];
         }];
     }];}
+
++ (void)guessXMLRPCURLFromHTMLURL:(NSURL *)htmlURL
+                      success:(void (^)(NSURL *xmlrpcURL))success
+                      failure:(void (^)(NSError *error))failure {
+    [self logExtraInfo:@"Fetch the original url and look for the RSD link by using RegExp"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:htmlURL];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error = NULL;
+        NSString *responseString = operation.responseString;
+        NSArray *matches = nil;
+        if (responseString) {
+            NSRegularExpression *rsdURLRegExp = [NSRegularExpression regularExpressionWithPattern:@"<link\\s+rel=\"EditURI\"\\s+type=\"application/rsd\\+xml\"\\s+title=\"RSD\"\\s+href=\"([^\"]*)\"[^/]*/>" options:NSRegularExpressionCaseInsensitive error:&error];
+            matches = [rsdURLRegExp matchesInString:responseString options:0 range:NSMakeRange(0, [responseString length])];
+        }
+        NSString *rsdURL = nil;
+        if ([matches count]) {
+            NSRange rsdURLRange = [[matches objectAtIndex:0] rangeAtIndex:1];
+            if(rsdURLRange.location != NSNotFound)
+                rsdURL = [responseString substringWithRange:rsdURLRange];
+        }
+
+        if (rsdURL == nil) {
+            if (failure) {
+                failure(error);
+            }
+            return;
+        }
+        // Try removing "?rsd" from the url, it should point to the XML-RPC endpoint
+        NSString *xmlrpc = [rsdURL stringByReplacingOccurrencesOfString:@"?rsd" withString:@""];
+        if (![xmlrpc isEqualToString:rsdURL]) {
+            NSURL *xmlrpcURL = [NSURL URLWithString:xmlrpc];
+            [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
+                if (success) {
+                    success(validatedXmlrpcURL);
+                }
+            } failure:^(NSError *error){
+                [self guessXMLRPCURLFromRSD:rsdURL success:success failure:failure];
+            }];
+        } else {
+            [self guessXMLRPCURLFromRSD:rsdURL success:success failure:failure];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self logError:error];
+        if (failure) failure(error);
+    }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:operation];
+}
 
 + (void)guessXMLRPCURLFromRSD:(NSString *)rsd
                          success:(void (^)(NSURL *xmlrpcURL))success
