@@ -276,45 +276,6 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                         rsdURL = [responseString substringWithRange:rsdURLRange];
                 }
 
-                if (rsdURL == nil) {
-                    //the RSD link not found using RegExp, try to find it again on a "cleaned" HTML document
-                    [self logExtraInfo:@"The RSD link not found using RegExp, on the following doc: %@", responseString];
-                    [self logExtraInfo:@"Try to find it again on a cleaned HTML document"];
-                    NSError *htmlError;
-
-                    NSString *cleanedHTML = nil;
-                    id _CTidyClass = NSClassFromString(@"CTidy");
-                    SEL _CTidySelector = NSSelectorFromString(@"tidy");
-                    SEL _CTidyTidyStringSelector = NSSelectorFromString(@"tidyString:inputFormat:outputFormat:encoding:diagnostics:error:");
-
-                    if (_CTidyClass && [_CTidyClass respondsToSelector:_CTidySelector]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                        id _CTidyInstance = [_CTidyClass performSelector:_CTidySelector];
-#pragma clang diagnostic pop
-
-                        if (_CTidyInstance && [_CTidyInstance respondsToSelector:_CTidyTidyStringSelector]) {
-                            typedef NSString *(*_CTidyTidyStringMethodType)(id, SEL, NSString *, int, int, NSString *, NSError **);
-                            _CTidyTidyStringMethodType _CTidyTidyStringMethod;
-                            _CTidyTidyStringMethod = (_CTidyTidyStringMethodType)[_CTidyInstance methodForSelector:_CTidyTidyStringSelector];
-
-                            cleanedHTML = _CTidyTidyStringMethod(_CTidyInstance, _CTidyTidyStringSelector, operation.responseString, 1, 1, @"utf8", &htmlError);
-                        }
-                    }
-
-                    if(cleanedHTML) {
-                        [self logExtraInfo:@"The cleaned doc: %@", cleanedHTML];
-                        NSArray *matches = [rsdURLRegExp matchesInString:cleanedHTML options:0 range:NSMakeRange(0, [cleanedHTML length])];
-                        if ([matches count]) {
-                            NSRange rsdURLRange = [[matches objectAtIndex:0] rangeAtIndex:1];
-                            if (rsdURLRange.location != NSNotFound)
-                                rsdURL = [cleanedHTML substringWithRange:rsdURLRange];
-                        }
-                    } else if (_CTidyClass) {
-                        [self logExtraInfo:@"The cleaning function reported the following error: %@", [htmlError localizedDescription]];
-                    }
-                }
-
                 if (rsdURL != nil) {
                     void (^parseBlock)(void) = ^() {
                         [self logExtraInfo:@"5. Parse the RSD document at the following URL: %@", rsdURL];
