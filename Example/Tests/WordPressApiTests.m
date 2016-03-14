@@ -43,7 +43,7 @@
                             errorToCheck = error;
                         }];
     
-    [self waitForExpectationsWithTimeout:2 handler:nil];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
     XCTAssertNotNil(errorToCheck, @"Expected to get a error object");
     XCTAssertNotNil(errorToCheck.userInfo, @"Expected to get a user info object in the error");
     XCTAssertTrue([errorToCheck.userInfo[@"NSLocalizedDescription"] rangeOfString:@"404"].location != NSNotFound, @"Expected to get a 404 in the error description");
@@ -62,52 +62,62 @@
 
 - (void)testServerSide301Response
 {
+    __block NSURL *urlToCheck = nil;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Call should succeed when server returns 301 and has valid location defined in the response header"];
-    NSString *originalHost = @"mywordpresssite.com";
-    NSString *redirectedHost = @"mywordpresssiteredirected.com";
-    NSString *redirectedHostFull = [NSString stringWithFormat:@"http://%@", redirectedHost];
+    NSString *hostName = @"mywordpresssite.com";
+    NSString *originalURL = [@"http://" stringByAppendingString:hostName];
+    NSString *redirectedURL = [@"https://" stringByAppendingString:hostName];
     
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return ([request.URL.host isEqualToString:originalHost] || [request.URL.host isEqualToString:redirectedHost]);
+        return [[request.URL absoluteString] isEqualToString:originalURL];
     } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-        if ([request.URL.host isEqualToString:originalHost]) {
-            return [[OHHTTPStubsResponse responseWithData:[NSData data] statusCode:301 headers:@{@"Location":redirectedHostFull}]
-                    responseTime:OHHTTPStubsDownloadSpeedWifi];
-        } else if ([request.URL.host isEqualToString:redirectedHost]) {
-            //TODO: Stub in real response from valid login
-            return [[OHHTTPStubsResponse responseWithData:[NSData data] statusCode:200 headers:nil]
-                    responseTime:OHHTTPStubsDownloadSpeedWifi];
-        } else {
-            return nil;
-        }
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSURL *mockDataURL = [bundle URLForResource:@"redirect" withExtension:@"html"];
+        NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
+        return [[OHHTTPStubsResponse responseWithData:mockData statusCode:301 headers:@{@"Location": redirectedURL}]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
     }];
     
-    [WordPressApi signInWithURL:@"mywordpresssite.com"
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.absoluteString isEqualToString:redirectedURL];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSURL *mockDataURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"system_list_methods" withExtension:@"xml"];
+        NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
+        return [[OHHTTPStubsResponse responseWithData:mockData statusCode:200 headers:nil]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
+    }];
+    
+    [WordPressApi signInWithURL:originalURL
                        username:@"username"
                        password:@"password"
                         success:^(NSURL *xmlrpcURL) {
                             [expectation fulfill];
+                            urlToCheck = xmlrpcURL;                            
                         } failure:^(NSError *error) {
-                            XCTFail(@"Call to site returning a 301 should not enter failure block.");
+                            XCTFail(@"Call to site returning a valid 301 should not enter failure block.");
                         }];
     
-    [self waitForExpectationsWithTimeout:2 handler:nil];
-    
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+    XCTAssertNotNil(urlToCheck, @"Expected to receive a URL object in the success block.");
+    XCTAssertFalse([[urlToCheck absoluteString] isEqualToString:originalURL], @"Did not expect the success block URL and original URL to match");
+    XCTAssertTrue([[urlToCheck absoluteString] isEqualToString:redirectedURL], @"Expected the success block URL and redirected URL to match");
 }
 
 - (void)testServerSide301ResponseWithNoLocation
 {
     __block NSError *errorToCheck = nil;
     XCTestExpectation *expectation = [self expectationWithDescription:@"Call should fail with error when server returns 301 and no location response header"];
-    NSString *originalHost = @"mywordpresssite.com";
+    NSString *hostName = @"mywordpresssite.com";
+    NSString *baseURL = [@"http://" stringByAppendingString:hostName];
+    
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return [request.URL.host isEqualToString:originalHost];
+        return [[request.URL absoluteString] isEqualToString:baseURL];
     } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
         return [[OHHTTPStubsResponse responseWithData:[NSData data] statusCode:301 headers:nil]
                 responseTime:OHHTTPStubsDownloadSpeedWifi];
     }];
     
-    [WordPressApi signInWithURL:@"mywordpresssite.com"
+    [WordPressApi signInWithURL:baseURL
                        username:@"username"
                        password:@"password"
                         success:^(NSURL *xmlrpcURL) {
@@ -117,7 +127,7 @@
                             errorToCheck = error;
                         }];
     
-    [self waitForExpectationsWithTimeout:2 handler:nil];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
     XCTAssertNotNil(errorToCheck, @"Expected to get a error object");
     XCTAssertNotNil(errorToCheck.userInfo, @"Expected to get a user info object in the error");
     XCTAssertTrue([errorToCheck.userInfo[@"NSLocalizedDescription"] rangeOfString:@"301"].location != NSNotFound, @"Expected to get a 301 in the error description");
@@ -127,11 +137,11 @@
     XCTAssertEqual(httpResponse.statusCode, 301, @"Expected the status code in the response to be a 301");
     NSURLComponents *httpResponseURLComponents = [NSURLComponents componentsWithURL:httpResponse.URL resolvingAgainstBaseURL:YES];
     XCTAssertNotNil(httpResponseURLComponents, @"Expected to receive a URL object in the response");
-    XCTAssertTrue([originalHost isEqualToString:httpResponseURLComponents.host], @"Expected the response hostname and original hostname to match");
+    XCTAssertTrue([[httpResponseURLComponents.URL absoluteString] isEqualToString:baseURL], @"Expected the response hostname and original hostname to match");
     
     NSURLComponents *errorURLComponents = errorToCheck.userInfo[@"NSErrorFailingURLKey"];
     XCTAssertNotNil(errorURLComponents, @"Expected to receive a URL object in the error");
-    XCTAssertTrue([originalHost isEqualToString:errorURLComponents.host], @"Expected the error hostname and original hostname to match");
+    XCTAssertTrue([errorURLComponents.host isEqualToString:hostName], @"Expected the error hostname and original hostname to match");
 }
 
 @end
