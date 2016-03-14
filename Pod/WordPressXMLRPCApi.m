@@ -212,11 +212,8 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
 + (void)guessXMLRPCURLForSite:(NSString *)url
                       success:(void (^)(NSURL *xmlrpcURL))success
                       failure:(void (^)(NSError *error))failure {
-    NSURL *xmlrpcURL;
-    NSString *xmlrpc;
-
     NSError *error = nil;
-    xmlrpcURL = [self urlForXMLRPCFromUrl:url addXMLRPC:YES error:&error];
+    NSURL *xmlrpcURL = [self urlForXMLRPCFromUrl:url addXMLRPC:YES error:&error];
     if (xmlrpcURL == nil) {
         [self logExtraInfo: [error localizedDescription]];
         if (failure) {
@@ -224,7 +221,6 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
         }
         return;
     }
-    xmlrpc = [xmlrpcURL absoluteString];
     [self logExtraInfo: @"Trying the following URL: %@", xmlrpcURL ];
     [self validateXMLRPCUrl:xmlrpcURL success:^(NSURL *validatedXmlrpcURL){
         if (success) {
