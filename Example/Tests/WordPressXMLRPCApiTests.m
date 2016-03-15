@@ -365,43 +365,4 @@
     [self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void)testServerSide404Response
-{
-    __block NSError *errorToCheck = nil;
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Call should fail with error when server returns 404"];
-    NSString *originalHost = @"mywordpresssite.com";
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return [request.URL.host isEqualToString:originalHost];
-    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-        return [[OHHTTPStubsResponse responseWithData:[NSData data] statusCode:404 headers:nil]
-         responseTime:OHHTTPStubsDownloadSpeedWifi];
-    }];
-    
-    [WordPressApi signInWithURL:@"mywordpresssite.com"
-                       username:@"username"
-                       password:@"password"
-                        success:^(NSURL *xmlrpcURL) {
-                            XCTFail(@"Call to site returning a 404 should not enter success block.");
-                        } failure:^(NSError *error) {
-                            [expectation fulfill];
-                            errorToCheck = error;
-                        }];
-
-    [self waitForExpectationsWithTimeout:2 handler:nil];
-    XCTAssertNotNil(errorToCheck, @"Expected to get a error object");
-    XCTAssertNotNil(errorToCheck.userInfo, @"Expected to get a user info object in the error");
-    XCTAssertTrue([errorToCheck.userInfo[@"NSLocalizedDescription"] rangeOfString:@"404"].location != NSNotFound, @"Expected to get a 404 in the error description");
-    
-    NSHTTPURLResponse *httpResponse = errorToCheck.userInfo[@"com.alamofire.serialization.response.error.response"];
-    XCTAssertNotNil(httpResponse, @"Expected to receive a HTTP response object in the error");
-    XCTAssertEqual(httpResponse.statusCode, 404, @"Expected the status code in the response to be a 404");
-    NSURLComponents *httpResponseURLComponents = [NSURLComponents componentsWithURL:httpResponse.URL resolvingAgainstBaseURL:YES];
-    XCTAssertNotNil(httpResponseURLComponents, @"Expected to receive a URL object in the response");
-    XCTAssertTrue([originalHost isEqualToString:httpResponseURLComponents.host], @"Expected the response hostname and original hostname to match");
-    
-    NSURLComponents *errorURLComponents = errorToCheck.userInfo[@"NSErrorFailingURLKey"];
-    XCTAssertNotNil(errorURLComponents, @"Expected to receive a URL object in the error");
-    XCTAssertTrue([originalHost isEqualToString:errorURLComponents.host], @"Expected the error hostname and original hostname to match");
-}
-
 @end
