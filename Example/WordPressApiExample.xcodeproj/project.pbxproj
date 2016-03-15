@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74CCB7F31C95243200615812 /* WordPressApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CCB7F21C95243200615812 /* WordPressApiTests.m */; };
 		A64110090C93190934F6ADEF /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2078F536EFCFAFE3BF5632CC /* libPods-Tests.a */; };
 		C181F4A204BE90FC4E36EF70 /* libPods-WordPressApiExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A2BC69450F6F6CB3D3E017 /* libPods-WordPressApiExample.a */; };
 		E15CEBB114C59B3500CFDBB7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */; };
@@ -49,6 +50,7 @@
 		1323C8C670B8971488D899A5 /* Pods-WordPressApiExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordPressApiExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordPressApiExample/Pods-WordPressApiExample.debug.xcconfig"; sourceTree = "<group>"; };
 		1E549CAC979D2B5B1D972343 /* Pods-WordPressApiExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordPressApiExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordPressApiExample/Pods-WordPressApiExample.release.xcconfig"; sourceTree = "<group>"; };
 		2078F536EFCFAFE3BF5632CC /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74CCB7F21C95243200615812 /* WordPressApiTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordPressApiTests.m; sourceTree = "<group>"; };
 		C2A2BC69450F6F6CB3D3E017 /* libPods-WordPressApiExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WordPressApiExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B602CD836C8AFB3EB1320F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E15CEBB014C59B3500CFDBB7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -212,6 +214,7 @@
 			children = (
 				FF561A481C91B4BB00C692B9 /* MockData */,
 				FFA0659C1C89D73300923B29 /* WordPressXMLRPCApiTests.m */,
+				74CCB7F21C95243200615812 /* WordPressApiTests.m */,
 				FFA0659E1C89D73300923B29 /* Info.plist */,
 			);
 			path = Tests;
@@ -442,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74CCB7F31C95243200615812 /* WordPressApiTests.m in Sources */,
 				FFA0659D1C89D73300923B29 /* WordPressXMLRPCApiTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
