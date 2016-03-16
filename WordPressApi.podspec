@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Pod'
   s.requires_arc = true
   s.dependency 'AFNetworking', '~> 2.6.0'
-  s.dependency 'wpxmlrpc', '~> 0.7'
+  s.dependency 'wpxmlrpc', '~> 0.8'
 
   s.platform = :ios, '8.0'
   s.ios.deployment_target = '8.0'
