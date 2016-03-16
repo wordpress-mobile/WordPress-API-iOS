@@ -239,7 +239,7 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
         // Try the original given url as an XML-RPC endpoint
         // -------------------------------------------
         NSURL *originalXmlrpcURL = [self urlForXMLRPCFromUrl:url addXMLRPC:NO error:nil];
-        [self logExtraInfo: @"Try the given url as an XML-RPC endpoint: %@", xmlrpcURL];
+        [self logExtraInfo: @"Try the given url as an XML-RPC endpoint: %@", originalXmlrpcURL];
         [self validateXMLRPCUrl:originalXmlrpcURL success:^(NSURL *validatedXmlrpcURL){
             if (success) {
                 success(validatedXmlrpcURL);
