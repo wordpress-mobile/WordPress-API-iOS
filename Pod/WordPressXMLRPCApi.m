@@ -264,7 +264,7 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
     NSURLRequest *request = [NSURLRequest requestWithURL:htmlURL];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSError *error = NULL;
+        NSError *error = nil;
         NSString *responseString = operation.responseString;
         NSArray *matches = nil;
         if (responseString) {
@@ -280,6 +280,11 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
 
         if (rsdURL == nil) {
             if (failure) {
+                if (error == nil) {
+                    error = [NSError errorWithDomain:WordPressXMLRPCApiErrorDomain
+                                                code:WordPressXMLRPCApiInvalid
+                                            userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Cannot find a valid WordPress XMLRPC endpoint", @"Message to show when not valid WordPress XMLRPC endpoint is found on the URL provided")}];
+                }
                 failure(error);
             }
             return;

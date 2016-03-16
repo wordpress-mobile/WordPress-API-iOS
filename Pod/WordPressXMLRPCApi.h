@@ -10,6 +10,7 @@ typedef NS_ENUM(NSInteger, WordPressXMLRPCApiError) {
     WordPressXMLRPCApiInvalidScheme, // The URL provided was an invalid scheme, only HTTP and HTTPS supported
     WordPressXMLRPCApiNotWordPressError, // That's a XML-RPC endpoint but doesn't look like WordPress
     WordPressXMLRPCApiMobilePluginRedirectedError, // There's some "mobile" plugin redirecting everything to their site
+    WordPressXMLRPCApiInvalid, // Doesn't look to be valid XMLRPC Endpoint.
 };
 
 /**
