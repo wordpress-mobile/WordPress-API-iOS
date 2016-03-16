@@ -366,9 +366,9 @@
 }
 
 - (void)testGuessXMLRPCURLForSiteForFaultAnswers {
-
+    NSString *originalURL = @"http://mywordpresssite.com/xmlrpc.php";
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return [request.URL.host isEqualToString:@"mywordpresssite.com"];
+        return [request.URL.absoluteString isEqualToString:originalURL];
     } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
         NSURL *mockDataURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"fault_rpc_call" withExtension:@"xml"];
         NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
@@ -376,7 +376,7 @@
                 responseTime:OHHTTPStubsDownloadSpeedWifi];
     }];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Call should be successful"];
-    [WordPressXMLRPCApi guessXMLRPCURLForSite:@"https://mywordpresssite.com/xmlrpc.php" success:^(NSURL *xmlrpcURL) {
+    [WordPressXMLRPCApi guessXMLRPCURLForSite:originalURL success:^(NSURL *xmlrpcURL) {
         [expectation fulfill];
         XCTFail(@"Call to valid site should not enter success block.");
     } failure:^(NSError *error) {
