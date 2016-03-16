@@ -29,6 +29,7 @@
 		FF561A501C91B52500C692B9 /* html_page_with_link_to_rsd_non_standard.html in Resources */ = {isa = PBXBuildFile; fileRef = FF561A4F1C91B52500C692B9 /* html_page_with_link_to_rsd_non_standard.html */; };
 		FF561A521C9311BE00C692B9 /* redirect.html in Resources */ = {isa = PBXBuildFile; fileRef = FF561A511C9311BE00C692B9 /* redirect.html */; };
 		FF561A541C93151F00C692B9 /* plugin_redirect.html in Resources */ = {isa = PBXBuildFile; fileRef = FF561A531C93151F00C692B9 /* plugin_redirect.html */; };
+		FF561A5B1C96F24D00C692B9 /* fault_rpc_call.xml in Resources */ = {isa = PBXBuildFile; fileRef = FF561A5A1C96F24D00C692B9 /* fault_rpc_call.xml */; };
 		FFA0659D1C89D73300923B29 /* WordPressXMLRPCApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA0659C1C89D73300923B29 /* WordPressXMLRPCApiTests.m */; };
 		FFA065A61C89EEC300923B29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFA065A51C89EEC300923B29 /* Images.xcassets */; };
 		FFA065A91C89EF9E00923B29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA065A71C89EF9E00923B29 /* LaunchScreen.storyboard */; };
@@ -80,6 +81,7 @@
 		FF561A4F1C91B52500C692B9 /* html_page_with_link_to_rsd_non_standard.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = html_page_with_link_to_rsd_non_standard.html; sourceTree = "<group>"; };
 		FF561A511C9311BE00C692B9 /* redirect.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = redirect.html; sourceTree = "<group>"; };
 		FF561A531C93151F00C692B9 /* plugin_redirect.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = plugin_redirect.html; sourceTree = "<group>"; };
+		FF561A5A1C96F24D00C692B9 /* fault_rpc_call.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = fault_rpc_call.xml; sourceTree = "<group>"; };
 		FFA0659A1C89D73300923B29 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFA0659C1C89D73300923B29 /* WordPressXMLRPCApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordPressXMLRPCApiTests.m; sourceTree = "<group>"; };
 		FFA0659E1C89D73300923B29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				FF561A4B1C91B4BB00C692B9 /* system_list_methods.xml */,
 				FF561A511C9311BE00C692B9 /* redirect.html */,
 				FF561A531C93151F00C692B9 /* plugin_redirect.html */,
+				FF561A5A1C96F24D00C692B9 /* fault_rpc_call.xml */,
 			);
 			path = MockData;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				FF561A541C93151F00C692B9 /* plugin_redirect.html in Resources */,
 				FF561A4C1C91B4BB00C692B9 /* html_page_with_link_to_rsd.html in Resources */,
 				FF561A521C9311BE00C692B9 /* redirect.html in Resources */,
+				FF561A5B1C96F24D00C692B9 /* fault_rpc_call.xml in Resources */,
 				FF561A4E1C91B4BB00C692B9 /* system_list_methods.xml in Resources */,
 				FF561A4D1C91B4BB00C692B9 /* rsd.xml in Resources */,
 			);

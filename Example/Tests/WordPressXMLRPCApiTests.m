@@ -365,4 +365,25 @@
     [self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void)testGuessXMLRPCURLForSiteForFaultAnswers {
+    NSString *originalURL = @"http://mywordpresssite.com/xmlrpc.php";
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.absoluteString isEqualToString:originalURL];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        NSURL *mockDataURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"fault_rpc_call" withExtension:@"xml"];
+        NSData *mockData = [NSData dataWithContentsOfURL:mockDataURL];
+        return [[OHHTTPStubsResponse responseWithData:mockData statusCode:200 headers:nil]
+                responseTime:OHHTTPStubsDownloadSpeedWifi];
+    }];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Call should be successful"];
+    [WordPressXMLRPCApi guessXMLRPCURLForSite:originalURL success:^(NSURL *xmlrpcURL) {
+        [expectation fulfill];
+        XCTFail(@"Call to valid site should not enter success block.");
+    } failure:^(NSError *error) {
+        [expectation fulfill];
+        XCTAssertTrue(error != nil, @"Check if we are getting an error message");
+    }];
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
 @end
