@@ -1,8 +1,10 @@
+[![Build Status](https://travis-ci.org/wordpress-mobile/WordPress-API-iOS.svg?branch=master)](https://travis-ci.org/wordpress-mobile/WordPress-API-iOS)
+
 # WordPress API for iOS
 
 WordPress API for iOS is a library for iOS designed to make sharing on your WordPress blog easy.
 
-It's not meant to provide access to the full feature set of the WordPress XML-RPC API.
+It's not meant to provide access to the full feature set of the WordPress APIs.
 
 # Disclaimer
 
@@ -11,11 +13,10 @@ It's not meant to provide access to the full feature set of the WordPress XML-RP
 # Installation
 
 WordPress API uses [CocoaPods](http://cocoapods.org/) for easy
-dependency management.
+dependency management. To install
+it, simply add the following line to your Podfile:
 
-Until we are ready for a 1.0 release, you can add this to your Podfile:
-
- pod 'WordPressApi', :git => 'https://github.com/wordpress-mobile/WordPress-API-iOS', :branch => 'master'
+ pod 'WordPressApi'
 
 Another option, if you don't use CocoaPods, is to copy the `WordPressApi`
 folder to your project.
