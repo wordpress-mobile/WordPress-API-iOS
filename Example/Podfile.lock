@@ -33,7 +33,7 @@ PODS:
   - OHHTTPStubs/NSURLSession (4.7.1):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (4.7.1)
-  - WordPressApi (0.3.6):
+  - WordPressApi (0.4.0):
     - AFNetworking (~> 2.6.0)
     - wpxmlrpc (~> 0.8)
   - wpxmlrpc (0.8.2)
@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
-  WordPressApi: 37029cea723616c14ee682f1bc9b9aab38f20d51
+  WordPressApi: 483767025bcdab26429b51bfe5171f17d3d30466
   wpxmlrpc: 38623cc415117914d6ab5bf2ab8a57a4076cc469
 
 COCOAPODS: 0.39.0
