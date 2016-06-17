@@ -88,6 +88,27 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                     }];
 }
 
+
+#pragma mark - get category
+
+- (void)getCategory:(void (^)(NSMutableArray *categoryList))success failure:(void (^)(NSError *))failure {
+    
+    NSArray *parameters = [self buildParametersWithExtra:nil];
+    [self.client callMethod:@"wp.getCategories"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success(responseObject);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+}
+
+
 #pragma mark - Publishing a post
 
 - (void)publishPostWithText:(NSString *)content title:(NSString *)title success:(void (^)(NSUInteger, NSURL *))success failure:(void (^)(NSError *))failure {
