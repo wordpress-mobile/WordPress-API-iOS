@@ -74,4 +74,7 @@
          success:(void (^)(NSArray *posts))success
          failure:(void (^)(NSError *error))failure;
 
+//Get all category
+- (void)getCategory:(void (^)(NSMutableArray *categoryList))success failure:(void (^)(NSError *))failure;
+
 @end
