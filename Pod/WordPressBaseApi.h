@@ -77,4 +77,13 @@
 //Get all category
 - (void)getCategory:(void (^)(NSMutableArray *categoryList))success failure:(void (^)(NSError *))failure;
 
+//publish post with category and tags
+- (void)publishPostWithText:(NSString *)content title:(NSString *)title WithCategoryName:(NSString *)categoryName WithTags:(NSMutableArray*)tags success:(void (^)(NSUInteger postId, NSURL *url))success failure:(void (^)(NSError *error))failure;
+
+//add new tag
+- (void)addTag:(NSString *)tagName success:(void (^)(NSUInteger tagId))success failure:(void (^)(NSError *error))failure;
+
+//edit post
+- (void)editPostWithPostId:(NSString *)postId WithContent:(NSString *)content title:(NSString *)title WithCategoryName:(NSString *)categoryName WithTags:(NSMutableArray*)tags success:(void (^)(NSUInteger postId, NSURL *url))success failure:(void (^)(NSError *error))failure;
+
 @end
