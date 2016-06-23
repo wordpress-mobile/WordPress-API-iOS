@@ -88,7 +88,190 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                     }];
 }
 
+
+
+#pragma mark - get category
+
+- (void)getCategory:(void (^)(NSMutableArray *categoryList))success failure:(void (^)(NSError *))failure {
+    
+    NSArray *parameters = [self buildParametersWithExtra:nil];
+    [self.client callMethod:@"wp.getCategories"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success(responseObject);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+}
+
+
+
+#pragma mark - add tag
+
+- (void)addTag:(NSString *)tagName success:(void (^)(NSUInteger tagId))success failure:(void (^)(NSError *error))failure {
+    
+    NSDictionary *postParameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    tagName, @"name",
+                                    @"post_tag", @"taxonomy",
+                                    nil];
+    
+    NSArray *parameters = [self buildParametersWithExtra:postParameters];
+    [self.client callMethod:@"wp.newTerm"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success([responseObject intValue]);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+}
+
+
+
+
+#pragma mark - delete post
+
+- (void)deletePostWithPostId:(NSString *)postId success:(void (^)(bool success, NSURL *url))success failure:(void (^)(NSError *error))failure {
+    
+    //    NSDictionary *postParameters = [NSDictionary dictionaryWithObjectsAndKeys:
+    //                                    postId, @"post_id",
+    //                                    nil];
+    
+    NSMutableArray *parameters = [[self buildParametersWithExtra:nil] mutableCopy];
+    [parameters addObject:postId];
+    
+    
+    [self.client callMethod:@"wp.deleteFile"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success([responseObject boolValue], nil);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+}
+
+
+
+#pragma mark - upload image
+-(void)uploadImageWithImageName:(NSString*)imageName WithMimeType:(NSString*)mimeType WithImageData:(NSData*)imageData WithOverwrite:(BOOL)overwrite success:(void (^)(NSString *attachmentId, NSURL *url))success failure:(void (^)(NSError *error))failure {
+    
+    NSDictionary *postParameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    imageName, @"name",
+                                    mimeType, @"type",
+                                    imageData, @"bits",
+                                    @(overwrite), @"overwrite",
+                                    nil];
+    
+    NSArray *parameters = [self buildParametersWithExtra:postParameters];
+    
+    [self.client callMethod:@"wp.uploadFile"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            
+                            NSMutableDictionary *result = [responseObject mutableCopy];
+                            NSLog(@"responseObject = %@", responseObject);
+                            NSLog(@"id = %@", [result objectForKey:@"id"]);
+                            success([result objectForKey:@"id"], nil);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+    
+}
+
+
+#pragma mark - Edit a post
+- (void)editPostWithPostId:(NSString *)postId WithContent:(NSString *)content title:(NSString *)title WithCategoryName:(NSString *)categoryName WithTags:(NSMutableArray*)tags success:(void (^)(NSUInteger postId, NSURL *url))success failure:(void (^)(NSError *error))failure {
+    
+    NSMutableDictionary *postParameters = [[NSMutableDictionary alloc] init];
+    
+    if (title != nil) {
+        [postParameters setObject:title forKey:@"post_title"];
+    }
+    
+    if (content != nil) {
+        [postParameters setObject:content forKey:@"post_content"];
+    }
+    
+    NSMutableDictionary *termsNames = [[NSMutableDictionary alloc] init];
+    if (tags != nil) {
+        [termsNames setObject:tags forKey:@"post_tag"];
+        [postParameters setObject:termsNames forKey:@"terms_names"];
+    }
+    
+    if (categoryName != nil) {
+        [termsNames setObject:categoryName forKey:@"category"];
+        [postParameters setObject:termsNames forKey:@"terms_names"];
+    }
+    
+    NSMutableArray *parameters = [[self buildParametersWithExtra:postParameters] mutableCopy];
+    [parameters insertObject:[NSNumber numberWithInteger:[postId intValue]] atIndex:3];
+    
+    
+    [self.client callMethod:@"wp.editPost"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success([responseObject intValue], nil);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+}
+
+
 #pragma mark - Publishing a post
+- (void)publishPostWithText:(NSString *)content title:(NSString *)title WithCategoryName:(NSString *)categoryName WithTags:(NSMutableArray*)tags WithPostStatus:(NSString*)postStatus success:(void (^)(NSUInteger postId, NSURL *url))success failure:(void (^)(NSError *error))failure {
+    NSDictionary *postParameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    title, @"post_title",
+                                    content, @"post_content",
+                                    postStatus, @"post_status",
+                                    
+                                    [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                     tags, @"post_tag",
+                                     [[NSMutableArray alloc] initWithObjects:categoryName, nil],@"category"
+                                     , nil]
+                                    , @"terms_names",
+                                    
+                                    nil];
+    
+    NSArray *parameters = [self buildParametersWithExtra:postParameters];
+    [self.client callMethod:@"wp.newPost"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success([responseObject intValue], nil);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+}
+
+
 
 - (void)publishPostWithText:(NSString *)content title:(NSString *)title success:(void (^)(NSUInteger, NSURL *))success failure:(void (^)(NSError *))failure {
     NSDictionary *postParameters = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -96,6 +279,7 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
                                     content, @"post_content",
                                     @"publish", @"post_status",
                                     nil];
+    
     NSArray *parameters = [self buildParametersWithExtra:postParameters];
     [self.client callMethod:@"wp.newPost"
                  parameters:parameters
