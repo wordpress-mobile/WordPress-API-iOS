@@ -138,6 +138,66 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
 
 
 
+#pragma mark - delete post
+
+- (void)deletePostWithPostId:(NSString *)postId success:(void (^)(bool success, NSURL *url))success failure:(void (^)(NSError *error))failure {
+    
+    //    NSDictionary *postParameters = [NSDictionary dictionaryWithObjectsAndKeys:
+    //                                    postId, @"post_id",
+    //                                    nil];
+    
+    NSMutableArray *parameters = [[self buildParametersWithExtra:nil] mutableCopy];
+    [parameters addObject:postId];
+    
+    
+    [self.client callMethod:@"wp.deleteFile"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success([responseObject boolValue], nil);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+}
+
+
+
+#pragma mark - upload image
+-(void)uploadImageWithImageName:(NSString*)imageName WithMimeType:(NSString*)mimeType WithImageData:(NSData*)imageData WithOverwrite:(BOOL)overwrite success:(void (^)(NSString *attachmentId, NSURL *url))success failure:(void (^)(NSError *error))failure {
+    
+    NSDictionary *postParameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    imageName, @"name",
+                                    mimeType, @"type",
+                                    imageData, @"bits",
+                                    @(overwrite), @"overwrite",
+                                    nil];
+    
+    NSArray *parameters = [self buildParametersWithExtra:postParameters];
+    
+    [self.client callMethod:@"wp.uploadFile"
+                 parameters:parameters
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            
+                            NSMutableDictionary *result = [responseObject mutableCopy];
+                            NSLog(@"responseObject = %@", responseObject);
+                            NSLog(@"id = %@", [result objectForKey:@"id"]);
+                            success([result objectForKey:@"id"], nil);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+    
+}
+
+
 #pragma mark - Edit a post
 - (void)editPostWithPostId:(NSString *)postId WithContent:(NSString *)content title:(NSString *)title WithCategoryName:(NSString *)categoryName WithTags:(NSMutableArray*)tags success:(void (^)(NSUInteger postId, NSURL *url))success failure:(void (^)(NSError *error))failure {
     
@@ -182,12 +242,11 @@ NSString *const WordPressXMLRPCApiErrorDomain = @"WordPressXMLRPCApiError";
 
 
 #pragma mark - Publishing a post
-
-- (void)publishPostWithText:(NSString *)content title:(NSString *)title WithCategoryName:(NSString *)categoryName WithTags:(NSMutableArray*)tags success:(void (^)(NSUInteger postId, NSURL *url))success failure:(void (^)(NSError *error))failure {
+- (void)publishPostWithText:(NSString *)content title:(NSString *)title WithCategoryName:(NSString *)categoryName WithTags:(NSMutableArray*)tags WithPostStatus:(NSString*)postStatus success:(void (^)(NSUInteger postId, NSURL *url))success failure:(void (^)(NSError *error))failure {
     NSDictionary *postParameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                     title, @"post_title",
                                     content, @"post_content",
-                                    @"publish", @"post_status",
+                                    postStatus, @"post_status",
                                     
                                     [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                      tags, @"post_tag",
